@@ -4,7 +4,6 @@ title:      Sample post
 author:     György Katona
 tags: 		post sample
 subtitle:  	Some Short Description of Sample Post
-category:  project1
 ---
 <!-- Start Writing Below in Markdown -->
 
