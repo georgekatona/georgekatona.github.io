@@ -25,7 +25,7 @@ This is the second sample chapter.
 
 # Second header
 
-## Scmall chapter 3
+## Small chapter 3
 
 This is the third small chapter or the first small chapter of the **second** header.
 
