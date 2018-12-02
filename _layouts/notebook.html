@@ -1,0 +1,280 @@
+---
+layout: default
+---
+
+<!-- Progress Bar -->
+<progress value="0" id="progressBar">
+  <div class="progress-container">
+    <span class="progress-bar"></span>
+  </div>
+</progress>
+
+<!-- Post Header -->
+<header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}');">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading" style="padding: 30px 0">
+                    <h1>{{ page.title }}</h1>
+                    {% if page.subtitle %}
+                    <h2 class="subheading">{{ page.subtitle }}</h2>
+                    {% endif %}
+                    <span class="meta">Posted by {{ page.author }} on {{ page.date | date: "%B %-d, %Y" }}</span>	
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+{% include imagezoom.html %}
+
+<article>
+    <div id="content" class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+{{ content }}
+
+{% assign notebookadress = page.notebookfilename %}
+
+{% capture Notebook %}
+{% for cell in site.data[notebookadress].cells %}
+{% case cell.cell_type %}
+
+{% when 'markdown' %}
+
+{{ cell.source }}
+
+{% when 'code' %}
+
+{% highlight python %}
+{{ cell.source }}
+{% endhighlight %}
+
+{% for output in cell.outputs  %}
+
+{% for outputitem in output.data %}
+
+{% if outputitem[0] contains "image/" %}
+<img src="data:{{outputitem[0]}};base64, {{ outputitem[1] }}">
+{% endif %}
+
+{% endfor %}
+
+{% endfor %}
+
+{% endcase %}
+
+{% endfor %}
+{% endcapture %}
+
+{% if page.visualworkflow == true %}
+<script src="{{ site.baseurl }}/js/mermaid.min.js"></script>
+<link rel="stylesheet" href="{{ site.baseurl }}/css/mermaid.forest.css">
+<script>mermaid.initialize({startOnLoad:true});</script>
+
+<!-- Get Content for This Post and Split at Pound Signs to Find Headers -->
+
+{% assign text = Notebook | newline_to_br | split:"#" %}
+
+{% assign subcount = text | size | minus:1 %}
+
+<!-- Encapsulate in Capture to Handle the Whitespace and Allow Commenting -->
+{% capture MermaidBlock %}
+
+<!-- Initialize Header Counts -->
+{% assign bigheadercount = 0 %}
+{% assign smallheadercount = 0 %}
+
+<!-- Initialize Flowchart -->
+graph TB
+
+<!-- Loop over Potential Headers -->
+{% for sub in (1..subcount) %}
+
+	<!-- Get Length of Potential Header String -->
+	{% assign headercount = text[sub] | size %}
+
+	<!-- If Length is 0, We Caught a Pound Sign from a Sequence -->
+	{% if headercount == 0 %}
+		{% assign subcheck = 0 %}
+	{% endif %}
+
+	<!-- If Length is NonZero AND Previous Length was NonZero, I am a H1 -->
+	{% if headercount != 0 and subcheck != 0 %}
+
+		<!-- If I am the First in Sequence Nowhere to Connect -->
+		{% if bigheadercount == 0 %}
+		
+			{% assign bigheader = text[sub] | newline_to_br | split:"<br />" | first %}
+
+			subgraph {{ bigheader }}
+
+			{% assign bigheadercount = bigheadercount | plus:1 %}
+
+		{% else %}
+
+			end
+
+			{% assign bigheader = text[sub] | newline_to_br | split:"<br />" | first %}
+
+			subgraph {{ bigheader }}
+			
+		{% endif %}
+		
+		{% assign subcheck = 1 %}
+		
+	{% endif %}
+
+	<!-- If Length is NonZero AND Previous Length was Zero, I am a H2,H3 etc... -->
+	{% if headercount != 0 and subcheck == 0 %}
+
+		<!-- If I am the First in Sequence Nowhere to Connect -->
+		{% if smallheadercount == 0 %}
+		
+			{% assign currentheader = text[sub] | newline_to_br | split:"<br />" | first %}
+			{% assign currentsub = sub %}
+			{% assign smallheadercount = smallheadercount | plus:1 %}
+
+			node{{ sub }}({{ currentheader }})
+			
+			click node{{ sub }} "{{ currentheader | strip | downcase | replace:' ','-' | prepend:'#' }}"
+
+		{% else %}
+		
+			{% assign prevheader = currentheader %}
+			{% assign prevsub = currentsub %}
+			{% assign currentheader = text[sub] | newline_to_br | split:"<br />" | first %}		
+			{% assign currentsub = sub %}
+			
+			node{{ prevsub }}({{ prevheader }}) --> node{{ sub }}({{ currentheader }})
+			
+			click node{{ sub }} "{{ currentheader | strip | downcase | replace:' ','-' | prepend:'#' }}"
+
+		{% endif %}
+
+	{% assign subcheck = 2 %}
+
+	{% endif %}	
+
+{% endfor %}
+
+<!-- Finalize Flowchart -->
+end
+
+<!-- Finalize Capture -->
+{% endcapture %}
+
+<!-- Make the Graph -->
+<h1> Workflow Overview </h1>
+
+<!-- Strip HTML and Seperate at Line Breaks -->
+{% assign Blocks = MermaidBlock | strip_html | newline_to_br | split:"<br />" %}
+{% assign BlocksLength = Blocks | size %}
+
+<!-- Strip Each Line of Whitespace and Only Keep Lines Longer than 3 -->
+<div class="mermaid" id="mermaidworkflow" style="margin-left:100px">
+{% for line in (0..BlocksLength) %}{% assign BlockSize = Blocks[line] | size %}{% if BlockSize > 3 %}
+{{ Blocks[line] | strip | strip_newlines }}
+{% endif %}{% endfor %}
+</div>
+{% endif %}
+
+{{ Notebook | markdownify }}
+
+<hr>
+
+<ul class="pager">
+	{% if page.previous.url %}
+	<li class="previous">
+		<a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">&larr; Previous Post</a>
+	</li>
+	{% endif %}
+	{% if page.next.url %}
+	<li class="next">
+		<a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">Next Post &rarr;</a>
+	</li>
+	{% endif %}
+</ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr>
+
+{% include _comments.html %}
+
+<hr>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+	    
+	    var getMax = function(){
+	        return $(document).height() - $(window).height();
+	    }
+	    
+	    var getValue = function(){
+	        return $(window).scrollTop();
+	    }
+	    
+	    if('max' in document.createElement('progress')){
+	        // Browser supports progress element
+	        var progressBar = $('progress');
+	        
+	        // Set the Max attr for the first time
+	        progressBar.attr({ max: getMax() });
+	        $(document).on('scroll', function(){
+	            // On scroll only Value attr needs to be calculated
+	            progressBar.attr({ value: getValue() });
+	        });
+	      
+	        $(window).resize(function(){
+	            // On resize, both Max/Value attr needs to be calculated
+	            progressBar.attr({ max: getMax(), value: getValue() });
+	        });   
+	    }
+	    else {
+	        var progressBar = $('.progress-bar'), 
+	            max = getMax(), 
+	            value, width;
+	        
+	        var getWidth = function(){
+	            // Calculate width in percentage
+	            value = getValue();            
+	            width = (value/max) * 100;
+	            width = width + '%';
+	            return width;
+	        }
+	        
+	        var setWidth = function(){
+	            progressBar.css({ width: getWidth() });
+	        }
+	        
+	        $(document).on('scroll', setWidth);
+	        $(window).on('resize', function(){
+	            // Need to reset the Max attr
+	            max = getMax();
+	            setWidth();
+	        });
+	    }
+	});
+	$(document).ready(function(){
+	  
+	  $('#flat').addClass("active");
+	  $('#progressBar').addClass('flat');
+	    
+	  $('#flat').on('click', function(){
+	  $('#progressBar').removeClass().addClass('flat');
+	  $('a').removeClass();
+	  $(this).addClass('active');
+	  $(this).preventDefault();
+	  });
+	  
+	});
+</script>
+
+
+
