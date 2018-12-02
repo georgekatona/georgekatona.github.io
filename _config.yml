@@ -8,7 +8,7 @@ url: "https://georgekatona.github.io"
 
 # Secondary Parameters
 baseurl: ""
-header-img: img/bg_pulp.png
+header-img: img/map_cover.png
 headercolor: "#FFFFFF"
 logo: img/logos/profile_circle.png
 
@@ -36,7 +36,7 @@ defaults:
       type: "pages"
     values:
       layout: "project"
-      header-img: "img/bg_pulp.png"
+      header-img: "img/map_cover.png"
 
 # Prose Settings
 prose:
