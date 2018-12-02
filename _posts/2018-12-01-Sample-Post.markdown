@@ -29,9 +29,9 @@ This is the second sample chapter.
 
 This is the third small chapter or the first small chapter of the **second** header.
 
-![Pulp picture](https://github.com/georgekatona/georgekatona.github.io/blob/master/img/bg_pulp.png)
+![Pulp picture](https://georgekatona.github.io/img/bg_pulp.png)
 
-Find the image at [this](https://github.com/georgekatona/georgekatona.github.io/blob/master/img/bg_pulp.png) link.
+Find the image at [this](https://georgekatona.github.io/img/bg_pulp.png) link.
 
 
 
