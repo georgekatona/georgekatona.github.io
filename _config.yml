@@ -1,7 +1,7 @@
 # Site settings
 title: GK
 description: "A personal blog in the field of Data Science"
-url: "https://www.georgekatona.com"
+url: "https://georgekatona.com"
 
 
 
@@ -41,7 +41,7 @@ defaults:
 # Prose Settings
 prose:
   ignore: ['feed.xml', '/stl', '/ply', '/js', '/plugin', '/lib', '/projectors', '_layouts', '/_includes', 'Gruntfile.js', 'package.json', 'proselinks.jsonp', 'ppanchor.matin', '.gitignore', '/search', '/css', '/img', 'favicon.png','_data/*.json','LICENSES.md','README.md','colorscheme.scss','members.html','mentions.html','index.html']
-  siteurl: 'https://www.georgekatona.com/'
+  siteurl: 'https://georgekatona.com/'
   ispp: true
   media: 'img'
   metadata:
