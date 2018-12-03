@@ -11,6 +11,9 @@ layout: page
             {{ post.subtitle }}
         </h3>
         {% endif %}
+        {% if post.img_preview %}
+		<img src="{{ post.img_preview }}" class="img-responsive" style="margin-bottom: 5px">
+        {% endif %}
     </a>
     <p class="post-meta" style="margin-bottom:5px">Posted by {{ post.author }} on {{ post.date | date: "%B %-d, %Y" }}</p>
 	<div class="notepad-index-post-tags" style="">

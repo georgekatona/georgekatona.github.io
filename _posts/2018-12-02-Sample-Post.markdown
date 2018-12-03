@@ -4,7 +4,7 @@ title:      Sample post
 author:     György Katona
 tags: 		post sample
 subtitle:  	Some Short Description of Sample Post
-header-img:	"img/sample_header.jpg"
+img_preview:	"img/sample_header.jpg"
 ---
 <!-- Start Writing Below in Markdown -->
 
