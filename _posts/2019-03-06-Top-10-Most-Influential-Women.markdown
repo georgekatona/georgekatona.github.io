@@ -3,10 +3,10 @@ layout:     notebook
 title:      Top 10 Most Influential Women in Pop Culture
 author:     György Katona
 tags: 		notebook python visualization movies tv
-subtitle:   Analysis on the impact of pop culture.3
+subtitle:   Analysis on the impact of pop culture.4
 img_preview:	"img/sample_header.jpg"
 
-notebookfilename:	naming_trends
+notebookfilename:	sample
 visualworkflow:	true
 draft:	true
 ---
