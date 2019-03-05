@@ -5,7 +5,7 @@ id,type,title,release_date
 68716,tv,Marvel's Inhumans,2017-09-29
 114750,movie,Dear White People,2014-10-17
 65988,tv,Wynonna Earp,2016-04-01
-546564,movie,The OA,
+546564,movie,The OA,2016-12-16
 62285,tv,Marvel's The Defenders,2017-08-18
 48865,tv,Reign,2013-10-17
 46639,tv,American Gods,2017-04-30
