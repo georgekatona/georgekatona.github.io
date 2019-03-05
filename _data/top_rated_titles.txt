@@ -1,41 +1,41 @@
-,Unnamed: 0,id,type,title,release_date
-0,0,19404,movie,Dilwale Dulhania Le Jayenge,1995-10-20
-1,1,278,movie,The Shawshank Redemption,1994-09-23
-2,2,238,movie,The Godfather,1972-03-14
-3,3,372058,movie,Your Name.,2016-08-26
-4,4,424,movie,Schindler's List,1993-12-15
-5,5,324857,movie,Spider-Man: Into the Spider-Verse,2018-12-07
-6,6,240,movie,The Godfather: Part II,1974-12-20
-7,7,129,movie,Spirited Away,2001-07-20
-8,8,497,movie,The Green Mile,1999-12-10
-9,9,637,movie,Life Is Beautiful,1997-12-20
-10,10,680,movie,Pulp Fiction,1994-09-10
-11,11,539,movie,Psycho,1960-06-16
-12,12,155,movie,The Dark Knight,2008-07-16
-13,13,550,movie,Fight Club,1999-10-15
-14,14,13,movie,Forrest Gump,1994-07-06
-15,15,40096,movie,A Dog's Will,2000-09-15
-16,16,452522,movie,Twin Peaks,1989-12-31
-17,17,122,movie,The Lord of the Rings: The Return of the King,2003-12-01
-18,18,11216,movie,Cinema Paradiso,1988-11-17
-19,19,14537,movie,Harakiri,1962-09-15
-0,0,100,tv,I Am Not an Animal,2004-05-10
-1,1,60625,tv,Rick and Morty,2013-12-02
-2,2,1396,tv,Breaking Bad,2008-01-20
-3,3,68595,tv,Planet Earth II,2016-11-06
-4,4,66732,tv,Stranger Things,2016-07-15
-5,5,19885,tv,Sherlock,2010-07-25
-6,6,1438,tv,The Wire,2002-06-02
-7,7,1044,tv,Planet Earth,2006-03-05
-8,8,61617,tv,Over the Garden Wall,2014-11-03
-9,9,30991,tv,Cowboy Bebop,1998-04-03
-10,10,63926,tv,One-Punch Man,2015-10-04
-11,11,60622,tv,Fargo,2014-04-15
-12,12,13916,tv,Death Note,2006-10-04
-13,13,60574,tv,Peaky Blinders,2013-09-12
-14,14,849,tv,Monty Python's Flying Circus,1969-10-05
-15,15,815,tv,Peep Show,2003-09-19
-16,16,1398,tv,The Sopranos,1999-01-10
-17,17,72,tv,Only Fools and Horses,1981-09-08
-18,18,4613,tv,Band of Brothers,2001-09-09
-19,19,40075,tv,Gravity Falls,2012-06-15
+id,type,title,release_date
+19404,movie,Dilwale Dulhania Le Jayenge,1995-10-20
+278,movie,The Shawshank Redemption,1994-09-23
+238,movie,The Godfather,1972-03-14
+372058,movie,Your Name.,2016-08-26
+424,movie,Schindler's List,1993-12-15
+324857,movie,Spider-Man: Into the Spider-Verse,2018-12-07
+240,movie,The Godfather: Part II,1974-12-20
+129,movie,Spirited Away,2001-07-20
+497,movie,The Green Mile,1999-12-10
+637,movie,Life Is Beautiful,1997-12-20
+680,movie,Pulp Fiction,1994-09-10
+539,movie,Psycho,1960-06-16
+155,movie,The Dark Knight,2008-07-16
+550,movie,Fight Club,1999-10-15
+13,movie,Forrest Gump,1994-07-06
+40096,movie,A Dog's Will,2000-09-15
+452522,movie,Twin Peaks,1989-12-31
+122,movie,The Lord of the Rings: The Return of the King,2003-12-01
+11216,movie,Cinema Paradiso,1988-11-17
+14537,movie,Harakiri,1962-09-15
+100,tv,I Am Not an Animal,2004-05-10
+60625,tv,Rick and Morty,2013-12-02
+1396,tv,Breaking Bad,2008-01-20
+68595,tv,Planet Earth II,2016-11-06
+66732,tv,Stranger Things,2016-07-15
+19885,tv,Sherlock,2010-07-25
+1438,tv,The Wire,2002-06-02
+1044,tv,Planet Earth,2006-03-05
+61617,tv,Over the Garden Wall,2014-11-03
+30991,tv,Cowboy Bebop,1998-04-03
+63926,tv,One-Punch Man,2015-10-04
+60622,tv,Fargo,2014-04-15
+13916,tv,Death Note,2006-10-04
+60574,tv,Peaky Blinders,2013-09-12
+849,tv,Monty Python's Flying Circus,1969-10-05
+815,tv,Peep Show,2003-09-19
+1398,tv,The Sopranos,1999-01-10
+72,tv,Only Fools and Horses,1981-09-08
+4613,tv,Band of Brothers,2001-09-09
+40075,tv,Gravity Falls,2012-06-15
