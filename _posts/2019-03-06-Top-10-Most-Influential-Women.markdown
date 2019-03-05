@@ -6,7 +6,7 @@ tags: 		notebook python visualization movies tv
 subtitle:   Analysis on the impact of pop culture.7
 img_preview:	"img/sample_header.jpg"
 
-notebookfilename:	naming_trends
+notebookfilename:	intro
 visualworkflow:	true
 draft:	true
 ---
