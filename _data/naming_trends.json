@@ -22,17 +22,6 @@
     "For security reasons I am going to show you the functions of api calls, but without the API key, I'll load the saved results from the final csv file."
    ]
   },
-  {
-   "cell_type": "code",
-   "execution_count": 1,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "import http.client\n",
-    "import json\n",
-    "import pandas as pd"
-   ]
-  }
 ],
  "metadata": {
   "kernelspec": {
