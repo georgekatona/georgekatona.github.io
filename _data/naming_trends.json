@@ -4,25 +4,28 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "# Top 10 Most Influential Women in Pop Culture\n",
+    "# Meet PyMKS\n",
     "\n",
-    "I was thinking a lot about the topic of my first blog post, as I really wanted it to be something special, which represents me well and shows a snippet of my skillset at the same time. Having the International Women's Day just around the corner, I thought running an analysis on what and who inspires women the most would be really exciting. I could not help involving my other field of interest: I am going to investigate pop culture's impact through movies and TV shows."
+    "In this short introduction, we will demonstrate the functionality of PyMKS to compute 2-point statistics in order to objectively quantify microstructures, predict effective properties using homogenization and predict local properties using localization. If you would like more technical details amount any of these methods please see the [theory section](THEORY.html)."
    ]
   },
   {
-   "cell_type": "markdown",
-   "metadata": {},
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
    "source": [
-    "### Data preparation\n",
+    "%matplotlib inline\n",
+    "%load_ext autoreload\n",
+    "%autoreload 2\n",
     "\n",
-    "As I found the open governmental (data source)[https://www.ssa.gov/oact/babynames/limits.html] of the babies' names born in between 1880 and 2017, I though what could be a better marker of impact that naming your own child after one of your heroes.\n",
-    "\n",
-    "Given the birth data, I had to find a set of names of influential characters as candidates. Although IMBb doesn't provide an open API, I found (TMBd)[https://www.themoviedb.org/] as an alternative for interative search. It provides a daily updated \"most poopular\" list of movies and TV shows, but it contains almost exclusively recent titles, which doesn't help our analysis of impact. On the other hand it also provides a list of top rated movies, critically successful titles usually have larger pop culture relevancy.\n",
-    "\n",
-    "For security reasons I am going to show you the functions of api calls, but without the API key, I'll load the saved results from the final csv file."
+    "import numpy as np\n",
+    "import matplotlib.pyplot as plt"
    ]
   },
-],
+ ],
  "metadata": {
   "kernelspec": {
    "display_name": "Python 3",
