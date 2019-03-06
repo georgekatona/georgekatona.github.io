@@ -347,3 +347,11 @@ plot_rising_names(names = female_names[female_names.release_year > "1999"].nlarg
 # Summary
 
 Data shows us not only that we live in the best years so far to gain inspiration from female movie and TV characters, but also that what huge impact these shows have on our life. The world has never been so deeply connected and for this reason, the movie industry has never had greater responsibility of telling us stories which can really help us to become or raise our heroes.
+
+
+*Links to interactive plots:*
+
+[Names with Growing Popularity - Full Detail]()
+[Names with Growing Popularity [IMDb Lists]]()
+[Top 10 Growing Female Names]()
+[Top 10 Growing Female Names in the 21st century]()
