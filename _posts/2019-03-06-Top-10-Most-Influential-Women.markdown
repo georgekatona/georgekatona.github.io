@@ -8,9 +8,6 @@ img_preview:	"img/female_inspiration.jpg"
 draft:	true
 ---
 
-
-# Most Influential Women in Pop Culture
-
 I was thinking a lot about the topic of my first blog post, as I really wanted it to be something special, which represents me well and shows a snippet of my skillset at the same time. Having the International Women's Day just around the corner, I thought running an analysis on what and who inspires women the most would be really exciting. I could not help involving my other field of interest: I am going to investigate pop culture's impact through movies and TV shows.
 
 ### Data preparation
@@ -412,142 +409,7 @@ pop_culture_films = pd.read_csv("data/imdb_top_100_pop_culture_films.csv",encodi
 pop_culture_tv = pd.read_csv("data/imdb_pop_culture_tv_shows.csv",encoding='ANSI')
 
 pop_culture_imdb_df = pop_culture_tv.append(pop_culture_films)
-pop_culture_imdb_df.head()
 ```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Position</th>
-      <th>Const</th>
-      <th>Created</th>
-      <th>Modified</th>
-      <th>Description</th>
-      <th>Title</th>
-      <th>URL</th>
-      <th>Title Type</th>
-      <th>IMDb Rating</th>
-      <th>Runtime (mins)</th>
-      <th>Year</th>
-      <th>Genres</th>
-      <th>Num Votes</th>
-      <th>Release Date</th>
-      <th>Directors</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>tt2788432</td>
-      <td>2018-06-15</td>
-      <td>2018-06-15</td>
-      <td>NaN</td>
-      <td>American Crime Story</td>
-      <td>https://www.imdb.com/title/tt2788432/</td>
-      <td>tvSeries</td>
-      <td>8.5</td>
-      <td>42.0</td>
-      <td>2016</td>
-      <td>Biography, Crime, Drama</td>
-      <td>64542</td>
-      <td>2015-12-07</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>tt4093826</td>
-      <td>2018-06-15</td>
-      <td>2018-06-15</td>
-      <td>NaN</td>
-      <td>Twin Peaks</td>
-      <td>https://www.imdb.com/title/tt4093826/</td>
-      <td>tvSeries</td>
-      <td>8.5</td>
-      <td>60.0</td>
-      <td>2017</td>
-      <td>Crime, Drama, Fantasy, Mystery, Thriller</td>
-      <td>41100</td>
-      <td>2017-05-19</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>tt3531824</td>
-      <td>2018-06-15</td>
-      <td>2018-06-15</td>
-      <td>NaN</td>
-      <td>Nerve</td>
-      <td>https://www.imdb.com/title/tt3531824/</td>
-      <td>movie</td>
-      <td>6.5</td>
-      <td>96.0</td>
-      <td>2016</td>
-      <td>Action, Adventure, Crime, Drama, Mystery, Thri...</td>
-      <td>100607</td>
-      <td>2016-07-12</td>
-      <td>Henry Joost, Ariel Schulman</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>tt0288937</td>
-      <td>2018-06-15</td>
-      <td>2018-06-15</td>
-      <td>NaN</td>
-      <td>Degrassi: The Next Generation</td>
-      <td>https://www.imdb.com/title/tt0288937/</td>
-      <td>tvSeries</td>
-      <td>7.4</td>
-      <td>30.0</td>
-      <td>2001</td>
-      <td>Drama, Romance</td>
-      <td>10091</td>
-      <td>2001-10-14</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5</td>
-      <td>tt4154858</td>
-      <td>2018-06-15</td>
-      <td>2018-06-15</td>
-      <td>NaN</td>
-      <td>Inhumans</td>
-      <td>https://www.imdb.com/title/tt4154858/</td>
-      <td>tvMiniSeries</td>
-      <td>5.1</td>
-      <td>43.0</td>
-      <td>2017</td>
-      <td>Action, Adventure, Sci-Fi</td>
-      <td>18439</td>
-      <td>2017-08-28</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
 
 
 After having the lists exported and read in, let's translate them to TMDb's format, so we can then iteratively search for their character names.
@@ -812,4 +674,4 @@ plot_rising_names(names = female_names[female_names.release_year > "1999"].nlarg
 
 ### Summary
 
-Data shows us not only that we live in the best years so far to gain inspiration from female movie / TV characters, but also that what huge impact these shows have on our life. The world has never been so deeply connected and for this reason, the movie industry has never had greater responsibility of telling us stories which can really help us to become or raise our heroes.
+Data shows us not only that we live in the best years so far to gain inspiration from female movie and TV characters, but also that what huge impact these shows have on our life. The world has never been so deeply connected and for this reason, the movie industry has never had greater responsibility of telling us stories which can really help us to become or raise our heroes.
