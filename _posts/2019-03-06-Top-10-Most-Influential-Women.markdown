@@ -8,9 +8,14 @@ img_preview:	"img/female_inspiration.jpg"
 draft:	true
 ---
 
+# Table of Contents
+
+* TOC
+{:toc}
+
 I was thinking a lot about the topic of my first blog post, as I really wanted it to be something special, which represents me well and shows a snippet of my skillset at the same time. Having the International Women's Day just around the corner, I thought running an analysis on what and who inspires women the most would be really exciting. I could not help involving my other field of interest: I am going to investigate pop culture's impact through movies and TV shows.
 
-### Data preparation
+# Data preparation
 
 As I found the open governmental [data source](https://www.ssa.gov/oact/babynames/limits.html) of the babies' names born in the US between 1880 and 2017, I though what could be a better marker of impact that naming your own child after one of your heroes.
 
@@ -106,7 +111,6 @@ baby_names.head()
 ### Top rated movies
 
 Given the birth data, I had to find a set of names of influential characters as candidates. Although IMBb doesn't provide an open API, I found [TMBd](https://www.themoviedb.org/) as an alternative for iterative search. It provides a daily updated "most popular" list of movies and TV shows, but it contains almost exclusively recent titles, which doesn't help our analysis of impact. On the other hand it also provides a list of top rated movies, critically successful titles usually have larger pop culture relevancy.
-
 
 ```python
 import http.client
@@ -452,88 +456,12 @@ def get_tmdb_data(imdb_df):
     return tmdb_titles
 
 pop_culture_titles = get_tmdb_data(pop_culture_imdb_df)
-```
 
-
-```python
 pop_culture_names = pd.DataFrame(columns=["title", "release_year", "first_name", "gender"])
 for i in range(len(pop_culture_titles)):
     pop_culture_names = pop_culture_names.append(get_top_characters(pop_culture_titles.iloc[i], 4))
     time.sleep(0.25)
-pop_culture_names.head()
-```
 
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>title</th>
-      <th>release_year</th>
-      <th>first_name</th>
-      <th>gender</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>American Crime Story</td>
-      <td>2016</td>
-      <td>Andrew</td>
-      <td>M</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>American Crime Story</td>
-      <td>2016</td>
-      <td>Gianni</td>
-      <td>M</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>American Crime Story</td>
-      <td>2016</td>
-      <td>Donatella</td>
-      <td>F</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>Nerve</td>
-      <td>2016</td>
-      <td>Vee</td>
-      <td>F</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Nerve</td>
-      <td>2016</td>
-      <td>Ian</td>
-      <td>M</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-
-```python
 plot_rising_names(names = pop_culture_names,
                   baby_names=baby_names, 
                   min_growth=2.0,
