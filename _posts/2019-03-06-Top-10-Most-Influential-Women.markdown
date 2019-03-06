@@ -8,8 +8,6 @@ img_preview:	"img/female_inspiration.jpg"
 draft:	true
 ---
 
-# Table of Contents
-
 * TOC
 {:toc}
 
