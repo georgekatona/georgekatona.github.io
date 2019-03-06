@@ -386,6 +386,10 @@ plot_rising_names(names = names_top_rated_titles,
                   output_file="images/rising_names_top_rated.png")
 ```
 
+
+![rising_names_top_rated](https://georgekatona.com/img/female_inspiration/rising_names_top_rated.png)
+
+
 In the figure above you see all the names which at least doubled their popularity in 10 years after their realease. All lines start from the year of release and shows the trend of the following 10 years. You find an interactive version of the plot [here](https://plot.ly/~george.katona/22/names-growing-popularity-in-10-years-after-movietv-release/). As the lines close to the x axis might seem irrelevant, I made a zoomed version to show a more detailed view of them.
 
 
@@ -398,6 +402,10 @@ plot_rising_names(names = names_top_rated_titles,
                   output_file="images/rising_names_top_rated_zoomed.png",
                   y_range = [0, 400])
 ```
+
+
+![rising_names_top_rated_zoomed](https://georgekatona.com/img/female_inspiration/rising_names_top_rated_zoomed.png)
+
 
 ### IMDb lists as candidates
 
@@ -534,6 +542,9 @@ plot_rising_names(names = pop_culture_names,
                   output_file="images/rising_names_imdb.png")
 ```
 
+![rising_names_imdb](https://georgekatona.com/img/female_inspiration/rising_names_imdb.png)
+
+
 Well, it is nice to have a lot of data to investigate, but it is also somewhat crowded. If you're interested in all of them, look at the interactive version right [here](https://plot.ly/~george.katona/24/names-growing-popularity-from-imdb-lists/). Otherwise let's sort it by the popularity growth rate and show only the top 10 results.
 
 ### Names the with highest growth of popularity
@@ -660,6 +671,10 @@ plot_rising_names(names = female_names.nlargest(10, "max_growth"),
                   output_file="images/top_10_growing_female_names.png")
 ```
 
+
+![top_10_growing_female_names](https://georgekatona.com/img/female_inspiration/top_10_growing_female_names.png)
+
+
 The figure above implies that although there has been far less popular TV shows and movies before 1999, there has been some titles with huge impact. On the other hand it isn't very suprising that in the 21st century there are a lot of shows and movies with great popularity, as it has become so much easier to access our favorites. Let's focus now on the titles released after 1999.
 
 
@@ -671,6 +686,10 @@ plot_rising_names(names = female_names[female_names.release_year > "1999"].nlarg
                   title="Top 10 Growing Female Names in the 21st Century",
                   output_file="images/top_10_growing_female_names_2000.png")
 ```
+
+
+![top_10_growing_female_names_2000](https://georgekatona.com/img/female_inspiration/top_10_growing_female_names_2000.png)
+
 
 ### Summary
 
