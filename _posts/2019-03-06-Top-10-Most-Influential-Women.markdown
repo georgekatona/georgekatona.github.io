@@ -8,8 +8,6 @@ img_preview:	"img/female_inspiration.jpg"
 draft:	true
 ---
 
-# Table of Contents
-
 * TOC
 {:toc}
 
@@ -108,7 +106,7 @@ baby_names.head()
 
 
 
-### Top rated movies
+# Top rated movies
 
 Given the birth data, I had to find a set of names of influential characters as candidates. Although IMBb doesn't provide an open API, I found [TMBd](https://www.themoviedb.org/) as an alternative for iterative search. It provides a daily updated "most popular" list of movies and TV shows, but it contains almost exclusively recent titles, which doesn't help our analysis of impact. On the other hand it also provides a list of top rated movies, critically successful titles usually have larger pop culture relevancy.
 
@@ -315,7 +313,7 @@ names_top_rated_titles.head()
 
 
 
-### Visualization
+# Visualization
 
 I used [Plotly](https://plot.ly/python/) library to visualize trends. Apart from the images shown below I link all interactive plots for the same query.
 
@@ -411,7 +409,7 @@ plot_rising_names(names = names_top_rated_titles,
 ![rising_names_top_rated_zoomed](https://georgekatona.com/img/female_inspiration/rising_names_top_rated_zoomed.png)
 
 
-### IMDb lists as candidates
+# IMDb lists as candidates
 
 As a first iteration, visualizing popular names from top rated movies worked well, but the average rating of a movie isn't necessarily the best predictor of pop culture significance. In the next step I exported [Top Pop Culture Films](https://www.imdb.com/list/ls002272292/) and [Top Pop Culture TV Shows](https://www.imdb.com/list/ls022768086/) lists from IMDb. Despite of these lists being highly subjective, they include so many films and TV shows that most of the relevant titles seem to be included.
 
@@ -475,7 +473,7 @@ plot_rising_names(names = pop_culture_names,
 
 Well, it is nice to have a lot of data to investigate, but it is also somewhat crowded. If you're interested in all of them, look at the interactive version right [here](https://plot.ly/~george.katona/24/names-growing-popularity-from-imdb-lists/). Otherwise let's sort it by the popularity growth rate and show only the top 10 results.
 
-### Names the with highest growth of popularity
+# Names the with highest growth of popularity
 
 To find the names with the highest growth of popularity, I introduced a new column "max_growth". Doing so keeps a while, but then we can sort and make queries on it.
 
@@ -619,6 +617,6 @@ plot_rising_names(names = female_names[female_names.release_year > "1999"].nlarg
 ![top_10_growing_female_names_2000](https://georgekatona.com/img/female_inspiration/top_10_growing_female_names_2000.png)
 
 
-### Summary
+# Summary
 
 Data shows us not only that we live in the best years so far to gain inspiration from female movie and TV characters, but also that what huge impact these shows have on our life. The world has never been so deeply connected and for this reason, the movie industry has never had greater responsibility of telling us stories which can really help us to become or raise our heroes.
