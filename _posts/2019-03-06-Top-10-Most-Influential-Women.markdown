@@ -3,7 +3,7 @@ layout:     post
 title:      Top 10 Most Influential Women in Pop Culture
 author:     György Katona
 tags: 		python visualization movies tv
-subtitle:   Analysis on the impact of pop culture.10
+subtitle:   Analysis on the impact of pop culture.11
 img_preview:	"img/female_inspiration.jpg"
 visualworkflow:	true
 draft:	true
@@ -240,86 +240,3 @@ names_of_top_rated.head()
 </table>
 </div>
 
-
-
-### Visualization
-
-I use Plotly library to visualize trends. As the whole US baby names csv is 40 MBs, I use a filtered version, which only contains the rows with names from the top rated titles.
-
-
-```python
-import plotly
-import plotly.plotly as py
-import plotly.graph_objs as go
-from datetime import datetime
-
-def plot_rising_top_names(top_names, top_media, baby_names, growth):
-    data = []
-
-    top_first_names = top_names["character_name"].str.split().str.get(0)
-    names_data = baby_names[baby_names.name.isin(top_first_names)]
-
-    for name in names_data.name.unique()[:]:
-        media = top_media[top_media.id == top_names[top_names.character_name.str.startswith(name, na=False)]["media_id"]
-            .iloc[0]]
-        release_year = datetime.strptime(media["release_date"].iloc[0], "%Y-%m-%d").year
-
-        # Add only if it rose by at least "growth" percent
-        initial_count = \
-            names_data[(names_data.year == release_year) & (names_data.name == name) & (names_data.gender == top_names[
-                top_names.character_name.str.startswith(name, na=False)].iloc[0].gender)]['count']
-
-        if len(initial_count) < 1:
-            continue
-
-        if sum(names_data[(names_data.year > release_year) & (
-                names_data.year < release_year + 20) & (
-                                  names_data.name == name) & (names_data.gender == top_names[
-            top_names.character_name.str.startswith(name, na=False)].iloc[0].gender)]['count'] > (
-                       initial_count.iloc[0] * growth)) > 0:
-            data.append(
-                go.Scatter(
-                    x=names_data[(names_data.year >= release_year) & (names_data.year < release_year + 20) &
-                                 (names_data.name == name) & (names_data.gender == top_names[
-                        top_names.character_name.str.startswith(name, na=False)].iloc[0].gender)]['year'],
-                    y=names_data[(names_data.year >= release_year) & (names_data.year < release_year + 20) & (
-                            names_data.name == name) & (names_data.gender == top_names[
-                        top_names.character_name.str.startswith(name, na=False)].iloc[0].gender)]['count'],
-                    mode='lines',
-                    name="{} ({})".format(name, media.iloc[0]["title"])
-                )
-            )
-
-    layout = go.Layout(
-        paper_bgcolor='rgb(255,255,255)',
-        plot_bgcolor='rgb(229,229,229)',
-        xaxis=dict(
-            title='Year',
-            gridcolor='rgb(255,255,255)',
-            showgrid=True,
-            showline=False,
-            showticklabels=True,
-            tickcolor='rgb(127,127,127)',
-            ticks='outside',
-            tickmode='linear',
-            zeroline=False
-        ),
-        yaxis=dict(
-            title='Babies named',
-            gridcolor='rgb(255,255,255)',
-            showgrid=True,
-            showline=False,
-            showticklabels=True,
-            tickcolor='rgb(127,127,127)',
-            ticks='outside',
-            zeroline=True
-        ),
-    )
-    fig = go.Figure(data=data, layout=layout)
-
-    plotly.offline.iplot(fig, show_link=False)
-
-plotly.offline.init_notebook_mode(connected=False)
-filtered_baby_names = pd.read_csv("https://raw.githubusercontent.com/georgekatona/georgekatona.github.io/master/_data/naming_trends/baby_names_filtered_top_rated.txt")
-plot_rising_top_names(names_of_top_rated, top_rated_titles, filtered_baby_names, 2)
-```
