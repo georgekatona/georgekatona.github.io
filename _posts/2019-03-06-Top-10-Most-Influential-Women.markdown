@@ -329,17 +329,7 @@ def get_names_with_max_growth(names, baby_names, following_years):
 pop_culture_names_with_max_growth = get_names_with_max_growth(names=pop_culture_names, 
                                             baby_names=baby_names,
                                             following_years=10)
-pop_culture_names_with_max_growth.head()
 ```
-
-
-| title                | release_year | first_name | gender | max_growth |
-|----------------------|--------------|------------|--------|------------|
-| American Crime Story | 2016         | Andrew     | M      | 1.0000     |
-| American Crime Story | 2016         | Gianni     | M      | 1.1875     |
-| American Crime Story | 2016         | Donatella  | F      | 1.0000     |
-| Nerve                | 2016         | Ian        | M      | 1.0000     |
-| Nerve                | 2016         | Sydney     | F      | 1.0000     |
 
 
 Now let's visualize the top 10 female names which gained the most popularity in 10 years after release.
