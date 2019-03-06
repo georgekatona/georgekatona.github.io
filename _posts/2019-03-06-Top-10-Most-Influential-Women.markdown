@@ -5,7 +5,6 @@ author:     György Katona
 tags: 		python visualization movies tv
 subtitle:   Analysis on the impact of pop culture.11
 img_preview:	"img/female_inspiration.jpg"
-visualworkflow:	true
 draft:	true
 ---
 
