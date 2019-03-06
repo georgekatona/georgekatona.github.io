@@ -50,7 +50,7 @@ baby_names.head()
 
 # Top rated movies
 
-Given the birth data, I had to find a set of names of influential characters as candidates. Although IMBb doesn't provide an open API, I found [TMBd](https://www.themoviedb.org/) as an alternative for iterative search. It provides a daily updated "most popular" list of movies and TV shows, but it contains almost exclusively recent titles, which doesn't help our analysis of impact. On the other hand it also provides a list of top rated movies, critically successful titles usually have larger pop culture relevancy.
+Given the birth data, I had to find a set of names of influential characters as candidates. Although IMDb doesn't provide an open API, I found [TMBd](https://www.themoviedb.org/) as an alternative for iterative search. It provides a daily updated "most popular" list of movies and TV shows, but it contains almost exclusively recent titles, which doesn't help our analysis of impact. On the other hand it also provides a list of top rated movies, critically successful titles usually have larger pop culture relevancy.
 
 ```python
 import http.client
