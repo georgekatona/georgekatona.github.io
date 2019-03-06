@@ -562,7 +562,7 @@ def get_tmdb_data(imdb_df):
     for i in range(len(imdb_df)):
         imdb_item = imdb_df.iloc[i]
         conn.request("GET",
-                 "/3/find/{}?api_key={}&language=en-US&external_source=imdb_id".format(imdb_item["Const"], "dcc62540ad690b83f44f325cd7765795"))
+                 "/3/find/{}?api_key={}&language=en-US&external_source=imdb_id".format(imdb_item["Const"], API_KEY))
         # TMDb API has a request rate limit 40 / 10 seconds
         time.sleep(0.25)
         
