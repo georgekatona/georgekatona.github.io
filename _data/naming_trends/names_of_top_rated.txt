@@ -2,209 +2,139 @@ title,release_year,first_name,gender
 Dilwale Dulhania Le Jayenge,1995,Raj,M
 Dilwale Dulhania Le Jayenge,1995,Simran,F
 Dilwale Dulhania Le Jayenge,1995,Chaudhry,M
-Dilwale Dulhania Le Jayenge,1995,Dharamvir,M
-Dilwale Dulhania Le Jayenge,1995,Ajit,M
 Dilwale Dulhania Le Jayenge,1995,Simran's,F
 The Shawshank Redemption,1994,Andy,M
 The Shawshank Redemption,1994,Ellis,M
-The Shawshank Redemption,1994,Warden,M
-The Shawshank Redemption,1994,Captain,M
 The Shawshank Redemption,1994,1954,F
 The Shawshank Redemption,1994,Bank,F
 The Godfather,1972,Don,M
 The Godfather,1972,Michael,M
-The Godfather,1972,Santino,M
-The Godfather,1972,Pete,M
 The Godfather,1972,Kay,F
 The Godfather,1972,Connie,F
 Your Name.,2016,Taki,M
 Your Name.,2016,Mitsuha,F
 Your Name.,2016,Miki,F
-Your Name.,2016,Hitoha,F
 Your Name.,2016,Katsuhiko,M
-Your Name.,2016,Sayaka,F
 Schindler's List,1993,Oskar,M
 Schindler's List,1993,Itzhak,M
-Schindler's List,1993,Amon,M
 Schindler's List,1993,Emilie,F
-Schindler's List,1993,Poldek,M
 Schindler's List,1993,Helen,F
 The Godfather: Part II,1974,Don,M
 The Godfather: Part II,1974,Tom,M
 The Godfather: Part II,1974,Kay,F
-The Godfather: Part II,1974,Don,M
-The Godfather: Part II,1974,Fredo,M
 The Godfather: Part II,1974,Connie,F
 Spider-Man: Into the Spider-Verse,2018,Miles,M
 Spider-Man: Into the Spider-Verse,2018,Peter,M
 Spider-Man: Into the Spider-Verse,2018,Gwen,F
-Spider-Man: Into the Spider-Verse,2018,Aaron,M
-Spider-Man: Into the Spider-Verse,2018,Jefferson,M
 Spider-Man: Into the Spider-Verse,2018,May,F
 Spirited Away,2001,Chihiro,M
 Spirited Away,2001,Haku,M
 Spirited Away,2001,Yubaba,F
-Spirited Away,2001,Kamaji,M
-Spirited Away,2001,Lin,M
 Spirited Away,2001,Aogaeru,F
 The Green Mile,1999,Paul,M
 The Green Mile,1999,John,M
-The Green Mile,1999,Brutus,M
 The Green Mile,1999,Jan,F
-The Green Mile,1999,Warden,M
 The Green Mile,1999,Melinda,F
 Life Is Beautiful,1997,Guido,M
 Life Is Beautiful,1997,Dora,F
 Life Is Beautiful,1997,Giosué,M
-Life Is Beautiful,1997,Eliseo,M
-Life Is Beautiful,1997,Rodolfo,M
 Life Is Beautiful,1997,Madre,F
 Pulp Fiction,1994,Vincent,M
 Pulp Fiction,1994,Jules,M
 Pulp Fiction,1994,Mia,F
-Pulp Fiction,1994,Butch,M
-Pulp Fiction,1994,Marsellus,M
 Pulp Fiction,1994,Honey,F
 Psycho,1960,Norman,M
 Psycho,1960,Marion,F
 Psycho,1960,Lila,F
 Psycho,1960,Sam,M
-Psycho,1960,Det.,M
-Psycho,1960,Sheriff,M
 The Dark Knight,2008,Bruce,M
 The Dark Knight,2008,Alfred,M
-The Dark Knight,2008,Joker,M
-The Dark Knight,2008,James,M
 The Dark Knight,2008,Rachel,F
 The Dark Knight,2008,Anna,F
 Fight Club,1999,The,M
 Fight Club,1999,Tyler,M
 Fight Club,1999,Marla,F
-Fight Club,1999,Robert,M
-Fight Club,1999,Angel,M
 Fight Club,1999,Group,F
 Twin Peaks,1989,Special,M
 Twin Peaks,1989,Sheriff,M
 Twin Peaks,1989,Shelly,F
-Twin Peaks,1989,Bobby,M
-Twin Peaks,1989,Benjamin,M
 Twin Peaks,1989,Donna,F
 Forrest Gump,1994,Forrest,M
 Forrest Gump,1994,Jenny,F
 Forrest Gump,1994,Lt.,M
-Forrest Gump,1994,Pvt.,M
 Forrest Gump,1994,Mrs.,F
-Forrest Gump,1994,Young,M
 A Dog's Will,2000,João,M
 A Dog's Will,2000,Chicó,M
-A Dog's Will,2000,Bispo,M
-A Dog's Will,2000,Padre,M
 A Dog's Will,2000,Dora,F
 A Dog's Will,2000,Rosinha,F
 The Lord of the Rings: The Return of the King,2003,Frodo,M
 The Lord of the Rings: The Return of the King,2003,Gandalf,M
-The Lord of the Rings: The Return of the King,2003,Aragorn,M
-The Lord of the Rings: The Return of the King,2003,Samwise,M
 The Lord of the Rings: The Return of the King,2003,Arwen,F
 The Lord of the Rings: The Return of the King,2003,Galadriel,F
-12 Angry Men,1957,Juror,M
-12 Angry Men,1957,Juror,M
 12 Angry Men,1957,Juror,M
 12 Angry Men,1957,Juror,M
 Harakiri,1962,Hanshiro,M
 Harakiri,1962,Kageyu,M
 Harakiri,1962,Miho,F
-Harakiri,1962,Motome,M
-Harakiri,1962,Jinai,M
 I Am Not an Animal,2004,Claire,F
 I Am Not an Animal,2004,Hugh,M
 I Am Not an Animal,2004,Kieron,M
-I Am Not an Animal,2004,Mark,M
-I Am Not an Animal,2004,Winona,M
 Rick and Morty,2013,Rick,M
 Rick and Morty,2013,Jerry,M
 Rick and Morty,2013,Summer,F
 Rick and Morty,2013,Beth,F
-Rick and Morty,2013,Jessica,M
-Rick and Morty,2013,Squanchy,M
 Breaking Bad,2008,Walter,M
 Breaking Bad,2008,Skyler,F
 Breaking Bad,2008,Jesse,M
-Breaking Bad,2008,Hank,M
 Breaking Bad,2008,Marie,F
-Breaking Bad,2008,Walter,M
 Planet Earth II,2016,Himself,M
 Stranger Things,2016,Joyce,F
 Stranger Things,2016,Jim,M
 Stranger Things,2016,Mike,M
 Stranger Things,2016,Eleven,F
-Stranger Things,2016,Dustin,M
-Stranger Things,2016,Lucas,M
 Sherlock,2010,Sherlock,M
 Sherlock,2010,John,M
-Sherlock,2010,Greg,M
-Sherlock,2010,Mycroft,M
 Sherlock,2010,Mrs.,F
 Sherlock,2010,Mary,F
 The Wire,2002,Jimmy,M
 The Wire,2002,Cedric,M
 The Wire,2002,Kima,F
-The Wire,2002,Avon,M
-The Wire,2002,Bunk,M
 The Wire,2002,Rhonda,F
 Planet Earth,2006,Himself,M
 Over the Garden Wall,2014,Wirt,M
 Over the Garden Wall,2014,Gregory,M
 Over the Garden Wall,2014,Beatrice,F
-Over the Garden Wall,2014,Woodsman,M
-Over the Garden Wall,2014,Adelaide,M
 Over the Garden Wall,2014,Beatrice's,F
 Cowboy Bebop,1998,Spike,M
 Cowboy Bebop,1998,Jet,M
 Cowboy Bebop,1998,Faye,F
 Cowboy Bebop,1998,Edward,F
-Cowboy Bebop,1998,Vicious,M
-Cowboy Bebop,1998,Julia,F
 One-Punch Man,2015,Saitama,M
 One-Punch Man,2015,Genos,M
-One-Punch Man,2015,Silverfang,M
-One-Punch Man,2015,License-less,M
 One-Punch Man,2015,Terrible,F
 One-Punch Man,2015,Child,F
 Fargo,2014,Emmit,M
 Fargo,2014,Sy,M
 Fargo,2014,Gloria,F
 Fargo,2014,Nikki,F
-Fargo,2014,Moe,M
-Fargo,2014,V.M.,M
 Death Note,2006,Light,M
 Death Note,2006,L,M
-Death Note,2006,Ryuk,M
 Death Note,2006,Misa,F
-Death Note,2006,Near,M
 Death Note,2006,Rem,F
 Peaky Blinders,2013,Tommy,M
 Peaky Blinders,2013,Arthur,M
 Peaky Blinders,2013,Polly,F
 Peaky Blinders,2013,Ada,F
-Peaky Blinders,2013,John,M
-Peaky Blinders,2013,Michael,M
 Monty Python's Flying Circus,1969,"""It's""",M
 Monty Python's Flying Circus,1969,Mr,M
 Band of Brothers,2001,Richard,M
 Band of Brothers,2001,Lewis,M
-Band of Brothers,2001,C.,M
-Band of Brothers,2001,Ronald,M
 Peep Show,2003,Jeremy,M
 Peep Show,2003,Mark,M
 Peep Show,2003,Sophie,F
-Peep Show,2003,Super,M
-Peep Show,2003,Alan,M
 The Sopranos,1999,Tony,M
 The Sopranos,1999,Carmela,F
 The Sopranos,1999,Meadow,F
 The Sopranos,1999,A.J.,M
-The Sopranos,1999,Jennifer,M
-The Sopranos,1999,Christopher,M
 Only Fools and Horses,1981,Del,M
 Only Fools and Horses,1981,Rodney,M
