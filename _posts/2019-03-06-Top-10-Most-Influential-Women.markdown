@@ -39,13 +39,13 @@ baby_names = read_baby_names()
 baby_names.head()
 ```
 
-|   | name      | gender | count | year |
-|---|-----------|--------|-------|------|
-| 0 | Mary      | F      | 7065  | 1880 |
-| 1 | Anna      | F      | 2604  | 1880 |
-| 2 | Emma      | F      | 2003  | 1880 |
-| 3 | Elizabeth | F      | 1939  | 1880 |
-| 4 | Minnie    | F      | 1746  | 1880 |
+| name      | gender | count | year |
+|-----------|--------|-------|------|
+| Mary      | F      | 7065  | 1880 |
+| Anna      | F      | 2604  | 1880 |
+| Emma      | F      | 2003  | 1880 |
+| Elizabeth | F      | 1939  | 1880 |
+| Minnie    | F      | 1746  | 1880 |
 
 
 # Top rated movies
@@ -79,13 +79,13 @@ top_rated_titles.head()
 ```
 
 
-|   | id     | type  | title                       | release_date |
-|---|--------|-------|-----------------------------|--------------|
-| 0 | 19404  | movie | Dilwale Dulhania Le Jayenge | 1995-10-20   |
-| 1 | 278    | movie | The Shawshank Redemption    | 1994-09-23   |
-| 2 | 238    | movie | The Godfather               | 1972-03-14   |
-| 3 | 372058 | movie | Your Name.                  | 2016-08-26   |
-| 4 | 424    | movie | Schindler's List            | 1993-12-15   |
+| id     | type  | title                       | release_date |
+|--------|-------|-----------------------------|--------------|
+| 19404  | movie | Dilwale Dulhania Le Jayenge | 1995-10-20   |
+| 278    | movie | The Shawshank Redemption    | 1994-09-23   |
+| 238    | movie | The Godfather               | 1972-03-14   |
+| 372058 | movie | Your Name.                  | 2016-08-26   |
+| 424    | movie | Schindler's List            | 1993-12-15   |
 
 
 After having top rated titles, I also used TMDb's API for getting the names of the top 2 cast members of both genders. Despite the final goal of analysis, I was interested in intermediate results of both genders.
@@ -128,13 +128,13 @@ names_top_rated_titles.head()
 ```
 
 
-|   | title                       | release_year | first_name | gender |
-|---|-----------------------------|--------------|------------|--------|
-| 0 | Dilwale Dulhania Le Jayenge | 1995         | Raj        | M      |
-| 1 | Dilwale Dulhania Le Jayenge | 1995         | Simran     | F      |
-| 2 | Dilwale Dulhania Le Jayenge | 1995         | Chaudhry   | M      |
-| 3 | Dilwale Dulhania Le Jayenge | 1995         | Simran's   | F      |
-| 0 | The Shawshank Redemption    | 1994         | Andy       | M      |
+| title                       | release_year | first_name | gender |
+|-----------------------------|--------------|------------|--------|
+| Dilwale Dulhania Le Jayenge | 1995         | Raj        | M      |
+| Dilwale Dulhania Le Jayenge | 1995         | Simran     | F      |
+| Dilwale Dulhania Le Jayenge | 1995         | Chaudhry   | M      |
+| Dilwale Dulhania Le Jayenge | 1995         | Simran's   | F      |
+| The Shawshank Redemption    | 1994         | Andy       | M      |
 
 
 # Visualization
@@ -333,13 +333,13 @@ pop_culture_names_with_max_growth.head()
 ```
 
 
-|   | title                | release_year | first_name | gender | max_growth |
-|---|----------------------|--------------|------------|--------|------------|
-| 0 | American Crime Story | 2016         | Andrew     | M      | 1.0000     |
-| 1 | American Crime Story | 2016         | Gianni     | M      | 1.1875     |
-| 2 | American Crime Story | 2016         | Donatella  | F      | 1.0000     |
-| 3 | Nerve                | 2016         | Ian        | M      | 1.0000     |
-| 4 | Nerve                | 2016         | Sydney     | F      | 1.0000     |
+| title                | release_year | first_name | gender | max_growth |
+|----------------------|--------------|------------|--------|------------|
+| American Crime Story | 2016         | Andrew     | M      | 1.0000     |
+| American Crime Story | 2016         | Gianni     | M      | 1.1875     |
+| American Crime Story | 2016         | Donatella  | F      | 1.0000     |
+| Nerve                | 2016         | Ian        | M      | 1.0000     |
+| Nerve                | 2016         | Sydney     | F      | 1.0000     |
 
 
 Now let's visualize the top 10 female names which gained the most popularity in 10 years after release.
