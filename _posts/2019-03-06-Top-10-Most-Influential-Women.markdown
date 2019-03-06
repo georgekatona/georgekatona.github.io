@@ -79,72 +79,13 @@ top_rated_titles.head()
 ```
 
 
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>type</th>
-      <th>title</th>
-      <th>release_date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>19404</td>
-      <td>movie</td>
-      <td>Dilwale Dulhania Le Jayenge</td>
-      <td>1995-10-20</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>278</td>
-      <td>movie</td>
-      <td>The Shawshank Redemption</td>
-      <td>1994-09-23</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>238</td>
-      <td>movie</td>
-      <td>The Godfather</td>
-      <td>1972-03-14</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>372058</td>
-      <td>movie</td>
-      <td>Your Name.</td>
-      <td>2016-08-26</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>424</td>
-      <td>movie</td>
-      <td>Schindler's List</td>
-      <td>1993-12-15</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
+|   | id     | type  | title                       | release_date |
+|---|--------|-------|-----------------------------|--------------|
+| 0 | 19404  | movie | Dilwale Dulhania Le Jayenge | 1995-10-20   |
+| 1 | 278    | movie | The Shawshank Redemption    | 1994-09-23   |
+| 2 | 238    | movie | The Godfather               | 1972-03-14   |
+| 3 | 372058 | movie | Your Name.                  | 2016-08-26   |
+| 4 | 424    | movie | Schindler's List            | 1993-12-15   |
 
 
 After having top rated titles, I also used TMDb's API for getting the names of the top 2 cast members of both genders. Despite the final goal of analysis, I was interested in intermediate results of both genders.
@@ -187,72 +128,13 @@ names_top_rated_titles.head()
 ```
 
 
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>title</th>
-      <th>release_year</th>
-      <th>first_name</th>
-      <th>gender</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Dilwale Dulhania Le Jayenge</td>
-      <td>1995</td>
-      <td>Raj</td>
-      <td>M</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Dilwale Dulhania Le Jayenge</td>
-      <td>1995</td>
-      <td>Simran</td>
-      <td>F</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Dilwale Dulhania Le Jayenge</td>
-      <td>1995</td>
-      <td>Chaudhry</td>
-      <td>M</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Dilwale Dulhania Le Jayenge</td>
-      <td>1995</td>
-      <td>Simran's</td>
-      <td>F</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>The Shawshank Redemption</td>
-      <td>1994</td>
-      <td>Andy</td>
-      <td>M</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
+|   | title                       | release_year | first_name | gender |
+|---|-----------------------------|--------------|------------|--------|
+| 0 | Dilwale Dulhania Le Jayenge | 1995         | Raj        | M      |
+| 1 | Dilwale Dulhania Le Jayenge | 1995         | Simran     | F      |
+| 2 | Dilwale Dulhania Le Jayenge | 1995         | Chaudhry   | M      |
+| 3 | Dilwale Dulhania Le Jayenge | 1995         | Simran's   | F      |
+| 0 | The Shawshank Redemption    | 1994         | Andy       | M      |
 
 
 # Visualization
@@ -451,78 +333,13 @@ pop_culture_names_with_max_growth.head()
 ```
 
 
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>title</th>
-      <th>release_year</th>
-      <th>first_name</th>
-      <th>gender</th>
-      <th>max_growth</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>American Crime Story</td>
-      <td>2016</td>
-      <td>Andrew</td>
-      <td>M</td>
-      <td>1.0000</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>American Crime Story</td>
-      <td>2016</td>
-      <td>Gianni</td>
-      <td>M</td>
-      <td>1.1875</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>American Crime Story</td>
-      <td>2016</td>
-      <td>Donatella</td>
-      <td>F</td>
-      <td>1.0000</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Nerve</td>
-      <td>2016</td>
-      <td>Ian</td>
-      <td>M</td>
-      <td>1.0000</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Nerve</td>
-      <td>2016</td>
-      <td>Sydney</td>
-      <td>F</td>
-      <td>1.0000</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
+|   | title                | release_year | first_name | gender | max_growth |
+|---|----------------------|--------------|------------|--------|------------|
+| 0 | American Crime Story | 2016         | Andrew     | M      | 1.0000     |
+| 1 | American Crime Story | 2016         | Gianni     | M      | 1.1875     |
+| 2 | American Crime Story | 2016         | Donatella  | F      | 1.0000     |
+| 3 | Nerve                | 2016         | Ian        | M      | 1.0000     |
+| 4 | Nerve                | 2016         | Sydney     | F      | 1.0000     |
 
 
 Now let's visualize the top 10 female names which gained the most popularity in 10 years after release.
