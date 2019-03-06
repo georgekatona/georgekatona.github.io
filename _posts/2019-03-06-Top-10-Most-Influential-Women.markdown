@@ -39,73 +39,13 @@ baby_names = read_baby_names()
 baby_names.head()
 ```
 
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>name</th>
-      <th>gender</th>
-      <th>count</th>
-      <th>year</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Mary</td>
-      <td>F</td>
-      <td>7065</td>
-      <td>1880</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Anna</td>
-      <td>F</td>
-      <td>2604</td>
-      <td>1880</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Emma</td>
-      <td>F</td>
-      <td>2003</td>
-      <td>1880</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Elizabeth</td>
-      <td>F</td>
-      <td>1939</td>
-      <td>1880</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Minnie</td>
-      <td>F</td>
-      <td>1746</td>
-      <td>1880</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
+|   | name      | gender | count | year |
+|---|-----------|--------|-------|------|
+| 0 | Mary      | F      | 7065  | 1880 |
+| 1 | Anna      | F      | 2604  | 1880 |
+| 2 | Emma      | F      | 2003  | 1880 |
+| 3 | Elizabeth | F      | 1939  | 1880 |
+| 4 | Minnie    | F      | 1746  | 1880 |
 
 
 # Top rated movies
