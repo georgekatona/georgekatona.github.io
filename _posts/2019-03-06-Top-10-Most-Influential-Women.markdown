@@ -475,7 +475,7 @@ plot_rising_names(names = pop_culture_names,
 
 Well, it is nice to have a lot of data to investigate, but it is also somewhat crowded. If you're interested in all of them, look at the interactive version right [here](https://plot.ly/~george.katona/24/names-growing-popularity-from-imdb-lists/). Otherwise let's sort it by the popularity growth rate and show only the top 10 results.
 
-# Names the with highest growth of popularity
+# Names with the highest growth of popularity
 
 To find the names with the highest growth of popularity, I introduced a new column "max_growth". Doing so keeps a while, but then we can sort and make queries on it.
 
