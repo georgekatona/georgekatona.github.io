@@ -3,10 +3,12 @@ layout:     post
 title:      Most Influential Women in Hollywood
 author:     György Katona
 tags: 		python visualization plotly pandas movies tv
-subtitle:   Analysis on how pop culture influences our life and insires women
+subtitle:   Analysis on how pop culture influences our life and inspires women
 img_preview:	"img/female_inspiration.jpg"
 draft:	true
 ---
+
+# Table of Contents
 
 * TOC
 {:toc}
@@ -72,18 +74,7 @@ def get_top_rated(media_type):
 top_rated_movies = get_top_rated("movie")
 top_rated_tv = get_top_rated("tv")
 top_rated_titles = top_rated_movies.append(top_rated_tv)
-
-top_rated_titles.head()
 ```
-
-
-| id     | type  | title                       | release_date |
-|--------|-------|-----------------------------|--------------|
-| 19404  | movie | Dilwale Dulhania Le Jayenge | 1995-10-20   |
-| 278    | movie | The Shawshank Redemption    | 1994-09-23   |
-| 238    | movie | The Godfather               | 1972-03-14   |
-| 372058 | movie | Your Name.                  | 2016-08-26   |
-| 424    | movie | Schindler's List            | 1993-12-15   |
 
 
 After having top rated titles, I also used TMDb's API for getting the names of the top 2 cast members of both genders. Despite the final goal of analysis, I was interested in intermediate results of both genders.
@@ -121,18 +112,7 @@ def get_top_characters(media, number_of_characters):
 names_top_rated_titles = pd.DataFrame(columns=["title", "release_year", "first_name", "gender"])
 for i in range(len(top_rated_titles)):
     names_top_rated_titles = names_top_rated_titles.append(get_top_characters(top_rated_titles.iloc[i], 4))
-
-names_top_rated_titles.head()
 ```
-
-
-| title                       | release_year | first_name | gender |
-|-----------------------------|--------------|------------|--------|
-| Dilwale Dulhania Le Jayenge | 1995         | Raj        | M      |
-| Dilwale Dulhania Le Jayenge | 1995         | Simran     | F      |
-| Dilwale Dulhania Le Jayenge | 1995         | Chaudhry   | M      |
-| Dilwale Dulhania Le Jayenge | 1995         | Simran's   | F      |
-| The Shawshank Redemption    | 1994         | Andy       | M      |
 
 
 # Visualization
