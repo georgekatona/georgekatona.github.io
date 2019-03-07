@@ -79,14 +79,69 @@ top_rated_titles.head()
 ```
 
 
-| id     | type  | title                       | release_date |
-|--------|-------|-----------------------------|--------------|
-| 19404  | movie | Dilwale Dulhania Le Jayenge | 1995-10-20   |
-| 278    | movie | The Shawshank Redemption    | 1994-09-23   |
-| 238    | movie | The Godfather               | 1972-03-14   |
-| 372058 | movie | Your Name.                  | 2016-08-26   |
-| 424    | movie | Schindler's List            | 1993-12-15   |
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>type</th>
+      <th>title</th>
+      <th>release_date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>19404</td>
+      <td>movie</td>
+      <td>Dilwale Dulhania Le Jayenge</td>
+      <td>1995-10-20</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>278</td>
+      <td>movie</td>
+      <td>The Shawshank Redemption</td>
+      <td>1994-09-23</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>238</td>
+      <td>movie</td>
+      <td>The Godfather</td>
+      <td>1972-03-14</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>372058</td>
+      <td>movie</td>
+      <td>Your Name.</td>
+      <td>2016-08-26</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>424</td>
+      <td>movie</td>
+      <td>Schindler's List</td>
+      <td>1993-12-15</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 After having top rated titles, I also used TMDb's API for getting the names of the top 2 cast members of both genders. Despite the final goal of analysis, I was interested in intermediate results of both genders.
