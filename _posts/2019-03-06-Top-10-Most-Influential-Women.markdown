@@ -273,7 +273,7 @@ plot_rising_names(names = pop_culture_names,
 ![rising_names_imdb](https://georgekatona.com/img/female_inspiration/rising_names_imdb.png)
 
 
-Well, it is nice to have a lot of data to investigate, but it is also somewhat crowded. If you're interested in all of them, look at the interactive version right [here](https://plot.ly/~george.katona/24/names-growing-popularity-from-imdb-lists/). Otherwise let's sort it by the popularity growth rate and show only the top 10 results.
+Well, it is nice to have a lot of data to investigate, but it is also somewhat crowded. If you're interested in all of them, look at the interactive version right [here](https://plot.ly/~george.katona/28/names-with-growing-popularity-candidates-from-imdb-lists/). Otherwise let's sort it by the popularity growth rate and show only the top 10 results.
 
 # Names with the highest growth of popularity
 
@@ -344,83 +344,15 @@ plot_rising_names(names = female_names[female_names.release_year > "1999"].nlarg
 ![top_10_growing_female_names_2000](https://georgekatona.com/img/female_inspiration/top_10_growing_female_names_2000.png)
 
 
-<div>
-<style scoped>
-	.dataframe {
-		overflow-x: scroll;
-	}
-
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>title</th>
-      <th>release_year</th>
-      <th>first_name</th>
-      <th>gender</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Dilwale Dulhania Le Jayenge</td>
-      <td>1995</td>
-      <td>Raj</td>
-      <td>M</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Dilwale Dulhania Le Jayenge</td>
-      <td>1995</td>
-      <td>Simran</td>
-      <td>F</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Dilwale Dulhania Le Jayenge</td>
-      <td>1995</td>
-      <td>Chaudhry</td>
-      <td>M</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Dilwale Dulhania Le Jayenge</td>
-      <td>1995</td>
-      <td>Simran's</td>
-      <td>F</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>The Shawshank Redemption</td>
-      <td>1994</td>
-      <td>Andy</td>
-      <td>M</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
 # Summary
 
 Data shows us not only that we live in the best years so far to gain inspiration from female movie and TV characters, but also that what huge impact these shows have on our life. The world has never been so deeply connected and for this reason, the movie industry has never had greater responsibility of telling us stories which can really help us to become or raise our heroes.
 
 
+
 *Links to interactive plots:*
 
 - [Names with Growing Popularity - Full Detail](https://plot.ly/~george.katona/26/names-with-growing-popularity-in-10-years-after-movietv-release/)
-- [Names with Growing Popularity [IMDb Lists]]()
-- [Top 10 Growing Female Names]()
-- [Top 10 Growing Female Names in the 21st century]()
+- [Names with Growing Popularity [IMDb Lists]](https://plot.ly/~george.katona/28/names-with-growing-popularity-candidates-from-imdb-lists/)
+- [Top 10 Growing Female Names](https://plot.ly/~george.katona/30/top-10-growing-female-names/)
+- [Top 10 Growing Female Names in the 21st century](https://plot.ly/~george.katona/32/top-10-growing-female-names-in-the-21st-century/)
