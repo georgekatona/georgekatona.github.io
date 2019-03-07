@@ -30,7 +30,9 @@ def read_baby_names():
     names = pd.DataFrame(columns=["name", "gender", "count", "year"])
     for file in os.listdir("data/names"):
         if file.endswith(".txt"):
-            df = pd.read_csv(os.path.join("./data/names", file), header=None, names=["name", "gender", "count"])
+            df = pd.read_csv(os.path.join("./data/names", file), 
+								header=None, 
+								names=["name", "gender", "count"])
             df["year"] = int(file.replace("yob", "").replace(".txt", ""))
             names = names.append(df)
     return names
@@ -124,7 +126,8 @@ I used [Plotly](https://plot.ly/python/) library to visualize trends. Apart from
 import plotly.io as pio
 import plotly.graph_objs as go
 
-def plot_rising_names(names, baby_names, min_growth, following_years, title, output_file, x_range=None, y_range=None):
+def plot_rising_names(names, baby_names, min_growth, following_years, title, output_file, 
+						x_range=None, y_range=None):
     plot_data = []
     names = names[names.first_name.isin(baby_names.name)]
 
@@ -132,7 +135,8 @@ def plot_rising_names(names, baby_names, min_growth, following_years, title, out
         name = names.iloc[i]
         name_trend = baby_names[baby_names.name == name.first_name]
         name_trend = name_trend[name_trend.gender == name.gender]
-        name_trend = name_trend[name_trend.year.isin(range(int(name.release_year), int(name.release_year) + following_years))]
+        name_trend = name_trend[name_trend.year.isin(
+			range(int(name.release_year), int(name.release_year) + following_years))]
         if name_trend.empty: continue
     
         growth = name_trend["count"].max() / name_trend["count"].iloc[0]
@@ -235,8 +239,8 @@ def get_tmdb_data(imdb_df):
     tmdb_titles = pd.DataFrame(columns=["id", "type", "title", "release_date"])
     for i in range(len(imdb_df)):
         imdb_item = imdb_df.iloc[i]
-        conn.request("GET",
-                 "/3/find/{}?api_key={}&language=en-US&external_source=imdb_id".format(imdb_item["Const"], API_KEY))
+        conn.request("GET", "/3/find/{}?api_key={}&language=en-US&external_source=imdb_id".format(
+			imdb_item["Const"], API_KEY))
         # TMDb API has a request rate limit 40 / 10 seconds
         time.sleep(0.25)
         
@@ -284,14 +288,16 @@ To find the names with the highest growth of popularity, I introduced a new colu
 def get_names_with_max_growth(names, baby_names, following_years):
     names = names[names.first_name.isin(baby_names.name)]
     
-    names_with_max_growth = pd.DataFrame(columns=["title", "release_year", "first_name", "gender", "max_growth"])
+    names_with_max_growth = pd.DataFrame(
+		columns=["title", "release_year", "first_name", "gender", "max_growth"])
     
     inserted = 0
     for i in range(len(names)):
         name = names.iloc[i]
         name_trend = baby_names[baby_names.name == name.first_name]
         name_trend = name_trend[name_trend.gender == name.gender]
-        name_trend = name_trend[name_trend.year.isin(range(int(name.release_year), int(name.release_year) + following_years))]
+        name_trend = name_trend[name_trend.year.isin(range(int(name.release_year), 
+														int(name.release_year) + following_years))]
         if name_trend.empty: continue
         
         max_growth = name_trend["count"].max() / name_trend["count"].iloc[0]
