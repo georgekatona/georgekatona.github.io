@@ -74,7 +74,19 @@ def get_top_rated(media_type):
 top_rated_movies = get_top_rated("movie")
 top_rated_tv = get_top_rated("tv")
 top_rated_titles = top_rated_movies.append(top_rated_tv)
+
+top_rated_titles.head()
 ```
+
+
+| id     | type  | title                       | release_date |
+|--------|-------|-----------------------------|--------------|
+| 19404  | movie | Dilwale Dulhania Le Jayenge | 1995-10-20   |
+| 278    | movie | The Shawshank Redemption    | 1994-09-23   |
+| 238    | movie | The Godfather               | 1972-03-14   |
+| 372058 | movie | Your Name.                  | 2016-08-26   |
+| 424    | movie | Schindler's List            | 1993-12-15   |
+
 
 
 After having top rated titles, I also used TMDb's API for getting the names of the top 2 cast members of both genders. Despite the final goal of analysis, I was interested in intermediate results of both genders.
@@ -351,7 +363,7 @@ Data shows us not only that we live in the best years so far to gain inspiration
 
 *Links to interactive plots:*
 
-[Names with Growing Popularity - Full Detail]()
-[Names with Growing Popularity [IMDb Lists]]()
-[Top 10 Growing Female Names]()
-[Top 10 Growing Female Names in the 21st century]()
+- [Names with Growing Popularity - Full Detail]()
+- [Names with Growing Popularity [IMDb Lists]]()
+- [Top 10 Growing Female Names]()
+- [Top 10 Growing Female Names in the 21st century]()
