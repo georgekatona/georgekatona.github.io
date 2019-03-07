@@ -37,6 +37,7 @@ def read_baby_names():
             names = names.append(df)
     return names
 
+	
 baby_names = read_baby_names()
 baby_names.head()
 ```
@@ -73,6 +74,7 @@ def get_top_rated(media_type):
                             m["release_date"] if media_type == "movie" else m["first_air_date"]]
     return top_rated
 
+	
 top_rated_movies = get_top_rated("movie")
 top_rated_tv = get_top_rated("tv")
 top_rated_titles = top_rated_movies.append(top_rated_tv)
@@ -186,6 +188,7 @@ def plot_rising_names(names, baby_names, min_growth, following_years, title, out
     fig = go.Figure(data=plot_data, layout=layout)
     pio.write_image(fig, output_file, height=800, width=1200)
 
+	
 plot_rising_names(names = names_top_rated_titles,
                   baby_names=baby_names, 
                   min_growth=2.0,
@@ -259,6 +262,7 @@ def get_tmdb_data(imdb_df):
                             m["release_date"] if media_type == "movie" else m["first_air_date"]]
     return tmdb_titles
 
+	
 pop_culture_titles = get_tmdb_data(pop_culture_imdb_df)
 
 pop_culture_names = pd.DataFrame(columns=["title", "release_year", "first_name", "gender"])
