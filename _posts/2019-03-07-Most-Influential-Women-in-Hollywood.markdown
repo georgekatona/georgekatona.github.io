@@ -117,9 +117,9 @@ for i in range(len(top_rated_titles)):
 ```
 
 
-# Visualization
+### Visualization
 
-I used [Plotly](https://plot.ly/python/) library to visualize trends. Apart from the images shown below I link all interactive plots for the same query.
+There are several options for Data Visualization in Python, general libraries like [Matplotlib](https://matplotlib.org/) or [ggplot](https://pypi.org/project/ggplot/) and some more specailized ones like [Geoplotlib](https://pypi.org/project/geoplotlib/). You can read a nice summary of them in [this](https://www.fusioncharts.com/blog/best-python-data-visualization-libraries/) article. In this project I used [Plotly](https://plot.ly/python/) because it is not only suitable for plotting images, but it has a powerful interactive feature as well. At the end of this article you find all the links to the online visualization, where you can truly exlore the data in detail. I really encourage you to visit them if you are visiting from a desktop browser.
 
 
 ```python
@@ -198,7 +198,7 @@ plot_rising_names(names = names_top_rated_titles,
 ![rising_names_top_rated](https://georgekatona.com/img/female_inspiration/rising_names_top_rated.png)
 
 
-In the figure above you see all the names which at least doubled their popularity in 10 years after their realease. All lines start from the year of release and shows the trend of the following 10 years. You find an interactive version of the plot [here](https://plot.ly/~george.katona/26/names-with-growing-popularity-in-10-years-after-movietv-release/). As the lines close to the x axis might seem irrelevant, I made a zoomed version to show a more detailed view of them.
+In the figure above you see all the names which at least doubled their popularity in 10 years after their realease. All lines start from the year of release and shows the trend of the following 10 years. As the lines close to the x axis might seem irrelevant, I made a zoomed version to show a more detailed view of them.
 
 
 ```python
@@ -358,7 +358,7 @@ Data shows us not only that we live in the best years so far to gain inspiration
 
 *Links to interactive plots:*
 
-- [Names with Growing Popularity - Full Detail](https://plot.ly/~george.katona/26/names-with-growing-popularity-in-10-years-after-movietv-release/)
+- [Names with Growing Popularity [Top Rated Titles]](https://plot.ly/~george.katona/26/names-with-growing-popularity-in-10-years-after-movietv-release/)
 - [Names with Growing Popularity [IMDb Lists]](https://plot.ly/~george.katona/28/names-with-growing-popularity-candidates-from-imdb-lists/)
 - [Top 10 Growing Female Names](https://plot.ly/~george.katona/30/top-10-growing-female-names/)
 - [Top 10 Growing Female Names in the 21st century](https://plot.ly/~george.katona/32/top-10-growing-female-names-in-the-21st-century/)
