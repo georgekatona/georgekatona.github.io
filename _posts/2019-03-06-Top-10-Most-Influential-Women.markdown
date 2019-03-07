@@ -31,8 +31,8 @@ def read_baby_names():
     for file in os.listdir("data/names"):
         if file.endswith(".txt"):
             df = pd.read_csv(os.path.join("./data/names", file), 
-					header=None, 
-					names=["name", "gender", "count"])
+				header=None, 
+				names=["name", "gender", "count"])
             df["year"] = int(file.replace("yob", "").replace(".txt", ""))
             names = names.append(df)
     return names
