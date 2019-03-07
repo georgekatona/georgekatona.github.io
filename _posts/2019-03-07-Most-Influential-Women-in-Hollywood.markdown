@@ -268,7 +268,6 @@ pop_culture_titles = get_tmdb_data(pop_culture_imdb_df)
 pop_culture_names = pd.DataFrame(columns=["title", "release_year", "first_name", "gender"])
 for i in range(len(pop_culture_titles)):
     pop_culture_names = pop_culture_names.append(get_top_characters(pop_culture_titles.iloc[i], 4))
-    time.sleep(0.25)
 
 plot_rising_names(names = pop_culture_names,
                   baby_names=baby_names, 
