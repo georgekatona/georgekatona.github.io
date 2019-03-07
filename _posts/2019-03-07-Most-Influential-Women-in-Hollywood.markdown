@@ -117,7 +117,7 @@ for i in range(len(top_rated_titles)):
 ```
 
 
-### Visualization
+# Visualization
 
 There are several options for Data Visualization in Python, general libraries like [Matplotlib](https://matplotlib.org/) or [ggplot](https://pypi.org/project/ggplot/) and some more specailized ones like [Geoplotlib](https://pypi.org/project/geoplotlib/). You can read a nice summary of them in [this](https://www.fusioncharts.com/blog/best-python-data-visualization-libraries/) article. In this project I used [Plotly](https://plot.ly/python/) because it is not only suitable for plotting images, but it has a powerful interactive feature as well. At the end of this post you find all the links to the online visualization, where you can truly exlore the data in detail. I really encourage you to visit them, preferably from a desktop browser.
 
