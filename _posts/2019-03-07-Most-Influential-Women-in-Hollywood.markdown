@@ -5,7 +5,6 @@ author:     György Katona
 tags: 		python visualization plotly pandas movies tv
 subtitle:   Analysis on how pop culture influences our life and inspires women
 img_preview:	"img/female_inspiration.jpg"
-draft:	true
 ---
 
 # Table of Contents
