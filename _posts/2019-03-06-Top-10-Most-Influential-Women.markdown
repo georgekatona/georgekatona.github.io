@@ -194,7 +194,7 @@ plot_rising_names(names = names_top_rated_titles,
 ![rising_names_top_rated](https://georgekatona.com/img/female_inspiration/rising_names_top_rated.png)
 
 
-In the figure above you see all the names which at least doubled their popularity in 10 years after their realease. All lines start from the year of release and shows the trend of the following 10 years. You find an interactive version of the plot [here](https://plot.ly/~george.katona/22/names-growing-popularity-in-10-years-after-movietv-release/). As the lines close to the x axis might seem irrelevant, I made a zoomed version to show a more detailed view of them.
+In the figure above you see all the names which at least doubled their popularity in 10 years after their realease. All lines start from the year of release and shows the trend of the following 10 years. You find an interactive version of the plot [here](https://plot.ly/~george.katona/26/names-with-growing-popularity-in-10-years-after-movietv-release/). As the lines close to the x axis might seem irrelevant, I made a zoomed version to show a more detailed view of them.
 
 
 ```python
@@ -351,7 +351,7 @@ Data shows us not only that we live in the best years so far to gain inspiration
 
 *Links to interactive plots:*
 
-- [Names with Growing Popularity - Full Detail]()
+- [Names with Growing Popularity - Full Detail](https://plot.ly/~george.katona/26/names-with-growing-popularity-in-10-years-after-movietv-release/)
 - [Names with Growing Popularity [IMDb Lists]]()
 - [Top 10 Growing Female Names]()
 - [Top 10 Growing Female Names in the 21st century]()
