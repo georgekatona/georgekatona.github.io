@@ -344,6 +344,75 @@ plot_rising_names(names = female_names[female_names.release_year > "1999"].nlarg
 ![top_10_growing_female_names_2000](https://georgekatona.com/img/female_inspiration/top_10_growing_female_names_2000.png)
 
 
+<div>
+<style scoped>
+	.dataframe {
+		overflow: auto;
+	}
+
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>release_year</th>
+      <th>first_name</th>
+      <th>gender</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Dilwale Dulhania Le Jayenge</td>
+      <td>1995</td>
+      <td>Raj</td>
+      <td>M</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Dilwale Dulhania Le Jayenge</td>
+      <td>1995</td>
+      <td>Simran</td>
+      <td>F</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Dilwale Dulhania Le Jayenge</td>
+      <td>1995</td>
+      <td>Chaudhry</td>
+      <td>M</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Dilwale Dulhania Le Jayenge</td>
+      <td>1995</td>
+      <td>Simran's</td>
+      <td>F</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>The Shawshank Redemption</td>
+      <td>1994</td>
+      <td>Andy</td>
+      <td>M</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 # Summary
 
 Data shows us not only that we live in the best years so far to gain inspiration from female movie and TV characters, but also that what huge impact these shows have on our life. The world has never been so deeply connected and for this reason, the movie industry has never had greater responsibility of telling us stories which can really help us to become or raise our heroes.
