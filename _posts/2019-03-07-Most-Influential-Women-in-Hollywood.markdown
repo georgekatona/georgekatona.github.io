@@ -2,7 +2,7 @@
 layout:     post
 title:      Most Influential Women in Hollywood
 author:     György Katona
-tags: 		python visualization plotly pandas movies tv
+tags: 		python visualization plotly pandas
 subtitle:   Analysis on how pop culture influences our life and inspires women
 img_preview:	"img/female_inspiration.jpg"
 ---
