@@ -347,7 +347,7 @@ plot_rising_names(names = female_names[female_names.release_year > "1999"].nlarg
 <div>
 <style scoped>
 	.dataframe {
-		overflow: auto;
+		overflow-x: scroll;
 	}
 
     .dataframe tbody tr th:only-of-type {
