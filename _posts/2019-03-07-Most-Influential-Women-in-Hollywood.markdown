@@ -26,6 +26,7 @@ The annual birth data was in separate files, so in the first step I read them in
 import os
 import pandas as pd
 
+
 def read_baby_names():
     names = pd.DataFrame(columns=["name", "gender", "count", "year"])
     for file in os.listdir("data/names"):
@@ -58,6 +59,7 @@ Given the birth data, I had to find a set of names of influential characters as 
 ```python
 import http.client
 import json
+
 
 def get_top_rated(media_type):
     conn = http.client.HTTPSConnection("api.themoviedb.org")
@@ -127,6 +129,7 @@ There are several options for Data Visualization in Python, general libraries li
 ```python
 import plotly.io as pio
 import plotly.graph_objs as go
+
 
 def plot_rising_names(names, baby_names, min_growth, following_years, title, output_file, 
 						x_range=None, y_range=None):
@@ -236,6 +239,7 @@ After having the lists exported and read in, let's translate them to TMDb's form
 
 ```python
 import time
+
 
 def get_tmdb_data(imdb_df):
     conn = http.client.HTTPSConnection("api.themoviedb.org")
