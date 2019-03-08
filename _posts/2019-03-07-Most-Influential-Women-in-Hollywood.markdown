@@ -318,12 +318,14 @@ pop_culture_names_with_max_growth = get_names_with_max_growth(names=pop_culture_
 ```
 
 
-Now let's visualize the top 10 female names which gained the most popularity in 10 years after release.
+Now let's see the top 10 female names which gained the most popularity in 10 years after release.
 
 
 ```python
 female_names = pop_culture_names_with_max_growth[pop_culture_names_with_max_growth.gender == "F"]
 
+female_names.sort_values(by=['max_growth'], ascending=False)[['first_name','max_growth','title']]
+	.head(10)
 plot_rising_names(names = female_names.nlargest(10, "max_growth"),
                   baby_names=baby_names, 
                   min_growth=2.0,
@@ -331,6 +333,20 @@ plot_rising_names(names = female_names.nlargest(10, "max_growth"),
                   title="Top 10 Growing Female Names",
                   output_file="images/top_10_growing_female_names.png")
 ```
+
+
+| first_name | max_growth | title                                             |
+|------------|------------|---------------------------------------------------|
+| Temperance | 40.250000  | Bones                                             |
+| Chelsea    | 23.581181  | On Golden Pond                                    |
+| Lara       | 20.830769  | Doctor Zhivago                                    |
+| Elliot     | 19.272727  | Scrubs                                            |
+| Lorelai    | 18.150000  | Gilmore Girls                                     |
+| Melanie    | 16.754386  | Gone with the Wind                                |
+| Arwen      | 13.833333  | The Lord of the Rings: The Fellowship of the Ring |
+| Scarlett   | 11.000000  | Gone with the Wind                                |
+| Meadow     | 10.000000  | The Sopranos                                      |
+| Penelope   | 9.906433   | Criminal Minds                                    |
 
 
 ![top_10_growing_female_names](https://georgekatona.com/img/female_inspiration/top_10_growing_female_names.png)
