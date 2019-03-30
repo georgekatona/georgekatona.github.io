@@ -6,20 +6,25 @@
     <title>RunVis</title>
 </head>
 <body>
+<label>
+    <span style="font-size: 144%; ">
+    Vivicittá 2018 - Félmaraton vizualizáció
+        </span>
+</label>
 <div id="buttonDiv">
     <input type="range" min="0" max="12000" value="0" class="slider" id="timeRange">
     <button type="button" onclick="onStartButtonClick()">Start</button>
     <button type="button" onclick="onStopButtonClick()">Stop</button>
     <button type="button" onclick="onResetButtonClick()">Reset</button>
+    <label>Idő:</label>
     <label id="time">00:00:00</label>
 </div>
 
 <div id="inputDiv">
-    Rajtszám: <input id="runner_id" type="text" id="text-input">
+    Rajtszám: <input id="runner_id" type="text" id="text-input" size="4">
     <button type="button" onclick="onSearchButtonClick()">Keres</button>
     <button type="button" onclick="onXButtonClick()">X</button>
     <label id="resultText"/>
-
 </div>
 <canvas id="run-canvas" class="plot"></canvas>
 </body>
@@ -50,8 +55,8 @@
     var canvas = d3.select('#run-canvas')
         .attr('width', width)
         .attr('height', height)
-        .style("transform", "translate(" + (margin.left + 1) +
-            "px" + "," + (margin.top + 1) + "px" + ")");
+        .style("transform", "translate(" + (margin.left) +
+            "px" + "," + (margin.top) + "px" + ")");
     var context = canvas.node().getContext('2d');
 
     var runners;
@@ -60,7 +65,6 @@
         runners = data;
 
         draw();
-        // Move time by 1 minute per second
         d3.interval(function () {
             if (started) {
                 time += 2;
@@ -73,18 +77,6 @@
     });
 
     function drawRoute() {
-        // Start line
-        context.beginPath();
-        context.moveTo(2.8 * unit, 4 * unit);
-        context.lineTo(3.2 * unit, 4 * unit);
-
-        // Finish line
-        context.moveTo(2.8 * unit, 1.8 * unit);
-        context.lineTo(3.2 * unit, 1.8 * unit);
-
-        context.strokeStyle = "black";
-        context.stroke();
-
         // Route
         context.beginPath();
         context.moveTo(3 * unit, 4 * unit);
@@ -107,7 +99,21 @@
         context.moveTo(3 * unit, 4 * unit);
         context.lineTo(3 * unit, 1.8 * unit);
 
+        context.strokeStyle = "rgb(231,225,239)";
+        context.lineWidth = 10;
+        context.stroke();
+
+        // Start line
+        context.beginPath();
+        context.moveTo(2.8 * unit, 4 * unit);
+        context.lineTo(3.2 * unit, 4 * unit);
+
+        // Finish line
+        context.moveTo(2.8 * unit, 1.8 * unit);
+        context.lineTo(3.2 * unit, 1.8 * unit);
+
         context.strokeStyle = "black";
+        context.lineWidth = 4;
         context.stroke();
     }
 
@@ -124,8 +130,42 @@
         context.lineTo(3 * unit, 6 * unit);
         context.lineTo(3 * unit, 17 * unit);
 
-        context.strokeStyle = "blue";
+        context.strokeStyle = "rgb(127, 127, 255)";
+        context.lineWidth = 10;
         context.stroke();
+    }
+
+    function drawDot(d) {
+        let state = getState(d);
+        let cx = runner_x(d, state);
+        let cy = runner_y(d, state);
+
+        context.beginPath();
+
+        context.arc(cx, cy, 3, 0, 2 * Math.PI);
+        context.fill();
+    }
+
+    function draw() {
+        context.clearRect(0, 0, width, height);
+        drawDanube();
+        drawRoute();
+
+        if (highlighted_id === -1) {
+            context.fillStyle = 'rgb(230, 0, 126)';
+            runners.forEach(function (d) {
+                drawDot(d);
+            });
+        } else {
+            context.fillStyle = 'rgb(201,148,199)';
+            runners.forEach(function (d) {
+                drawDot(d);
+            });
+            let highlighted = runners.find(runner => runner.running_id === highlighted_id);
+            context.fillStyle = 'rgb(230, 0, 126)';
+            drawDot(highlighted)
+        }
+
     }
 
     function getState(d) {
@@ -153,39 +193,6 @@
         }
 
         return {phase: phase, progress: progress};
-    }
-
-    function drawDot(d) {
-        let state = getState(d);
-        let cx = runner_x(d, state);
-        let cy = runner_y(d, state);
-
-        context.beginPath();
-
-        context.arc(cx, cy, 3, 0, 2 * Math.PI);
-        context.fill();
-    }
-
-    function draw() {
-        context.clearRect(0, 0, width, height);
-        drawRoute();
-        drawDanube();
-
-        if (highlighted_id === -1) {
-            context.fillStyle = 'rgba(230, 0, 126, 1)';
-            runners.forEach(function (d) {
-                drawDot(d);
-            });
-        } else {
-            context.fillStyle = 'rgba(250, 150, 200, 1)';
-            runners.forEach(function (d) {
-                drawDot(d);
-            });
-            let highlighted = runners.find(runner => runner.running_id === highlighted_id);
-            context.fillStyle = 'rgb(230, 0, 126, 1)';
-            drawDot(highlighted)
-        }
-
     }
 
     function onStartButtonClick() {
