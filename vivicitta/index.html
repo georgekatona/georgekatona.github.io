@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RunVis</title>
+</head>
+<body>
+<div id="buttonDiv">
+    <input type="range" min="0" max="12000" value="0" class="slider" id="timeRange">
+    <button type="button" onclick="onStartButtonClick()">Start</button>
+    <button type="button" onclick="onStopButtonClick()">Stop</button>
+    <button type="button" onclick="onResetButtonClick()">Reset</button>
+    <label id="time">00:00:00</label>
+</div>
+
+<div id="inputDiv">
+    Rajtszám: <input id="runner_id" type="text" id="text-input">
+    <button type="button" onclick="onSearchButtonClick()">Keres</button>
+    <button type="button" onclick="onXButtonClick()">X</button>
+    <label id="resultText"/>
+
+</div>
+<canvas id="run-canvas" class="plot"></canvas>
+</body>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script>
+
+    unit = 40;
+    margin = {top: unit, right: unit, bottom: unit, left: unit};
+    width = 6 * unit;
+    height = 18 * unit;
+
+
+    started = false;
+    time = 0;
+    highlighted_id = -1;
+
+    var slider = document.getElementById("timeRange");
+    slider.oninput = function () {
+        time = +this.value;
+        document.getElementById("time").innerHTML = seconds_to_hms(time);
+        draw()
+    };
+
+    var canvas = d3.select('#run-canvas')
+        .attr('width', width)
+        .attr('height', height)
+        .style("transform", "translate(" + (margin.left + 1) +
+            "px" + "," + (margin.top + 1) + "px" + ")");
+    var context = canvas.node().getContext('2d');
+
+    var runners;
+
+    d3.csv("vivicitta_2018.csv").then(function (data) {
+        runners = data;
+
+        draw();
+        // Move time by 1 minute per second
+        d3.interval(function () {
+            if (started) {
+                time += 2;
+
+                slider.value= time;
+                document.getElementById("time").innerHTML = seconds_to_hms(time);
+                draw();
+            }
+        }, 20);
+    });
+
+    function drawRoute() {
+        // Start line
+        context.beginPath();
+        context.moveTo(2.8 * unit, 4 * unit);
+        context.lineTo(3.2 * unit, 4 * unit);
+
+        // Finish line
+        context.moveTo(2.8 * unit, 1.8 * unit);
+        context.lineTo(3.2 * unit, 1.8 * unit);
+
+        context.strokeStyle = "black";
+        context.stroke();
+
+        // Route
+        context.beginPath();
+        context.moveTo(3 * unit, 4 * unit);
+        context.lineTo(3 * unit, 5 * unit);
+        context.lineTo(4 * unit, 5 * unit);
+        context.lineTo(4 * unit, 9 * unit);
+        context.lineTo(unit, 9 * unit);
+        context.lineTo(unit, 8 * unit);
+        context.lineTo(2 * unit, 8 * unit);
+        context.lineTo(2 * unit, 16 * unit);
+        context.lineTo(unit, 16 * unit);
+        context.lineTo(unit, 13 * unit);
+        context.lineTo(4 * unit, 13 * unit);
+        context.lineTo(4 * unit, 9 * unit);
+        context.moveTo(4 * unit, 5 * unit);
+        context.lineTo(4 * unit, 4 * unit);
+        context.lineTo(5 * unit, 4 * unit);
+        context.lineTo(5 * unit, 5 * unit);
+        context.lineTo(4 * unit, 5 * unit);
+        context.moveTo(3 * unit, 4 * unit);
+        context.lineTo(3 * unit, 1.8 * unit);
+
+        context.strokeStyle = "black";
+        context.stroke();
+    }
+
+    function drawDanube() {
+        context.beginPath();
+        context.moveTo(3 * unit, 0);
+        context.lineTo(3 * unit, unit);
+        context.lineTo(3.5 * unit, unit);
+        context.lineTo(3.5 * unit, 6 * unit);
+        context.lineTo(3 * unit, 6 * unit);
+        context.moveTo(3 * unit, unit);
+        context.lineTo(2.5 * unit, unit);
+        context.lineTo(2.5 * unit, 6 * unit);
+        context.lineTo(3 * unit, 6 * unit);
+        context.lineTo(3 * unit, 17 * unit);
+
+        context.strokeStyle = "blue";
+        context.stroke();
+    }
+
+    function getState(d) {
+        let phase;
+        let progress;
+        let start_time = hms_to_seconds(d["gross_time"]) - hms_to_seconds(d["net_time"]);
+        let net_time;
+
+        if (time < hms_to_seconds(d["10km"])) {
+            let net_ten_k = hms_to_seconds(d["10km"]) - start_time;
+            phase = "10k";
+            net_time = time - start_time;
+            progress = net_time / net_ten_k;
+
+        } else if (time < hms_to_seconds(d["17km"])) {
+            let net_seventeen_k = hms_to_seconds(d["17km"]) - hms_to_seconds(d["10km"]);
+            phase = "17k";
+            net_time = time - hms_to_seconds(d["10km"]);
+            progress = net_time / net_seventeen_k;
+        } else {
+            let net_twenty_one_k = hms_to_seconds(d["gross_time"]) - hms_to_seconds(d["17km"]);
+            phase = "21k";
+            net_time = time - hms_to_seconds(d["17km"]);
+            progress = net_time / net_twenty_one_k;
+        }
+
+        return {phase: phase, progress: progress};
+    }
+
+    function drawDot(d) {
+        let state = getState(d);
+        let cx = runner_x(d, state);
+        let cy = runner_y(d, state);
+
+        context.beginPath();
+        context.arc(cx, cy, 2, 0, 2 * Math.PI);
+        context.fill();
+    }
+
+    function draw() {
+        context.clearRect(0, 0, width, height);
+        drawRoute();
+        drawDanube();
+
+        if (highlighted_id === -1) {
+            context.fillStyle = 'rgba(230, 0, 126, 1)';
+            runners.forEach(function (d) {
+                drawDot(d);
+            });
+        } else {
+            context.fillStyle = 'rgba(220, 100, 150, 0.8)';
+            runners.forEach(function (d) {
+                drawDot(d);
+            });
+            let highlighted = runners.find(runner => runner.running_id === highlighted_id);
+            context.fillStyle = 'rgb(230, 0, 126, 1)';
+            drawDot(highlighted)
+        }
+
+    }
+
+    function onStartButtonClick() {
+        started = true;
+    }
+
+    function onStopButtonClick() {
+        started = false;
+    }
+
+    function onResetButtonClick() {
+        time = 0;
+        draw();
+    }
+
+    function onSearchButtonClick() {
+        let search_id = document.getElementById('runner_id').value;
+        let result = runners.find(runner => runner.running_id === search_id);
+        console.log(result);
+        if (typeof result !== 'undefined') {
+            highlighted_id = result.running_id;
+            document.getElementById("resultText").innerHTML = "";
+        } else {
+            document.getElementById("resultText").innerHTML = "Nincs találat!";
+            highlighted_id = -1;
+        }
+        draw();
+    }
+
+    function onXButtonClick(){
+        document.getElementById('runner_id').value = "";
+        highlighted_id = -1;
+        draw();
+    }
+
+    function runner_x(d, state) {
+        switch (state.phase) {
+            case "10k":
+                if (state.progress < 0.05) return 3 * unit;
+                else if (state.progress < 0.1) {
+                    let min = 3 * unit;
+                    let max = 4 * unit;
+                    return min + (max - min) * (state.progress - 0.05) * 20;
+                }
+                else if (state.progress < 0.3) return 4 * unit;
+                else if (state.progress < 0.45) {
+                    let min = 4 * unit;
+                    let max = unit;
+                    return min + (max - min) * (state.progress - 0.3) * 20 / 3;
+                }
+                else if (state.progress < 0.5) return unit;
+                else if (state.progress < 0.55) {
+                    let min = unit;
+                    let max = 2 * unit;
+                    return min + (max - min) * (state.progress - 0.5) * 20;
+                }
+                else if (state.progress < 0.95) return 2 * unit;
+                else {
+                    let min = 2 * unit;
+                    let max = unit;
+                    return min + (max - min) * (state.progress - 0.95) * 20;
+                }
+            case "17k":
+                if (state.progress < 1.5 / 7) return unit;
+                else if (state.progress < 3 / 7) {
+                    let min = unit;
+                    let max = 4 * unit;
+                    return min + (max - min) * (state.progress - 1.5 / 7) * 7 / 1.5;
+                }
+                else return 4 * unit;
+            case "21k":
+                if (state.progress < 0.5 / 4.1) return 4 * unit;
+                else if (state.progress < 1.0 / 4.1) {
+                    let min = 4 * unit;
+                    let max = 5 * unit;
+                    return min + (max - min) * (state.progress - 0.5 / 4.1) * 4.1 / 0.5;
+                }
+                else if (state.progress < 1.5 / 4.1) return 5 * unit;
+                else if (state.progress < 2.5 / 4.1) {
+                    let min = 5 * unit;
+                    let max = 3 * unit;
+                    return min + (max - min) * (state.progress - 1.5 / 4.1) * 4.1;
+                }
+                else return 3 * unit;
+        }
+        // let random = (31 * i + 127) % 17
+        // return random * 2 + 10
+    }
+
+    function runner_y(d, state) {
+        switch (state.phase) {
+            case "10k":
+                if (state.progress < 0) {
+                    let min = 4 * unit;
+                    let max = 2 * unit;
+                    return min + (max - min) * -state.progress;
+                }
+                else if (state.progress < 0.05) {
+                    let min = 4 * unit;
+                    let max = 5 * unit;
+                    return min + (max - min) * state.progress * 20;
+                }
+                else if (state.progress < 0.1) return 5 * unit;
+                else if (state.progress < 0.3) {
+                    let min = 5 * unit;
+                    let max = 9 * unit;
+                    return min + (max - min) * (state.progress - 0.1) * 5;
+                }
+                else if (state.progress < 0.45) return 9 * unit;
+                else if (state.progress < 0.5) {
+                    let min = 9 * unit;
+                    let max = 8 * unit;
+                    return min + (max - min) * (state.progress - 0.45) * 20
+                }
+                else if (state.progress < 0.55) return 8 * unit;
+                else if (state.progress < 0.95) {
+                    let min = 8 * unit;
+                    let max = 16 * unit;
+                    return min + (max - min) * (state.progress - 0.55) * 5 / 2
+                } else return 16 * unit;
+            case "17k":
+                if (state.progress < 1.5 / 7) {
+                    let min = 16 * unit;
+                    let max = 13 * unit;
+                    return min + (max - min) * state.progress * 7 / 1.5;
+                }
+                else if (state.progress < 3 / 7) return 13 * unit;
+                else {
+                    let min = 13 * unit;
+                    let max = 5 * unit;
+                    return min + (max - min) * (state.progress - 3 / 7) * 7 / 4;
+                }
+            case "21k":
+                if (state.progress < 0.5 / 4.1) {
+                    let min = 5 * unit;
+                    let max = 4 * unit;
+                    return min + (max - min) * (state.progress) * 4.1 / 0.5;
+                }
+                else if (state.progress < 1.0 / 4.1) return 4 * unit;
+                else if (state.progress < 1.5 / 4.1) {
+                    let min = 4 * unit;
+                    let max = 5 * unit;
+                    return min + (max - min) * (state.progress - 1 / 4.1) * 4.1 / 0.5;
+                }
+                else if (state.progress < 2.5 / 4.1) return 5 * unit;
+                else if (state.progress < 1) {
+                    let min = 5 * unit;
+                    let max = 1.8 * unit;
+                    return min + (max - min) * (state.progress - 2.5 / 4.1) * 4.1 / 1.6;
+                }
+                else {
+                    let min = 1.8 * unit;
+                    let max = 1.3 * unit;
+                    return min + (max - min) * (1 - 1 / state.progress);
+                }
+
+        }
+    }
+
+    function hms_to_seconds(hms) {
+        let a = hms.split(':');
+        return (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
+    }
+
+    function seconds_to_hms(seconds) {
+        return new Date(seconds * 1000).toISOString().substr(11, 8);
+    }
+
+</script>
+</html>
