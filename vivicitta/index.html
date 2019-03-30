@@ -67,7 +67,7 @@
         draw();
         d3.interval(function () {
             if (started) {
-                time += 2;
+                time += 12;
 
                 slider.value = time;
                 document.getElementById("time").innerHTML = seconds_to_hms(time);
