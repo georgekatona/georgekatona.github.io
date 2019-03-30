@@ -25,8 +25,7 @@ TODO
 
 # Summary
 
-Data shows us not only that we live in the best years so far to gain inspiration from female movie and TV characters, but also that what huge impact these shows have on our life. The world has never been so deeply connected and for this reason, the movie industry has never had greater responsibility of telling us stories which can really inspire us to become or raise our heroes.
-
+TODO
 
 
 *Links:*
