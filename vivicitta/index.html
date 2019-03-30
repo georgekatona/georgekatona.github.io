@@ -106,19 +106,6 @@
         context.strokeStyle = "rgb(231,225,239)";
         context.lineWidth = routeWidth;
         context.stroke();
-
-        // Start line
-        context.beginPath();
-        context.moveTo(2.68 * unit, 4 * unit);
-        context.lineTo(3.32 * unit, 4 * unit);
-
-        // Finish line
-        context.moveTo(2.68 * unit, 1.8 * unit);
-        context.lineTo(3.32 * unit, 1.8 * unit);
-
-        context.strokeStyle = "black";
-        context.lineWidth = 4;
-        context.stroke();
     }
 
     function drawDanube() {
@@ -150,6 +137,42 @@
         context.fill();
     }
 
+    function drawLines() {
+        // Start line
+        context.font = routeWidth + "px Arial Black";
+        context.fillStyle = "black";
+        context.fillText("start", 0.8 * unit, 4.1 * unit);
+
+        context.beginPath();
+        context.moveTo(2.68 * unit, 4 * unit);
+        context.lineTo(3.32 * unit, 4 * unit);
+
+        // Finish line
+        context.fillText("finish", 0.8 * unit, 1.9 * unit);
+
+        context.moveTo(2.68 * unit, 1.8 * unit);
+        context.lineTo(3.32 * unit, 1.8 * unit);
+
+        context.strokeStyle = "black";
+        context.lineWidth = 4;
+
+        // Sub results
+        context.fillText("10k", 0.5 * unit, 17 * unit);
+        context.moveTo(0.70 * unit, 16.3 * unit);
+        context.lineTo(1.35 * unit, 15.65 * unit);
+
+        context.fillText("13k", 3.5 * unit, 14 * unit);
+        context.moveTo(3.65 * unit, 12.65 * unit);
+        context.lineTo(4.3 * unit, 13.3 * unit);
+
+
+        context.fillText("18k", 4.5 * unit, 3.5 * unit);
+        context.moveTo(4.65 * unit, 4.35 * unit);
+        context.lineTo(5.3 * unit, 3.7 * unit);
+
+        context.stroke();
+    }
+
     function draw() {
         context.clearRect(0, 0, width, height);
         drawDanube();
@@ -170,6 +193,7 @@
             drawDot(highlighted)
         }
 
+        drawLines();
     }
 
     function getState(d) {
