@@ -111,13 +111,13 @@
     function drawDanube() {
         context.beginPath();
         context.moveTo(3 * unit, 0);
-        context.lineTo(3 * unit, unit);
+        context.lineTo(3 * unit, 0.5 * unit);
         context.lineTo(3.5 * unit, unit);
-        context.lineTo(3.5 * unit, 6 * unit);
+        context.lineTo(3.5 * unit, 5.5 * unit);
         context.lineTo(3 * unit, 6 * unit);
-        context.moveTo(3 * unit, unit);
+        context.moveTo(3 * unit, 0.5 * unit);
         context.lineTo(2.5 * unit, unit);
-        context.lineTo(2.5 * unit, 6 * unit);
+        context.lineTo(2.5 * unit, 5.5 * unit);
         context.lineTo(3 * unit, 6 * unit);
         context.lineTo(3 * unit, 17 * unit);
 
@@ -126,14 +126,14 @@
         context.stroke();
     }
 
-    function drawDot(d) {
+    function drawDot(d, r) {
         let state = getState(d);
         let cx = runner_x(d, state);
         let cy = runner_y(d, state);
 
         context.beginPath();
 
-        context.arc(cx, cy, dotRadius, 0, 2 * Math.PI);
+        context.arc(cx, cy, r, 0, 2 * Math.PI);
         context.fill();
     }
 
@@ -171,6 +171,14 @@
         context.strokeStyle = "black";
         context.lineWidth = 3;
         context.stroke();
+
+        context.fillStyle = "rgb(127, 127, 255)";
+        context.save();
+        context.translate(3.3 * unit, 15 * unit);
+        context.rotate(Math.PI / 2);
+        context.fillText("Duna", 0, 0);
+
+        context.restore();
     }
 
     function draw() {
@@ -181,16 +189,16 @@
         if (highlighted_id === -1) {
             context.fillStyle = 'rgb(230, 0, 126)';
             runners.forEach(function (d) {
-                drawDot(d);
+                drawDot(d, dotRadius);
             });
         } else {
             context.fillStyle = 'rgb(201,148,199)';
             runners.forEach(function (d) {
-                drawDot(d);
+                drawDot(d, dotRadius);
             });
             let highlighted = runners.find(runner => runner.running_id === highlighted_id);
             context.fillStyle = 'rgb(230, 0, 126)';
-            drawDot(highlighted)
+            drawDot(highlighted, 8 * dotRadius)
         }
 
         drawLines();
@@ -267,8 +275,8 @@
             case "10k":
                 if (state.progress < 0.05) return 3 * unit + getRandomOffset(d.running_id);
                 else if (state.progress < 0.1) {
-                    let min = 3 * unit - getRandomOffset(d.running_id);
-                    let max = 4 * unit - getRandomOffset(d.running_id);
+                    let min = 3 * unit + getRandomOffset(d.running_id);
+                    let max = 4 * unit + getRandomOffset(d.running_id);
                     return min + (max - min) * (state.progress - 0.05) * 20;
                 }
                 else if (state.progress < 0.3) return 4 * unit + getRandomOffset(d.running_id);
@@ -277,10 +285,10 @@
                     let max = unit - getRandomOffset(d.running_id);
                     return min + (max - min) * (state.progress - 0.3) * 20 / 3;
                 }
-                else if (state.progress < 0.5) return unit + getRandomOffset(d.running_id);
+                else if (state.progress < 0.5) return unit - getRandomOffset(d.running_id);
                 else if (state.progress < 0.55) {
-                    let min = unit + getRandomOffset(d.running_id);
-                    let max = 2 * unit - getRandomOffset(d.running_id);
+                    let min = unit - getRandomOffset(d.running_id);
+                    let max = 2 * unit + getRandomOffset(d.running_id);
                     return min + (max - min) * (state.progress - 0.5) * 20;
                 }
                 else if (state.progress < 0.95) return 2 * unit + getRandomOffset(d.running_id);
@@ -290,18 +298,18 @@
                     return min + (max - min) * (state.progress - 0.95) * 20;
                 }
             case "17k":
-                if (state.progress < 1.5 / 7) return unit + getRandomOffset(d.running_id);
+                if (state.progress < 1.5 / 7) return unit - getRandomOffset(d.running_id);
                 else if (state.progress < 3 / 7) {
-                    let min = unit + getRandomOffset(d.running_id);
-                    let max = 4 * unit + getRandomOffset(d.running_id);
+                    let min = unit - getRandomOffset(d.running_id);
+                    let max = 4 * unit - getRandomOffset(d.running_id);
                     return min + (max - min) * (state.progress - 1.5 / 7) * 7 / 1.5;
                 }
-                else return 4 * unit + getRandomOffset(d.running_id);
+                else return 4 * unit - getRandomOffset(d.running_id);
             case "21k":
-                if (state.progress < 0.5 / 4.1) return 4 * unit + getRandomOffset(d.running_id);
+                if (state.progress < 0.5 / 4.1) return 4 * unit - getRandomOffset(d.running_id);
                 else if (state.progress < 1.0 / 4.1) {
-                    let min = 4 * unit + getRandomOffset(d.running_id);
-                    let max = 5 * unit - getRandomOffset(d.running_id);
+                    let min = 4 * unit - getRandomOffset(d.running_id);
+                    let max = 5 * unit + getRandomOffset(d.running_id);
                     return min + (max - min) * (state.progress - 0.5 / 4.1) * 4.1 / 0.5;
                 }
                 else if (state.progress < 1.5 / 4.1) return 5 * unit + getRandomOffset(d.running_id);
@@ -310,7 +318,7 @@
                     let max = 3 * unit - getRandomOffset(d.running_id);
                     return min + (max - min) * (state.progress - 1.5 / 4.1) * 4.1;
                 }
-                else return 3 * unit + getRandomOffset(d.running_id);
+                else return 3 * unit - getRandomOffset(d.running_id);
         }
         // let random = (31 * i + 127) % 17
         // return random * 2 + 10
@@ -329,7 +337,7 @@
                     let max = 5 * unit - getRandomOffset(d.running_id);
                     return min + (max - min) * state.progress * 20;
                 }
-                else if (state.progress < 0.1) return 5 * unit + getRandomOffset(d.running_id);
+                else if (state.progress < 0.1) return 5 * unit - getRandomOffset(d.running_id);
                 else if (state.progress < 0.3) {
                     let min = 5 * unit - getRandomOffset(d.running_id);
                     let max = 9 * unit + getRandomOffset(d.running_id);
@@ -337,11 +345,11 @@
                 }
                 else if (state.progress < 0.45) return 9 * unit + getRandomOffset(d.running_id);
                 else if (state.progress < 0.5) {
-                    let min = 9 * unit - getRandomOffset(d.running_id);
-                    let max = 8 * unit + getRandomOffset(d.running_id);
+                    let min = 9 * unit + getRandomOffset(d.running_id);
+                    let max = 8 * unit - getRandomOffset(d.running_id);
                     return min + (max - min) * (state.progress - 0.45) * 20
                 }
-                else if (state.progress < 0.55) return 8 * unit + getRandomOffset(d.running_id);
+                else if (state.progress < 0.55) return 8 * unit - getRandomOffset(d.running_id);
                 else if (state.progress < 0.95) {
                     let min = 8 * unit - getRandomOffset(d.running_id);
                     let max = 16 * unit + getRandomOffset(d.running_id);
@@ -349,23 +357,23 @@
                 } else return 16 * unit + getRandomOffset(d.running_id);
             case "17k":
                 if (state.progress < 1.5 / 7) {
-                    let min = 16 * unit - getRandomOffset(d.running_id);
-                    let max = 13 * unit + getRandomOffset(d.running_id);
+                    let min = 16 * unit + getRandomOffset(d.running_id);
+                    let max = 13 * unit - getRandomOffset(d.running_id);
                     return min + (max - min) * state.progress * 7 / 1.5;
                 }
-                else if (state.progress < 3 / 7) return 13 * unit + getRandomOffset(d.running_id);
+                else if (state.progress < 3 / 7) return 13 * unit - getRandomOffset(d.running_id);
                 else {
-                    let min = 13 * unit + getRandomOffset(d.running_id);
+                    let min = 13 * unit - getRandomOffset(d.running_id);
                     let max = 5 * unit;
                     return min + (max - min) * (state.progress - 3 / 7) * 7 / 4;
                 }
             case "21k":
                 if (state.progress < 0.5 / 4.1) {
                     let min = 5 * unit;
-                    let max = 4 * unit + getRandomOffset(d.running_id);
+                    let max = 4 * unit - getRandomOffset(d.running_id);
                     return min + (max - min) * (state.progress) * 4.1 / 0.5;
                 }
-                else if (state.progress < 1.0 / 4.1) return 4 * unit + getRandomOffset(d.running_id);
+                else if (state.progress < 1.0 / 4.1) return 4 * unit - getRandomOffset(d.running_id);
                 else if (state.progress < 1.5 / 4.1) {
                     let min = 4 * unit - getRandomOffset(d.running_id);
                     let max = 5 * unit + getRandomOffset(d.running_id);
@@ -373,7 +381,7 @@
                 }
                 else if (state.progress < 2.5 / 4.1) return 5 * unit + getRandomOffset(d.running_id);
                 else if (state.progress < 1) {
-                    let min = 5 * unit - getRandomOffset(d.running_id);
+                    let min = 5 * unit + getRandomOffset(d.running_id);
                     let max = 1.8 * unit;
                     return min + (max - min) * (state.progress - 2.5 / 4.1) * 4.1 / 1.6;
                 }
