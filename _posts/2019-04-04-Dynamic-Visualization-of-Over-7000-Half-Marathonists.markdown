@@ -8,8 +8,6 @@ img_preview:	"img/runvis.png"
 draft:	true
 ---
 
-# Table of Contents
-
 * TOC
 {:toc}
 
