@@ -195,7 +195,6 @@ function showAxises() {
 }
 
 function showStates(states) {
-    console.log(states);
     map.append('path')
         .datum(topojson.feature(states, states.objects.states))
         .attr('d', path)
@@ -682,8 +681,6 @@ function showAllCrime(data) {
         d["total_crime"] = +d["total_crime"];
     });
 
-    console.log(data);
-
 
     allCrimeGroup.append('g').append("svg:text")
         .attr("width", 300)
@@ -695,8 +692,6 @@ function showAllCrime(data) {
     let allCrimeDataMax = d3.max(data, function (d) {
         return d["total_crime"];
     });
-
-    console.log(allCrimeDataMax);
 
     let allCrimeBarScale = d3.scaleLinear()
         .domain([0, allCrimeDataMax])
@@ -800,7 +795,6 @@ function makeMyMap(error, states, cities, all_crime) {
 
 function setNodeHighlighted(d, id, bool) {
     if (bool) {
-        console.log(d);
         nodeGroup.select("#map_node_" + d["id"]).attr("r", selected_radius);
         nodeGroup.select("#edge_id_" + id)
             .attr("stroke-width", selected_stroke_width);
