@@ -4,7 +4,7 @@ title:      Dynamic Visualization of Over 7000 Half-Marathonists
 author:     György Katona
 tags: 		JavaScript d3 visualization html
 subtitle:   Using D3 library to visualize over 7000 runners
-img_preview:	"img/runvis.png"
+img_preview:	"img/runvis_vivicitta.png"
 draft:	true
 ---
 
