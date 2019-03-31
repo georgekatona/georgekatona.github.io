@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Dynamic Visualization of Over 7000 Half-Marathonists
+title:      Dynamic Running Data Visualization
 author:     György Katona
 tags: 		JavaScript d3 visualization html
 subtitle:   Using D3 library to visualize over 7000 moving data points
