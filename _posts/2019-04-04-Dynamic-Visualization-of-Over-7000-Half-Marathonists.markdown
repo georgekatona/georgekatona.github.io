@@ -15,9 +15,9 @@ draft:	true
 
 # Motivation
 
-In a former university project I gained some experience using D3 for impementing an [interactive dashboard](https://georgekatona.com/urbana-crimes/index.html). I used SVG elements to draw histograms, scatterplots, applied filtering, highlighting and brushing in order to visualize crime data committed in Urbana, Illinois from 1988 to 2016.
+In a former university project I gained some experience using D3 for implementing an [interactive dashboard](https://georgekatona.com/urbana-crimes/index.html). I used SVG elements to draw histograms, scatter plots, applied filtering, highlighting and brushing in order to visualize crime data committed in Urbana, Illinois from 1988 to 2016.
 
-When I came across ATLO's marathon [visualization](https://atlo.team/spar-budapest-maraton/?fbclid=IwAR3MlxaCr2Rt1OYC-QmUUxNyGiALdLOfUaVGR87Bn35uXHmfcNLD6Jd_70s), I decided to implement my own version using D3, so I can investigate how it does at dynamic, performance-dependent visualization scenarios and also to bring joy to my fellow hobby runners. I chose the Vivicittá Half-Marathon, as it is one of the most popular running events in Hungary with more than 7000 runners participating in 2018. Moving that many data points with an acceptable framerate should be a challenging task (definitely out of SVG's scope), therefore I'm going to invastigate how D3 performs using canvas.
+When I came across ATLO's marathon [visualization](https://atlo.team/spar-budapest-maraton/?fbclid=IwAR3MlxaCr2Rt1OYC-QmUUxNyGiALdLOfUaVGR87Bn35uXHmfcNLD6Jd_70s), I decided to implement my own version using D3, so I can investigate how it does at dynamic, performance-dependent visualization scenarios and also to bring joy to my fellow hobby runners. I chose the Vivicittá Half-Marathon, as it is one of the most popular running events in Hungary with more than 7000 runners participating in 2018. Moving that many data points with an acceptable frame rate should be a challenging task (definitely out of SVG's scope), therefore I'm going to investigate how D3 performs using canvas.
 
 # Implementation
 ### D3 Canvas
@@ -27,7 +27,7 @@ As a first step we have to place the HTML canvas element into the body.
 <canvas id="run-canvas"></canvas>
 </body>
 ```
-In the JavaScript block we need the context object in order to access the canvas. After reading the data from the csv file, I save it to the **runners** variable, so it can be accessed from the **draw()** function. I call **draw()** the first time and then later it is called every 20 milliseconds if the timer is started.
+In the JavaScript block we need the context object in order to access the canvas. After reading the data from the CSV file, I save it to the **runners** variable, so it can be accessed from the **draw()** function. I call **draw()** the first time and then later it is called every 20 milliseconds if the timer is started.
 
 In the function **draw()** I start by erasing the whole canvas, so the new position can be redrawn. To make the whole drawing area scalable, I introduced the measure **unit**. One unit represents half kilometer of running route.
 ```
@@ -72,13 +72,13 @@ function draw() {
 
 ### Running Route
 
-To come up with a nice and simple represetation of the running route, I went to pen-and-paper design. I chose a unit distance and mapped the route to sections with 0 or 90 degree turns on the borders. Using the Danube as a reference point, it is easier for the user to comprehend. As a last step I added distance points to the map, so the runners can track their progress.
+To come up with a nice and simple representation of the running route, I went to pen-and-paper design. I chose a unit distance and mapped the route to sections with 0 or 90 degree turns on the borders. Using the Danube as a reference point, it is easier for the user to comprehend. As a last step I added distance points to the map, so the runners can track their progress.
 
 ![Minimalist Design of Running Route](https://georgekatona.com/img/runvis/map.png)
 
 ### Calculate Runner's position
 
-One of the most interesting implementation step is to map the position of all the runners to any timestamp. In the dataset, timestamps of passing the gates of 10 kilometers, 17 kilometers and the finish-line are available for all runners as well as the net time of the half-marathon.
+One of the most interesting implementation step is to map the position of all the runners to any timestamp. In the data set, timestamps of passing the gates of 10 kilometers, 17 kilometers and the finish-line are available for all runners as well as the net time of the half-marathon.
 
 | running_id |     10km |     17km | gross_time | net_time |
 |-----------:|---------:|---------:|-----------:|---------:|
@@ -127,7 +127,7 @@ function drawRunners() {
 
 # Summary
 
-Using D3 and canvas to dynamically draw thousands of moving elements has its advantages but has limitations as well. According to my experiments, around 4000 runners can be drawn with a really smooth animation, and even with around 7000 data points, framerate is around 20-25 fps on most browsers (including mobile devices). For significantly larger datasets though, I would recommend to look for some further optimization techniques.
+Using D3 and canvas to dynamically draw thousands of moving elements has its advantages but has limitations as well. According to my experiments, around 4000 runners can be drawn with a really smooth animation, and even with around 7000 data points, frame rate is around 20-25 fps on most browsers (including mobile devices). For significantly larger data sets though, I would recommend to look for some further optimization techniques.
 
 *Links:*
 - [Interactive Dashboard - Crimes Committed in Urbana, Illinois ](https://georgekatona.com/urbana-crimes/index.html)
