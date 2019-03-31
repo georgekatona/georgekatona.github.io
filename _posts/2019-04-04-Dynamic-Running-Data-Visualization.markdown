@@ -133,4 +133,5 @@ If you're interested in the final outcome, you can find it at [https://georgekat
 - [Interactive Dashboard - Crimes Committed in Urbana, Illinois ](https://georgekatona.com/urbana-crimes/index.html)
 - [D3 - Data Driven Documents (JavaScript Library)](https://d3js.org/)
 - [ATLO's marathon visualization](https://atlo.team/spar-budapest-maraton/?fbclid=IwAR3MlxaCr2Rt1OYC-QmUUxNyGiALdLOfUaVGR87Bn35uXHmfcNLD6Jd_70s)
-- [Full Implementation of Running Visualization](https://github.com/georgekatona/RunningVis)
+- [Implementation - GitHub Repository](https://github.com/georgekatona/RunningVis)
+- [Final Visualization](https://georgekatona.com/vivicitta/index.html)
