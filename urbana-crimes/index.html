@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <title>D3 Assignment</title>
+    <script src="d3.min.js"></script>
+    <script src="topojson.min.js"></script>
+    <script src="https://d3js.org/d3-queue.v3.min.js"></script>
+    <script src="vis.js"></script>
+</head>
+<style>
+    .states {
+        fill: #000;
+        stroke: #fff;
+        stroke-width: 1px;
+    }
+
+    .brushed {
+        fill: crimson;
+    }
+
+    .non_brushed {
+        fill: darkblue;
+    }
+
+    .ageBar {
+        fill: darkblue;
+    }
+
+    .yearBar {
+        fill: cornflowerblue;
+    }
+
+    .yearBarSelected {
+        fill: darkblue;
+    }
+
+    .yearSlider {
+        width: 780px;
+    }
+
+    .scatterPoint {
+        fill: darkblue;
+    }
+
+    .scatterPointHighlighted {
+        fill: crimson;
+    }
+
+    .main {
+        float: left;
+        width: 960px; /* The width is 70%, by default */
+    }
+
+    .right {
+        float: left;
+        width: 300px; /* The width is 30%, by default */
+    }
+
+    /* Use a media query to add a break point at 800px: */
+    @media screen and (max-width: 1100px) {
+        .main, .right {
+            width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+        }
+    }
+
+</style>
+<body>
+<div class="main">
+    <svg class="mapContainer">
+        <g class="map"></g>
+        <g class="nodeGroup"></g>
+    </svg>
+    <svg class="timeLine"></svg>
+    <svg class="allCrimeGroup"></svg>
+</div>
+<div class="right">
+    <svg class="ageHistogram"></svg>
+    <svg class="scatterContainer">
+        <g class="scatter"></g>
+        <g class="brushGroup"></g>
+    </svg>
+</div>
+<script>
+    d3.queue()
+        .defer(d3.json, 'states.json')
+        .defer(d3.csv, 'urbana_crimes_light.csv')
+        .defer(d3.csv, 'allCrimeByYear.csv')
+        .await(makeMyMap);
+</script>
+</body>
+</html>
