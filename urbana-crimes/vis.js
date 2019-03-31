@@ -195,6 +195,7 @@ function showAxises() {
 }
 
 function showStates(states) {
+    console.log(states);
     map.append('path')
         .datum(topojson.feature(states, states.objects.states))
         .attr('d', path)
@@ -778,7 +779,7 @@ function prepareGroups() {
 }
 
 function makeMyMap(error, states, cities, all_crime) {
-    prepareGroups()
+    prepareGroups();
 
     showStates(states);
     crimesWithCoordinates = getCrimesWithCoordinates(cities);
