@@ -3,7 +3,7 @@ layout:     post
 title:      Dynamic Visualization of Over 7000 Half-Marathonists
 author:     György Katona
 tags: 		JavaScript d3 visualization html
-subtitle:   Using D3 library to visualize over 7000 runners
+subtitle:   Using D3 library to visualize over 7000 moving data points
 img_preview:	"img/runvis_vivicitta.png"
 draft:	true
 ---
@@ -79,11 +79,11 @@ To come up with a nice and simple representation of the running route, I went to
 One of the most interesting implementation step is to map the position of all the runners to any timestamp. In the data set, timestamps of passing the gates of 10 kilometers, 17 kilometers and the finish-line are available for all runners as well as the net time of the half-marathon.
 
 | running_id |     10km |     17km | gross_time | net_time |
-|-----------:|---------:|---------:|-----------:|---------:|
-|       6158 | 01:05:55 | 01:53:15 |   02:35:38 | 02:18:34 |
-|       5302 | 01:01:04 | 01:51:34 |   02:29:13 | 02:18:35 |
-|       3073 | 01:03:10 | 01:51:44 |   02:30:49 | 02:18:35 |
-|       4552 | 01:02:22 | 01:50:26 |   02:35:15 | 02:18:35 |
+|:-----------|---------:|---------:|-----------:|---------:|
+| 6158       | 01:05:55 | 01:53:15 |   02:35:38 | 02:18:34 |
+| 5302       | 01:01:04 | 01:51:34 |   02:29:13 | 02:18:35 |
+| 3073       | 01:03:10 | 01:51:44 |   02:30:49 | 02:18:35 |
+| 4552       | 01:02:22 | 01:50:26 |   02:35:15 | 02:18:35 |
 
 Having these values, the speed for the three sections (0-10km, 10-17km, 17-21.1km) can be calculated and then using the speed of the runners with the mapped 0.5 km sections, we can determine the exact positions. To distribute runners on the with of the route, I used a pseudorandom generator based on the runner's id. This random value is then used to add an offset to the runners position sideways and to determine the starting and end position of the straight path, in order to calculate a smooth turn.
 
