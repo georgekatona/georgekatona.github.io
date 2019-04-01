@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Dynamic Running Data Visualization
+title:      Dynamic Visualization of Running Data
 author:     György Katona
 tags: 		JavaScript d3 visualization html
 subtitle:   Using D3 library to visualize over 7000 moving data points
