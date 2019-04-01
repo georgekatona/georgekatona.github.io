@@ -13,11 +13,30 @@
     <meta property="og:description"
           content="Kövesd nyomon a te vagy ismerősöd teljesítményét a 2018-as mezőnyben!">
 </head>
+<style>
+    #title {
+        font-size: 150%;
+        padding: 10px;
+    }
+
+    hr {
+        border-color: #fff
+    }
+
+    .controls {
+        width: 90%;
+        padding: 2px 10px;
+    }
+
+    .text {
+        font-weight: 800;
+        width: 90%;
+        padding: 10px;
+    }
+</style>
 <body>
-<label>
-    <span style="font-size: 144%; ">Vivicittá 2018 - Félmaraton vizualizáció</span>
-</label>
-<div id="buttonDiv">
+<label id="title">Vivicittá 2018 - Félmaraton vizualizáció</label>
+<div class="controls" id="buttonDiv">
     <input type="range" min="0" max="12000" value="0" class="slider" id="timeRange">
     <button type="button" onclick="onStartButtonClick()">Start</button>
     <button type="button" onclick="onStopButtonClick()">Stop</button>
@@ -25,26 +44,47 @@
     <label>Idő:</label>
     <label id="time">00:00:00</label>
 </div>
-<div id="inputDiv">
+<div class="controls" id="inputDiv">
     Rajtszám: <input id="runner_id" type="text" id="text-input" size="4">
     <button type="button" onclick="onSearchButtonClick()">Keres</button>
     <button type="button" onclick="onXButtonClick()">X</button>
-    <label id="resultText"/>
+    <label id="resultText"></label>
 </div>
 <canvas id="run-canvas"></canvas>
-<p>
-<div>Készítette: <a href="https://georgekatona.com/author/">Katona György</a> (<a
-        href="https://www.linkedin.com/in/gyorgy-katona/">LinkedIn</a>, <a
-        href="https://georgekatona.com/">Blog</a>)
+<div class="text">
+    <hr>
+    <div>
+        <img src="https://georgekatona.com/img/logos/profile_circle.png"
+             style="margin-top:0px; margin-bottom:5px; margin-right:10px; float:left; width:120px !important">
+        <h2>Katona György</h2>
+        <h3>Data Scientist / Software Engineer</h3>
+        <span class="social"><a href="https://github.com/georgekatona" title="Github"><img
+                src="https://georgekatona.com//img/icons/github-icon.png" style="height:20px; padding-left:4px; padding-right:4px">Github</a></span>
+        <span><a href="https://www.linkedin.com/in/gyorgy-katona/" title="LinkedIn"><img
+                src="https://georgekatona.com//img/icons/linkedin-icon.png" style="height:20px; padding-left:4px; padding-right:4px">LinkedIn</a></span>
+        <span class="social"><a href="https://georgekatona.com/" title="Blog"><img
+                src="https://georgekatona.com//favicon.png" style="height:20px; padding-left:4px; padding-right:2px">https://georgekatona.com</a></span>
+    </div>
+
+    <h3>Hogyan készült: <a
+            href="https://georgekatona.com/2019/04/04/Dynamic-Visualization-of-Running-Data/"
+    >Blog Post</a>
+    </h3>
+    <hr>
+    <h3>2019-es esemény: <a href="http://www.futanet.hu/cikk/telekom-vivicitta-felmaraton-2019">Vivicittá félmaraton
+        2019</a></h3>
 </div>
-<div>Hogyan készült: <a
-        href="https://georgekatona.com/2019/04/04/Dynamic-Running-Data-Visualization/"
->Blog Post</a>
-</div>
-<div>2019-es esemény: <a href="http://www.futanet.hu/cikk/telekom-vivicitta-felmaraton-2019">Vivicittá félmaraton
-    2019</a>
-</div>
-</p>
+
+<!--<h2>-->
+<!--<img src="https://georgekatona.com/img/logos/profile_circle.png" style="height: 150px"-->
+<!--style="margin-top:0px; margin-bottom:5px; margin-right:10px; float:left; width:150px !important">-->
+<!--<a href="https://georgekatona.com/author/">Katona György</a> (<a-->
+<!--href="https://www.linkedin.com/in/gyorgy-katona/">LinkedIn</a>, <a-->
+<!--href="https://georgekatona.com/">Blog</a>)</h2>-->
+
+<!--</div>-->
+
+
 </body>
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script>
