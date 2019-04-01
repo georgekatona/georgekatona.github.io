@@ -41,7 +41,7 @@
 <body>
 <label id="title">Vivicittá 2018 - Félmaraton vizualizáció</label>
 <div class="controls" id="buttonDiv">
-    <input type="range" min="0" max="12000" value="0" class="slider" id="timeRange">
+    <input type="range" min="0" max="11400" value="0" class="slider" id="timeRange">
     <button type="button" onclick="onStartButtonClick()">Start</button>
     <button type="button" onclick="onStopButtonClick()">Stop</button>
     <button type="button" onclick="onResetButtonClick()">Reset</button>
@@ -97,6 +97,7 @@
     let runners;
     let highlighted_id = -1;
     let time = 0;
+    let max_time = 11400;
     let started = false;
 
     let unit = Math.floor(screen.availHeight / 200) * 10;
@@ -132,7 +133,10 @@
         d3.interval(function () {
             if (started) {
                 time += 12;
-
+                if(time > max_time){
+                    started = false;
+                    time = max_time;
+                }
                 slider.value = time;
                 document.getElementById("time").innerHTML = seconds_to_hms(time);
                 draw();
