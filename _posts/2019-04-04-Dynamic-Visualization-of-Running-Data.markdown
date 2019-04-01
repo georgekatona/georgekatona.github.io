@@ -85,7 +85,7 @@ One of the most interesting implementation step is to map the position of all th
 | 3073       | 01:03:10 | 01:51:44 |   02:30:49 | 02:18:35 |
 | 4552       | 01:02:22 | 01:50:26 |   02:35:15 | 02:18:35 |
 
-Having these values, the speed for the three sections (0-10km, 10-17km, 17-21.1km) can be calculated and then using the speed of the runners with the mapped 0.5 km sections, we can determine the exact positions. To distribute runners on the with of the route, I used a pseudorandom generator based on the runner's id. This random value is then used to add an offset to the runners position sideways and to determine the starting and ending position of the straight path, in order to calculate a smooth turn.
+Having these values, the speed for the three sections (0-10km, 10-17km, 17-21.1km) can be calculated and then using the speed of the runners with the mapped 0.5 km sections, we can determine the exact positions. To distribute runners on the width of the route, I used a pseudorandom generator based on the runner's id. This random value is then used to add an offset to the runners position sideways and to determine the starting and ending position of the straight path, in order to calculate a smooth turn.
 
 ```
 runners.forEach(function (d) {
