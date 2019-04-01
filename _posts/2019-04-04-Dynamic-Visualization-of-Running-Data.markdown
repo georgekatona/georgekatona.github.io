@@ -99,13 +99,13 @@ function getRandomOffset(running_id) {
 }
 ```
 
-After adding regular HTML Buttons and Range elements to control timer, the circles for all runners can be drawn for each timestamp. 
+After adding regular HTML Button and Range elements to control timer, the circles for all runners can be drawn for each timestamp. 
 
 ![Draw All Runners at Any Timestamp](https://georgekatona.com/img/runvis/datapoints.png)
 
 ### Highlight Runner
 
-Runners love their performance data. Given a race, they are usually thrilled to see how they performed, on which section did they do their best and so on. The functionality to search and highlight based on their running id, so they can see their speed amongst all runners, would be really useful. Using a text input field and a search button, they can type their id, then the **drawRunners()** function, we implement the highlighted case.
+Runners love their performance data. Given a race, they are usually thrilled to see how they performed, on which section did they do their best and so on. The functionality to search and highlight based on their running id, so they can see their speed amongst all runners, would be really useful for them. Using a text input field and a button, they can search for their ids. In the **drawRunners()** function, we implement the highlighted case.
 
 ```
 function drawRunners() {
@@ -127,7 +127,7 @@ function drawRunners() {
 
 Using D3 and canvas to dynamically draw thousands of moving elements has its advantages but has limitations as well. According to my experiments, around 4000 runners can be drawn with a really smooth animation, and even with around 7000 data points, frame rate is around 20-25 fps on most browsers (including mobile devices). For significantly larger data sets though, I would recommend to look for some further optimization techniques.
 
-If you're interested in the final outcome, you can find it at [https://georgekatona.com/vivicitta/index.html](https://georgekatona.com/vivicitta/index.html). I appreciate any of your thoughts and impressions in the comments section.
+If you're interested in the final result, you can find it at [https://georgekatona.com/vivicitta/index.html](https://georgekatona.com/vivicitta/index.html). I appreciate any of your thoughts and impressions in the comments section below.
 
 *Links:*
 - [Interactive Dashboard - Crimes Committed in Urbana, Illinois ](https://georgekatona.com/urbana-crimes/index.html)
