@@ -39,7 +39,7 @@
         display: inline-block;
     }
 
-    .fb-share-button {
+    .fb-like {
         padding: 10px;
     }
 
@@ -500,7 +500,7 @@
             height: height
         });
 
-        for (let t = 0; t <= max_time; t += 6) {
+        for (let t = 0; t <= max_time; t += 4) {
             time = t;
             draw();
             gif.addFrame(context, {copy: true}, {delay: 1});
