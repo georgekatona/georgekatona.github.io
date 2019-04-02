@@ -13,6 +13,7 @@
     <meta property="og:description"
           content="Kövesd nyomon a te vagy ismerősöd teljesítményét a 2018-as mezőnyben!">
 </head>
+<link rel='shortcut icon' type='image/png' href='https://georgekatona.com/favicon.png'/>
 <style>
     #title {
         font-size: 150%;
@@ -35,8 +36,13 @@
     }
 
     .social {
-        display:inline-block;
+        display: inline-block;
     }
+
+    .fb-share-button {
+        padding: 10px;
+    }
+
 </style>
 <body>
 <label id="title">Vivicittá 2018 - Félmaraton vizualizáció</label>
@@ -55,6 +61,11 @@
     <label id="resultText"></label>
 </div>
 <canvas id="run-canvas"></canvas>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/hu_HU/sdk.js#xfbml=1&version=v3.2"></script>
+<div class="fb-like" data-href="https://georgekatona.com/vivicitta/index.html" data-layout="standard" data-action="like"
+     data-size="small" data-show-faces="true" data-share="true"></div>
 <div class="text">
     <hr>
     <div>
@@ -93,6 +104,8 @@
 
 </body>
 <script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="gif.js"></script>
+<script src="gif.worker.js"></script>
 <script>
     let runners;
     let highlighted_id = -1;
@@ -130,10 +143,11 @@
         });
 
         draw();
+        // write_to_gif();
         d3.interval(function () {
             if (started) {
                 time += 12;
-                if(time > max_time){
+                if (time > max_time) {
                     started = false;
                     time = max_time;
                 }
@@ -260,12 +274,25 @@
         }
     }
 
+    function drawBackground() {
+        context.fillStyle = "#FFF";
+        context.fillRect(0, 0, width, height);
+    }
+
+    function drawAuthorTag() {
+        context.font = "14px Arial Black";
+        context.fillStyle = "rgb(0,0,0)";
+        context.fillText("https://georgekatona.com", 0.5 * unit, 17.7 * unit);
+    }
+
     function draw() {
         context.clearRect(0, 0, width, height);
+        // drawBackground();
         drawDanube();
         drawRoute();
         drawRunners();
         drawLabels();
+        // drawAuthorTag();
     }
 
     function onStartButtonClick() {
@@ -463,6 +490,26 @@
 
     function seconds_to_hms(seconds) {
         return new Date(seconds * 1000).toISOString().substr(11, 8);
+    }
+
+    function write_to_gif() {
+        var gif = new GIF({
+            workers: 2,
+            quality: 10,
+            width: width,
+            height: height
+        });
+
+        for (let t = 0; t <= max_time; t += 6) {
+            time = t;
+            draw();
+            gif.addFrame(context, {copy: true}, {delay: 1});
+        }
+        gif.on('finished', function (blob) {
+            window.open(URL.createObjectURL(blob));
+        });
+
+        gif.render();
     }
 
 </script>
