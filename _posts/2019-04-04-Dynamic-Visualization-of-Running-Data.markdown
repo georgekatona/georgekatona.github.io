@@ -76,7 +76,7 @@ function draw() {
 To come up with a nice and simple representation of the running route, I went to pen-and-paper design. I chose a unit distance and mapped the route to sections with 0 or 90 degree turns on the borders. Using the Danube as a reference point, it is easier for the user to comprehend. As a last step I added distance points to the map, so the runners can track their progress.
 
 ![Minimalist Design of Running Route](https://georgekatona.com/img/runvis/map.png)
-<p align="center">Figure 2: Minimalist Design vs Map of Running Route</p>
+<p align="center">Figure 2: Minimalist Design vs Map of the Running Route</p>
 
 ### Calculate Runner's position
 
