@@ -78,12 +78,15 @@ To come up with a nice and simple representation of the running route, I went to
 
 One of the most interesting implementation step is to map the position of all the runners to any timestamp. In the data set, timestamps of passing the gates of 10 kilometers, 17 kilometers and the finish-line are available for all runners as well as the net time of the half-marathon.
 
+
+![Snippet of the data set](https://georgekatona.com/img/runvis/table_head.png)
+
 | running_id |     10km |     17km | gross_time | net_time |
-|:-----------|---------:|---------:|-----------:|---------:|
-| 6158       | 01:05:55 | 01:53:15 |   02:35:38 | 02:18:34 |
-| 5302       | 01:01:04 | 01:51:34 |   02:29:13 | 02:18:35 |
-| 3073       | 01:03:10 | 01:51:44 |   02:30:49 | 02:18:35 |
-| 4552       | 01:02:22 | 01:50:26 |   02:35:15 | 02:18:35 |
+|-----------:|---------:|---------:|-----------:|---------:|
+|       6158 | 01:05:55 | 01:53:15 |   02:35:38 | 02:18:34 |
+|       5302 | 01:01:04 | 01:51:34 |   02:29:13 | 02:18:35 |
+|       3073 | 01:03:10 | 01:51:44 |   02:30:49 | 02:18:35 |
+|       4552 | 01:02:22 | 01:50:26 |   02:35:15 | 02:18:35 |
 
 Having these values, the speed for the three sections (0-10km, 10-17km, 17-21.1km) can be calculated and then using the speed of the runners with the mapped 0.5 km sections, we can determine the exact positions. To distribute runners on the width of the route, I used a pseudorandom generator based on the runner's id. This random value is then used to add an offset to the runners position sideways and to determine the starting and ending position of the straight path, in order to calculate a smooth turn.
 
@@ -127,11 +130,11 @@ function drawRunners() {
 
 Using D3 and canvas to dynamically draw thousands of moving elements has its advantages but has limitations as well. According to my experiments, around 4000 runners can be drawn with a really smooth animation, and even with around 7000 data points, frame rate is around 20-25 fps on most browsers (including mobile devices). For significantly larger data sets though, I would recommend to look for some further optimization techniques.
 
-<video width="480" height="320" controls="controls">
-  <source src="https://georgekatona.com/img/runvis/run_animated.mp4" type="video/mp4">
+<video width="240" height="720" autoplay loop>
+    <source src="https://georgekatona.com/img/runvis/run_animated.mp4" type="video/mp4">
 </video>
 
-If you're interested in the final result, you can find it at [https://georgekatona.com/vivicitta/index.html](https://georgekatona.com/vivicitta/index.html). I appreciate any of your thoughts and impressions in the comments section below.
+If you're interested in the final interactive result, you can find it [here](https://georgekatona.com/vivicitta/index.html). I appreciate any of your thoughts and impressions in the comments section below.
 
 *Links:*
 - [Interactive Dashboard - Crimes Committed in Urbana, Illinois ](https://georgekatona.com/urbana-crimes/index.html)
