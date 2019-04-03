@@ -16,7 +16,7 @@ draft:	true
 In a former university project I gained some experience using D3 for implementing an [interactive dashboard](https://georgekatona.com/urbana-crimes/index.html). I used SVG elements to draw histograms, scatter plots, applied filtering, highlighting and brushing in order to visualize crime data committed in Urbana, Illinois from 1988 to 2016.
 
 ![Former D3 visualization project](https://georgekatona.com/img/runvis/urbana.PNG)
-<p align="center">[Former D3 visualization project](https://georgekatona.com/urbana-crimes/index.html)</p>
+<p align="center"><a href="https://georgekatona.com/urbana-crimes/index.html" title="LinkedIn">Former D3 visualization project</a></p>
 
 When I came across ATLO's marathon [visualization](https://atlo.team/spar-budapest-maraton/?fbclid=IwAR3MlxaCr2Rt1OYC-QmUUxNyGiALdLOfUaVGR87Bn35uXHmfcNLD6Jd_70s), I decided to implement my own version using D3, so I can investigate how it does at dynamic, performance-dependent visualization scenarios and also to bring joy to my fellow hobby runners. I chose the Vivicittá Half-Marathon, as it is one of the most popular running events in Hungary with more than 7000 runners participating in 2018. Moving that many data points with an acceptable frame rate should be a challenging task (definitely out of SVG's scope), therefore I'm going to investigate how D3 performs using canvas.
 
