@@ -78,7 +78,7 @@ To come up with a nice and simple representation of the running route, I went to
 
 One of the most interesting implementation step is to map the position of all the runners to any timestamp. In the data set, timestamps of passing the gates of 10 kilometers, 17 kilometers and the finish-line are available for all runners as well as the net time of the half-marathon.
 
-![Snippet of the data set](https://georgekatona.com/img/runvis/table_head.png)
+![Snippet of the data set](https://georgekatona.com/img/runvis/table_head.PNG)
 
 Having these values, the speed for the three sections (0-10km, 10-17km, 17-21.1km) can be calculated and then using the speed of the runners with the mapped 0.5 km sections, we can determine the exact positions. To distribute runners on the width of the route, I used a pseudorandom generator based on the runner's id. This random value is then used to add an offset to the runners position sideways and to determine the starting and ending position of the straight path, in order to calculate a smooth turn.
 
@@ -123,7 +123,7 @@ function drawRunners() {
 Using D3 and canvas to dynamically draw thousands of moving elements has its advantages but has limitations as well. According to my experiments, around 4000 runners can be drawn with a really smooth animation, and even with around 7000 data points, frame rate is around 20-25 fps on most browsers (including mobile devices). For significantly larger data sets though, I would recommend to look for some further optimization techniques.
 
 <div style="text-align:center;">
-    <video width="160" height="480" autoplay loop>
+    <video width="160" height="480" autoplay loop playsinline>
         <source src="https://georgekatona.com/img/runvis/run_animated.mp4" type="video/mp4">
     </video>
 </div>
