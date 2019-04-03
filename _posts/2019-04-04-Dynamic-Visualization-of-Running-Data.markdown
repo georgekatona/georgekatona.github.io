@@ -120,7 +120,7 @@ function drawRunners() {
 
 # Summary
 
-Using D3 and canvas to dynamically draw thousands of moving elements has its advantages but has limitations as well. According to my experiments, around 4000 runners can be drawn with a really smooth animation, and even with around 7000 data points, frame rate is around 20-25 fps on most browsers (including mobile devices). For significantly larger data sets though, I would recommend to look for some further optimization techniques.
+Using D3 and canvas to dynamically draw thousands of moving elements has its advantages but has limitations as well. According to my experiments, around 4000 runners can be drawn with a really smooth animation, and even with around 7000 data points, frame rate is around 20-25 fps on most browsers (including mobile devices). For significantly larger data sets though, I would recommend to look for some further optimization techniques. If lacking the interactive functionality is an option, a prerendered mp4 video - like the one below - could also serve the purpose.
 
 <div style="text-align:center;">
     <video width="160" height="480" autoplay loop playsinline>
