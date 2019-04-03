@@ -143,6 +143,12 @@
         });
 
         draw();
+		
+		
+        setTimeout(function () {
+           started = true;
+        }, 500);
+		
         // write_to_gif();
         d3.interval(function () {
             if (started) {
