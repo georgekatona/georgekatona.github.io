@@ -128,7 +128,7 @@ Using D3 and canvas to dynamically draw thousands of moving elements has its adv
     </video>
 </div>
 
-If you're interested in the final interactive result, you can find it [here](https://georgekatona.com/vivicitta/index.html). I appreciate any of your thoughts and impressions in the comments section below.
+If you're interested in the final interactive result, you can find it [here](https://georgekatona.com/vivicitta/index.html). I appreciate any of your thoughts and impressions in the comments section.
 
 *Links:*
 - [Interactive Dashboard - Crimes Committed in Urbana, Illinois ](https://georgekatona.com/urbana-crimes/index.html)
