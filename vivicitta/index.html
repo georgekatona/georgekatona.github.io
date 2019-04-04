@@ -108,8 +108,6 @@
 
 </body>
 <script src="https://d3js.org/d3.v5.min.js"></script>
-<script src="gif.js"></script>
-<script src="gif.worker.js"></script>
 
 <!-- Asynchronous Google Analytics snippet -->
 <script>
@@ -164,7 +162,6 @@
            started = true;
         }, 1000);
 
-        // write_to_gif();
         d3.interval(function () {
             if (started) {
                 time += 12;
@@ -511,26 +508,6 @@
 
     function seconds_to_hms(seconds) {
         return new Date(seconds * 1000).toISOString().substr(11, 8);
-    }
-
-    function write_to_gif() {
-        var gif = new GIF({
-            workers: 2,
-            quality: 10,
-            width: width,
-            height: height
-        });
-
-        for (let t = 0; t <= max_time; t += 4) {
-            time = t;
-            draw();
-            gif.addFrame(context, {copy: true}, {delay: 1});
-        }
-        gif.on('finished', function (blob) {
-            window.open(URL.createObjectURL(blob));
-        });
-
-        gif.render();
     }
 
 </script>
