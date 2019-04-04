@@ -13,7 +13,7 @@ draft:	true
 
 # Motivation
 
-In a former university project I experienced many of [D3](https://d3js.org/)'s capabilities while implementing an [interactive dashboard](https://georgekatona.com/urbana-crimes/index.html)(Figure 1). I used SVG elements to draw histograms, scatter plots, applied filtering, highlighting and brushing in order to visualize crime data committed in Urbana, Illinois from 1988 to 2016.
+In a former university project I experienced many of [D3](https://d3js.org/)'s capabilities while implementing an [interactive dashboard](https://georgekatona.com/urbana-crimes/index.html) (Figure 1). I used SVG elements to draw histograms, scatter plots, applied filtering, highlighting and brushing in order to visualize crime data committed in Urbana, Illinois from 1988 to 2016.
 
 ![Former D3 Visualization Project](https://georgekatona.com/img/runvis/urbana.PNG)
 <p align="center">Figure 1: <a href="https://georgekatona.com/urbana-crimes/index.html">Former D3 Visualization Project</a></p>
