@@ -43,6 +43,10 @@
         padding: 10px;
     }
 
+    #run-canvas {
+        height: 80vh;
+    }
+
 </style>
 <body>
 <label id="title">Vivicittá 2018 - Félmaraton vizualizáció</label>
@@ -143,12 +147,11 @@
         });
 
         draw();
-		
-		
+
         setTimeout(function () {
            started = true;
-        }, 500);
-		
+        }, 1000);
+
         // write_to_gif();
         d3.interval(function () {
             if (started) {
@@ -161,7 +164,7 @@
                 document.getElementById("time").innerHTML = seconds_to_hms(time);
                 draw();
             }
-        }, 20);
+        }, 30);
     });
 
     function drawRoute() {
@@ -224,7 +227,7 @@
 
     function drawLabels() {
         // Start line
-        context.font = routeWidth + "px Arial Black";
+        context.font = "bold " + routeWidth + "px Arial Black";
         context.fillStyle = "black";
         context.fillText("start", 0.8 * unit, 4.1 * unit);
         context.beginPath();
@@ -237,19 +240,19 @@
         context.lineTo(3.32 * unit, 1.8 * unit);
 
         // Other lines
-        context.fillText("5k", 0.7 * unit, 7.5 * unit);
+        context.fillText("5km", 0.5 * unit, 7.5 * unit);
         context.moveTo(0.7 * unit, 7.7 * unit);
         context.lineTo(1.35 * unit, 8.35 * unit);
 
-        context.fillText("10k", 0.5 * unit, 17 * unit);
+        context.fillText("10km", 0.5 * unit, 17 * unit);
         context.moveTo(0.70 * unit, 16.3 * unit);
         context.lineTo(1.35 * unit, 15.65 * unit);
 
-        context.fillText("13k", 3.5 * unit, 14 * unit);
+        context.fillText("13km", 3.5 * unit, 14 * unit);
         context.moveTo(3.65 * unit, 12.65 * unit);
         context.lineTo(4.3 * unit, 13.3 * unit);
 
-        context.fillText("18k", 4.5 * unit, 3.5 * unit);
+        context.fillText("18km", 4.5 * unit, 3.5 * unit);
         context.moveTo(4.65 * unit, 4.35 * unit);
         context.lineTo(5.3 * unit, 3.7 * unit);
 
@@ -286,7 +289,7 @@
     }
 
     function drawAuthorTag() {
-        context.font = "14px Arial Black";
+        context.font = "14px bold Arial Black";
         context.fillStyle = "rgb(0,0,0)";
         context.fillText("https://georgekatona.com", 0.5 * unit, 17.7 * unit);
     }
