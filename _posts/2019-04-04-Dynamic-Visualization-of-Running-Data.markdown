@@ -5,7 +5,6 @@ author:     György Katona
 tags: 		JavaScript d3 visualization html
 subtitle:   Using D3 library and canvas to visualize over 7000 moving data points
 img_preview:	"img/runvis_vivicitta.png"
-draft:	true
 ---
 
 * TOC
