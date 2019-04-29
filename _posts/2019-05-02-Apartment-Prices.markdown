@@ -29,7 +29,7 @@ Used
 
 <div class="flourish-embed" data-src="visualisation/327322"></div><script src="https://public.flourish.studio/resources/embed.js"></script>
 
-![Average Price of Used Apartments in Hungary](https://georgekatona.com/img/house_prices/CityTypes.PNG)
+![Average Price of Used Apartments in Hungary](https://georgekatona.com/img/house_prices/CityTypes.png)
 <p align="center">Average Price of Used Apartments in Hungary - Grouped by City Types</p>
 
 # Hans Rosling Chart
