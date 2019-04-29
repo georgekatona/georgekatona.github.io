@@ -35,6 +35,9 @@ New
 
 <div class="flourish-embed" data-src="visualisation/327391"></div><script src="https://public.flourish.studio/resources/embed.js"></script>
 
+# Hans Rosling Chart
+
+<div class="flourish-embed" data-src="visualisation/327487"></div><script src="https://public.flourish.studio/resources/embed.js"></script>
 
 # Summary
 
