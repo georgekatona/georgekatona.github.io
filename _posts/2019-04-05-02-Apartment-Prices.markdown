@@ -15,6 +15,9 @@ draft:	true
 
 # Dashboard
 
+<iframe src="https://public.tableau.com/profile/gy.rgy.katona1381#!/vizhome/HungarianApartmentPrices/Used?:showVizHome=no&:embed=true"
+ width="645" height="955"></iframe>
+
 # Animation
 
 Used
