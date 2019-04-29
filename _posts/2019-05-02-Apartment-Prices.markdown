@@ -29,6 +29,13 @@ New
 
 <div class="flourish-embed" data-src="visualisation/325735"></div><script src="https://public.flourish.studio/resources/embed.js"></script>
 
+# Detailed Animation
+
+<div class="flourish-embed" data-src="visualisation/327322"></div><script src="https://public.flourish.studio/resources/embed.js"></script>
+
+<div class="flourish-embed" data-src="visualisation/327391"></div><script src="https://public.flourish.studio/resources/embed.js"></script>
+
+
 # Summary
 
 
