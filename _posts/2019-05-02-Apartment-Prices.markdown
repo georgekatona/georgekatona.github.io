@@ -19,26 +19,25 @@ The appearance of mobile devices with high computational power allows us to disc
 
 In this post I am going to investigate how average price of used apartments in Hungary changes over time and how it differs by region and type/size of settlement. The Hungarian Central Statistical Office releases their report and data every year in [pdf](https://www.ksh.hu/docs/hun/xftp/stattukor/lakaspiacar/lakaspiacar183.pdf)/[xls](http://www.ksh.hu/docs/hun/xftp/stattukor/lakaspiacar/lakaspiacar183.xls) format and even though they contain extensive and detailed information, they are not designed to be interpretable by an average user. For this reason, I am attempting to design a dashboard and interactive animations in order to bring the information closer to the users.
 
-# Analysis
+# Interactive Dashboard
+
+One of the most powerful tools in data visualization is designing interactive dashboards, as the user not only passively interprets the story as a receiver, but he can also interact and explore. A good dashboard fits well the user’s level of skills and uses channels that are widely used and easy to interpret. Actions and interactions between the multiple views should have a “natural feeling”. Another key challenge is to distribute space relative to the importance of the element. As the user base might be highly diverse, it’s easy to see how difficult it is to implement a dashboard suitable for each one of them. On the other hand, if the complexity is layered well, it can be useful for users with a wide range of experience.
+
+For my implementation I used [Tableau](https://www.tableau.com/), as it is one of the most commonly used tool for designing dashboards and it also supports embedded use. The average price of used apartments are shown based on they geographical location, grouped by year and settlement type. On the default view you see the average prices of the regions based on all types of settlement. You can use the slider to switch years and use the filter tool for if you’re interested in the average of a certain settlement type.
 
 <div class='tableauPlaceholder' id='viz1556539855220' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Hu&#47;HungarianApartmentPrices&#47;Used&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='views&#47;HungarianApartmentPrices&#47;Used?:embed=y&amp;:display_count=y' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Hu&#47;HungarianApartmentPrices&#47;Used&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /></object></div>                
 <script type='text/javascript'>                    var divElement = document.getElementById('viz1556539855220');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='700px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='700px';} else { vizElement.style.width='100%';vizElement.style.height='1350px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
 
-
-## Interactive Dashboard
-
-Used
+# Animation vs Static Image
 
 <div class="flourish-embed" data-src="visualisation/325722"></div><script src="https://public.flourish.studio/resources/embed.js"></script>
-
-## Static Image vs Interactive Animation
 
 <div class="flourish-embed" data-src="visualisation/327322"></div><script src="https://public.flourish.studio/resources/embed.js"></script>
 
 ![Average Price of Used Apartments in Hungary](https://georgekatona.com/img/house_prices/CityTypes.png)
 <p align="center">Average Price of Used Apartments in Hungary - Grouped by City Types</p>
 
-# Hans Rosling Chart
+Hans Rosling Chart
 
 <div class="flourish-embed" data-src="visualisation/327487"></div><script src="https://public.flourish.studio/resources/embed.js"></script>
 
