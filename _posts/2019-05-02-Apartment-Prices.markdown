@@ -13,11 +13,11 @@ draft:	true
 
 # Motivation
 
-One of the most desirable quality of a data scientist is his ability of telling a story. Although the field is based on math, statistics and algorithms, we can not forget about the other side of the process: humans. Turning data into information and information into knowledge is a complicated and arguably subjective process. A subfield of visualization is addressed to explore human perception and to find the best channels of communicating data, but conveying complex information is always unique to its receiver.
+One of the most desirable quality of a data scientist is his ability to tell a story. Although the field is based on math, statistics and algorithms, we can not forget about the other side of the process: humans. Turning data into information and information into knowledge is a complicated and arguably subjective process. A subfield of visualization is addressed to explore human perception and to find the best channels of communicating data, but conveying complex information is always unique to its receiver.
 
 The appearance of mobile devices with high computational power allows us to discover new ways of storytelling. I believe that the best visualization is not only one story to tell, but a personal experience, a unique adventure for every person. Static figures can also carry multiple layers of information, but interactive dashboards and animations can create even more personal and complex experience.
 
-In this post I am going to investigate how average price of used apartments in Hungary changes over time and how it differs by region and type/size of settlement. The Hungarian Central Statistical Office releases their report and data every year in pdf/xml format and even though they contain extensive and detailed information, they are not designed to be interpretable by an average user. For this reason, I am attempting to design a dashboard and interactive animations in order to bring the information closer to the users.
+In this post I am going to investigate how average price of used apartments in Hungary changes over time and how it differs by region and type/size of settlement. The Hungarian Central Statistical Office releases their report and data every year in [pdf](https://www.ksh.hu/docs/hun/xftp/stattukor/lakaspiacar/lakaspiacar183.pdf)/[xls](http://www.ksh.hu/docs/hun/xftp/stattukor/lakaspiacar/lakaspiacar183.xls) format and even though they contain extensive and detailed information, they are not designed to be interpretable by an average user. For this reason, I am attempting to design a dashboard and interactive animations in order to bring the information closer to the users.
 
 # Analysis
 
@@ -46,4 +46,5 @@ Used
 
 
 *Links:*
-- [...](https://...)
+- [Hungarian Central Statistical Office - 2018 Q3 report](https://www.ksh.hu/docs/hun/xftp/stattukor/lakaspiacar/lakaspiacar183.pdf)
+- [Hungarian Central Statistical Office - 2018 Q3 tables](http://www.ksh.hu/docs/hun/xftp/stattukor/lakaspiacar/lakaspiacar183.xls)
