@@ -4,7 +4,7 @@ title:      Same Data, New Journey - Data driven storytelling and what’s beyon
 author:     György Katona
 tags: 		Tableau visualization animation
 subtitle:   Investigating Hungarian Real Estate Market with Interactive Dashboard and Animation
-img_preview:	"img/sample_header.png"
+img_preview:	"img/house_prices/cover.png"
 draft:	true
 ---
 
@@ -45,7 +45,6 @@ For the animations above, I used [Flourish](https://flourish.studio/), which is 
 A data scientist should be always aware the strengths and weaknesses of his tools and the modern ones, like dashboards and animations are no exceptions. Figures, animations and dashboards all have great potentials when they are used for the right tasks. Figures are concise, easy to interpret, they are the best way for stating a clear message. Animations draw attention, accessible on almost any mobile devices and makes a more unique experience. Dashboards are great for data exploration, but they demand a level of expertise and they are less portable than the others.
 
 In this post I didn’t write my own conclusions and analysis on purpose, as I am more interested in your experience, discoveries and opinions on both the data and the tools designed. Please write your thoughts in the comments section below!
-
 
 *Links:*
 - [Hungarian Central Statistical Office - 2018 Q3 report](https://www.ksh.hu/docs/hun/xftp/stattukor/lakaspiacar/lakaspiacar183.pdf)
