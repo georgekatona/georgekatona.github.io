@@ -1,8 +1,8 @@
 ---
 layout:     post
-title:      Same Data, New Journey - Data driven storytelling and what’s beyond
+title:      Personalized Data Exploration with the Power of Modern Visualization Tools
 author:     György Katona
-tags: 		Tableau visualization animation
+tags: 		Tableau dashboard visualization Flourish animation
 subtitle:   Investigating Hungarian Real Estate Market with Interactive Dashboard and Animation
 img_preview:	"img/house_prices/cover.png"
 draft:	true
