@@ -5,7 +5,7 @@ author:     György Katona
 tags: 		Tableau dashboard visualization Flourish animation
 subtitle:   Investigating Hungarian Real Estate Market with Interactive Dashboard and Animation
 img_preview:	"img/house_prices/cover.png"
-draft:	true
+draft:	false
 ---
 
 * TOC
