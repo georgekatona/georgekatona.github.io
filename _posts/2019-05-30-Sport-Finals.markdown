@@ -118,23 +118,23 @@ Based on the histograms of Figure 6, GSW fans look slightly more optimistic, but
 ![sub_emotions_nba](https://georgekatona.com/img/finals/sub_emotions_nba.png)
 <p align="center">Figure 8: Difference of sentiments</p>
 
+While investigating multiple sentiments, it might be surprising, that the Raptor tweets contain more trust. We should note, that NBA playoff is much more frequent than the Champions League, the emotions of the previous matches are probably much more present in the fans, than in the previous case. The analysis also tells us that Raptors fans have more fear, they are more surprised. On the other hand Golden State fans feeling more joy and they have more anticipation.
+
 ![raptors_gsw_pos_neg](https://georgekatona.com/img/finals/raptors_gsw_pos_neg.png)
 <p align="center">Figure 9: Discrete binary classification of the tweets</p>
 
-While investigating multiple sentiments, it might be surprising, that the Raptor tweets contain more trust. We should note, that NBA playoff is much more frequent than the Champions League, the emotions of the previous matches are probably much more present in the fans, than in the previous case. The analysis also tells us that Raptors fans have more fear, they are more surprised. On the other hand Golden State fans feeling more joy and they have more anticipation.
+In general, the fans of both teams are optimistic, Golden State tweets are slightly more positive than the Raptors posts.
 
 ### Word Clouds
 
 Let’s see the most frequent words grouped by the 6 sentiments.
-
 
 ![wordcloud_nba](https://georgekatona.com/img/finals/wordcloud_nba.png)
 <p align="center">Figure 10: Word clouds for each teams</p>
 
 # Summary
 
-
-
+Analysing text data gathered from Social Media has its challenges and it definitely needs a lot of cleaning. Even though most NLP tools are not optimized for the modern textual data (containing hashtags, emojis and slangs), they are still efficient in providing insight into general opinion.
 
 
 *Links:*
@@ -142,4 +142,4 @@ Let’s see the most frequent words grouped by the 6 sentiments.
 - [syuzhet](https://github.com/mjockers/syuzhet)
 - [twitteR](https://cran.r-project.org/web/packages/twitteR/README.html)
 - [Tidy Text Mining](https://www.tidytextmining.com/sentiment.html)
-- [Cleaning Twitter Data and ](http://rpubs.com/kevinsis/sentiment2)
+- [Cleaning Twitter Data](http://rpubs.com/kevinsis/sentiment2)
