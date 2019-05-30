@@ -5,7 +5,7 @@ author:     György Katona
 tags: 		NLP R Sentiment-Analysis Text-Mining
 subtitle:   Analysing emotions of the fan bases before the upcoming Champions League and NBA Finals
 img_preview:	"img/finals/cover.png"
-draft:	true
+draft:	false
 ---
 
 * TOC
