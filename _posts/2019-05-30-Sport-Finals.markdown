@@ -92,6 +92,8 @@ To get an idea about the content of the tweets, we use word clouds (Figure 5).
 
 # NBA
 
+In the NBA Finals the two-time defending champion Golden State Warriors play against the Toronto Raptors. It is no surprise that Golden State is the finals, but it might be surprising for some how the Raptors overcame Milwaukee Bucks led by Giannis Antetokounmpo. Most still think that GSW has the better chance in winning, but we also shouldn’t underestimate the Raptors, we are looking forward to an exciting battle. Let’s see what the fan tweets are telling us.
+
 ### Positive-Negative Scale
 
 ![rap_gsw_histo](https://georgekatona.com/img/finals/rap_gsw_histo.png)
