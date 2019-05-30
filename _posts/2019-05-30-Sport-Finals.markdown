@@ -69,6 +69,27 @@ qplot(tot_sentiment$ave_sentiment,
 
 With the library [syuzhet]() we can access multiple emotions (joy, fear, trust, etc.), but only its binary state, which means that one twitter message can be categorized as expressing both joy and surprise, but we don’t get their extent. In Figure 2 you can see the emotions expressed by the tweets for each team.
 
+```
+liv_nrc_sentiment <-get_nrc_sentiment(liv_tweet_texts)
+tot_nrc_sentiment <-get_nrc_sentiment(tot_tweet_texts)
+barplot(
+  sort(colSums(prop.table(liv_nrc_sentiment[, 1:8]))), 
+  horiz = TRUE, 
+  cex.names = 0.7, 
+  las = 1, 
+  main = "Emotions in Liverpool Tweets", xlab="Percentage",
+  col = liverpool_color
+)
+barplot(
+  sort(colSums(prop.table(tot_nrc_sentiment[, 1:8]))), 
+  horiz = TRUE, 
+  cex.names = 0.7, 
+  las = 1, 
+  main = "Emotions in Tottenham Tweets", xlab="Percentage",
+  col = tottenham_color
+)
+```
+
 ![liv_tot_emotions](https://georgekatona.com/img/finals/liv_tot_emotions.png)
 <p align="center">Figure 2: Emotions expressed by the tweets for each team</p>
 
@@ -77,7 +98,7 @@ To make comparison easier, I subtracted the relative presence of the emotions. F
 ![sub_emotions_cl](https://georgekatona.com/img/finals/sub_emotions_cl.png)
 <p align="center">Figure 3: Difference of sentiments</p>
 
-With syuzhet we can also classify the tweets based on their positive or negative content (Figure 4).
+With syuzhet we can also classify the tweets based on their positive or negative content (Figure 4). It is interesting to see how much more optimistic Liverpool fans are.
 
 ![liv_tot_pos_neg](https://georgekatona.com/img/finals/liv_tot_pos_neg.png)
 <p align="center">Figure 4: Discrete binary classification of the tweets</p>
@@ -138,6 +159,7 @@ Analysing text data gathered from Social Media has its challenges and it definit
 
 
 *Links:*
+- [Full Source Code](https://github.com/georgekatona/MajorFinalsSentiments)
 - [sentimentr](https://github.com/trinker/sentimentr)
 - [syuzhet](https://github.com/mjockers/syuzhet)
 - [twitteR](https://cran.r-project.org/web/packages/twitteR/README.html)
