@@ -1,9 +1,9 @@
 ---
 layout:     post
-title:      Sentiment Analysis of Sport Fans just before the Upcoming Finals
+title:      Sentiment Analysis of Sport Fan Tweets before the Upcoming Finals
 author:     György Katona
 tags: 		NLP R Sentiment-Analysis Text-Mining
-subtitle:   Analysing emotions of the fan-bases before the upcoming Champions League and NBA Finals
+subtitle:   Analysing emotions of the fan bases before the upcoming Champions League and NBA Finals
 img_preview:	"img/finals/cover.png"
 draft:	true
 ---
@@ -23,7 +23,7 @@ On the First of June, it is the Champions League Finals, Liverpool vs Tottenham,
 
 ### Positive-Negative Scale
 
-I am using the [twitteR](https://cran.r-project.org/web/packages/twitteR/README.html) package to get the 1000 most recent English tweets containing the official hashtag of the team along with "#UCLFinal". In order to analyse the text, first we have to clean it by removing links, punctuation, numbers, emojis and special characters. The library [sentimentr](https://github.com/trinker/sentimentr) is designed to take into account valence shifters like amplifiers and negators, which results in a more accurate sentiment score. This library returns not only the sentiment classes positive/negative for each tweet, but also it’s value. A higher sentiment value represent a stronger positive emotion in the post. The figure below shows the distribution of the sentiment values for the two teams.
+I am using the [twitteR](https://cran.r-project.org/web/packages/twitteR/README.html) package to get the 1000 most recent English tweets containing the official hashtag of the team along with "#UCLFinal". In order to analyse the text, first we have to clean it by removing links, punctuation, numbers, emojis and special characters. The library [sentimentr](https://github.com/trinker/sentimentr) is designed to take into account valence shifters like amplifiers and negators, which results in a more accurate sentiment score. This library returns not only the sentiment classes positive/negative for each tweet, but also its value. A higher sentiment value represents a stronger positive emotion in the post. The figure below shows the distribution of the sentiment values for the two teams.
 
 ```
 liv_search <- "#LFC+#UCLFinal"
