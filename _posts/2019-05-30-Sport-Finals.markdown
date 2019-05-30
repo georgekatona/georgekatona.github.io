@@ -112,14 +112,18 @@ To get an idea about the content of the tweets, we use word clouds (Figure 5).
 <p align="center">Figure 7: Emotions expressed by the tweets for each team</p>
 
 ![sub_emotions_nba](https://georgekatona.com/img/finals/sub_emotions_nba.png)
-<p align="center">Figure 3: Difference of sentiments</p>
+<p align="center">Figure 8: Difference of sentiments</p>
+
+![raptors_gsw_pos_neg](https://georgekatona.com/img/finals/raptors_gsw_pos_neg.png)
+<p align="center">Figure 9: Discrete binary classification of the tweets</p>
 
 ### Word Clouds
 
 ![wordcloud_nba](https://georgekatona.com/img/finals/wordcloud_nba.png)
-<p align="center">Figure 5: Word clouds for each teams</p>
+<p align="center">Figure 10: Word clouds for each teams</p>
 
 # Summary
+
 
 
 
