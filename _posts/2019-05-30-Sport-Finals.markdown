@@ -13,17 +13,17 @@ draft:	true
 
 # Motivation
 
-Sentiment Analysis is a form of text mining, which aims to mine opinion or related emotions from a textual data set. We can analyse the general tone of books, how it changes as the story develops[](), but it is possible to gather general public opinion about various topics by combining Natural Language Processing tools with data collected from the Social Media.
+Sentiment Analysis is a form of text mining, which aims to mine opinion or related emotions from a textual data set. We can analyse the general tone of books, [how it changes as the story develops](https://www.tidytextmining.com/sentiment.html), but it is also possible to gather general public opinion about various topics by combining Natural Language Processing tools with data collected from Social Media.
 
-In this post I am using the language R with [sentimentr](https://github.com/trinker/sentimentr) and [syuzhet](https://github.com/mjockers/syuzhet) NLP libraries to analyse the emotions of football and basketball fans before the biggest games of the year. I am using [twitteR](https://cran.r-project.org/web/packages/twitteR/README.html) to gather the most recent Twitter posts then compare the results of the different dictionaries.
+In this post I am using the language R with [sentimentr](https://github.com/trinker/sentimentr) and [syuzhet](https://github.com/mjockers/syuzhet) NLP packages to analyse the emotions of football and basketball fans before the biggest games of the year.
 
 # Champions League
 
 On the First of June, it is the Champions League Finals, Liverpool vs Tottenham, the first time two English teams play the finals since 2008. In the Premier League both teams qualified themself for the next seasons, but Liverpool also got really close to winning the title, finished only one point behind Manchester City. There has been no other team before losing the trophy with this many points (97), and the nightmare of the team - and its supporters - is that they could finish this wonderful season without winning any trophies. It is fair to say that Liverpool is the team under the higher pressure in the finals.
 
-### Continuous Positive-Negative Scale
+### Positive-Negative Scale
 
-I am using the twitteR library to get the 1000 most recent English tweets containing the official hashtag of the team along with #UCLFinal. In order to analyse the text, first we have to clean it by removing links, punctuation, numbers emojis and special characters. The library [sentimentr](https://github.com/trinker/sentimentr) is designed to take into account valence shifters like amplifiers and negators, which results in a more accurate sentiment score. This library returns not only the sentiment classes positive/negative for each tweet, but also it’s value. A higher sentiment value represent a stronger positive emotion in the post. The figure below shows the distribution of the sentiment values for the two teams.
+I am using the [twitteR](https://cran.r-project.org/web/packages/twitteR/README.html) package to get the 1000 most recent English tweets containing the official hashtag of the team along with "#UCLFinal". In order to analyse the text, first we have to clean it by removing links, punctuation, numbers, emojis and special characters. The library [sentimentr](https://github.com/trinker/sentimentr) is designed to take into account valence shifters like amplifiers and negators, which results in a more accurate sentiment score. This library returns not only the sentiment classes positive/negative for each tweet, but also it’s value. A higher sentiment value represent a stronger positive emotion in the post. The figure below shows the distribution of the sentiment values for the two teams.
 
 ```
 liv_search <- "#LFC+#UCLFinal"
@@ -65,9 +65,9 @@ qplot(tot_sentiment$ave_sentiment,
 -0.37889  0.00000  0.00000 -0.01251  0.00000  0.61968
 ```
 
-### Multiple Discrete Emotions
+### Multiple Discrete Sentiments
 
-With the library [syuzhet]() we can access multiple emotions (joy, fear, trust, etc.), but only its binary state, meaning that one twitter message can be categorized as expressing both joy and surprise, but we don’t get their extent. In Figure 2 you can see the emotions expressed by the tweets for each team.
+With the library [syuzhet]() we can access multiple emotions (joy, fear, trust, etc.), but only its binary state, which means that one twitter message can be categorized as expressing both joy and surprise, but we don’t get their extent. In Figure 2 you can see the emotions expressed by the tweets for each team.
 
 ![liv_tot_emotions](https://georgekatona.com/img/finals/liv_tot_emotions.png)
 <p align="center">Figure 2: Emotions expressed by the tweets for each team</p>
@@ -92,7 +92,7 @@ To get an idea about the content of the tweets, we use word clouds (Figure 5).
 
 # NBA
 
-### Continuous Positive-Negative Scale
+### Positive-Negative Scale
 
 ![rap_gsw_histo](https://georgekatona.com/img/finals/rap_gsw_histo.png)
 <p align="center">Figure 6: Histogram of the sentiment scores for Toronto Raptors and Golden State Warriors</p>
@@ -106,7 +106,7 @@ To get an idea about the content of the tweets, we use word clouds (Figure 5).
 -0.8074  0.0000  0.0000  0.0965  0.1809  0.6971
 ```
 
-### Multiple Discrete Emotions
+### Multiple Discrete Sentiments
 
 ![rap_gsw_emotions](https://georgekatona.com/img/finals/rap_gsw_emotions.png)
 <p align="center">Figure 7: Emotions expressed by the tweets for each team</p>
@@ -132,4 +132,5 @@ To get an idea about the content of the tweets, we use word clouds (Figure 5).
 - [sentimentr](https://github.com/trinker/sentimentr)
 - [syuzhet](https://github.com/mjockers/syuzhet)
 - [twitteR](https://cran.r-project.org/web/packages/twitteR/README.html)
+- [Tidy Text Mining](https://www.tidytextmining.com/sentiment.html)
 - [Cleaning Twitter Data and ](http://rpubs.com/kevinsis/sentiment2)
