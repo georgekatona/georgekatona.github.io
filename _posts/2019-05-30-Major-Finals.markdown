@@ -19,7 +19,7 @@ In this post I am using the language R with [sentimentr](https://github.com/trin
 
 # Champions League
 
-On the First of June, it is the Champions League Finals, Liverpool vs Tottenham, the first time two English teams play the finals since 2008. In the Premier League both teams qualified themself for the next seasons, but Liverpool also got really close to winning the title, finished only one point behind Manchester City. There has been no other team before losing the trophy with this many points (97), and the nightmare of the team - and its supporters - is that they could finish this wonderful season without winning any trophies. It is fair to say that Liverpool is the team under the higher pressure in the finals.
+On the First of June, it is the Champions League Finals, Liverpool vs Tottenham, the first time two English teams play the finals since 2008. In the Premier League both teams qualified themselves for the next seasons, but Liverpool also got really close to winning the title, finished only one point behind Manchester City. There has been no other team before losing the trophy with this many points (97), and the nightmare of the team - and its supporters - is that they could finish this wonderful season without winning any trophies. It is fair to say that Liverpool is the team under the higher pressure in the finals.
 
 ### Positive-Negative Scale
 
