@@ -94,12 +94,30 @@ To get an idea about the content of the tweets, we use word clouds (Figure 5).
 
 ### Continuous Positive-Negative Scale
 
+![rap_gsw_histo](https://georgekatona.com/img/finals/rap_gsw_histo.png)
+<p align="center">Figure 6: Histogram of the sentiment scores for Toronto Raptors and Golden State Warriors</p>
+
+```
+> summary(raptor_sentiment$ave_sentiment)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
+-0.5729  0.0000  0.0000  0.0769  0.1664  0.8609
+> summary(gsw_sentiment$ave_sentiment)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
+-0.8074  0.0000  0.0000  0.0965  0.1809  0.6971
+```
 
 ### Multiple Discrete Emotions
 
+![rap_gsw_emotions](https://georgekatona.com/img/finals/rap_gsw_emotions.png)
+<p align="center">Figure 7: Emotions expressed by the tweets for each team</p>
+
+![sub_emotions_nba](https://georgekatona.com/img/finals/sub_emotions_nba.png)
+<p align="center">Figure 3: Difference of sentiments</p>
 
 ### Word Clouds
 
+![wordcloud_nba](https://georgekatona.com/img/finals/wordcloud_nba.png)
+<p align="center">Figure 5: Word clouds for each teams</p>
 
 # Summary
 
