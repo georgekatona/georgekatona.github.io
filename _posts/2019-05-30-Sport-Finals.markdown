@@ -15,7 +15,7 @@ draft:	true
 
 Sentiment Analysis is a form of text mining, which aims to mine opinion or related emotions from a textual data set. We can analyse the general tone of books, how it changes as the story develops[](), but it is possible to gather general public opinion about various topics by combining Natural Language Processing tools with data collected from the Social Media.
 
-In this post I am using the language R with [sentimentr]() and [syuzhet]() NLP libraries to analyse the emotions of football and basketball fans before the biggest games of the year. I am using (twitteR)[] to gather the most recent Twitter posts then compare the results of the different dictionaries.
+In this post I am using the language R with [sentimentr](https://github.com/trinker/sentimentr) and [syuzhet](https://github.com/mjockers/syuzhet) NLP libraries to analyse the emotions of football and basketball fans before the biggest games of the year. I am using [twitteR](https://cran.r-project.org/web/packages/twitteR/README.html) to gather the most recent Twitter posts then compare the results of the different dictionaries.
 
 # Champions League
 
@@ -23,7 +23,7 @@ On the First of June, it is the Champions League Finals, Liverpool vs Tottenham,
 
 ### Continuous Positive-Negative Scale
 
-I am using the twitteR library to get the 1000 most recent English tweets containing the official hashtag of the team along with #UCLFinal. In order to analyse the text, first we have to clean it by removing links, punctuation, numbers emojis and special characters. The library  [sentimentr](https://github.com/trinker/sentimentr) is designed to take into account valence shifters like amplifiers and negators, which results in a more accurate sentiment score. This library returns not only the sentiment classes positive/negative for each tweet, but also it’s value. A higher sentiment value represent a stronger positive emotion in the post. The figure below shows the distribution of the sentiment values for the two teams.
+I am using the twitteR library to get the 1000 most recent English tweets containing the official hashtag of the team along with #UCLFinal. In order to analyse the text, first we have to clean it by removing links, punctuation, numbers emojis and special characters. The library [sentimentr](https://github.com/trinker/sentimentr) is designed to take into account valence shifters like amplifiers and negators, which results in a more accurate sentiment score. This library returns not only the sentiment classes positive/negative for each tweet, but also it’s value. A higher sentiment value represent a stronger positive emotion in the post. The figure below shows the distribution of the sentiment values for the two teams.
 
 ```
 liv_search <- "#LFC+#UCLFinal"
@@ -127,8 +127,9 @@ To get an idea about the content of the tweets, we use word clouds (Figure 5).
 
 
 
+
 *Links:*
-- [Hungarian Central Statistical Office - 2018 Q3 report](https://www.ksh.hu/docs/hun/xftp/stattukor/lakaspiacar/lakaspiacar183.pdf)
-- [Hungarian Central Statistical Office - 2018 Q3 tables](http://www.ksh.hu/docs/hun/xftp/stattukor/lakaspiacar/lakaspiacar183.xls)
-- [Tableau visualization tool](https://www.tableau.com/)
-- [Flourish visualization tool](https://flourish.studio/)
+- [sentimentr](https://github.com/trinker/sentimentr)
+- [syuzhet](https://github.com/mjockers/syuzhet)
+- [twitteR](https://cran.r-project.org/web/packages/twitteR/README.html)
+- [Cleaning Twitter Data and ](http://rpubs.com/kevinsis/sentiment2)
