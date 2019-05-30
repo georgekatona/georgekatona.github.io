@@ -108,6 +108,8 @@ In the NBA Finals the two-time defending champion Golden State Warriors play aga
 -0.8074  0.0000  0.0000  0.0965  0.1809  0.6971
 ```
 
+Based on the histograms of Figure 6, GSW fans look slightly more optimistic, but it is difficult to draw conclusions based on only these results.
+
 ### Multiple Discrete Sentiments
 
 ![rap_gsw_emotions](https://georgekatona.com/img/finals/rap_gsw_emotions.png)
@@ -119,7 +121,12 @@ In the NBA Finals the two-time defending champion Golden State Warriors play aga
 ![raptors_gsw_pos_neg](https://georgekatona.com/img/finals/raptors_gsw_pos_neg.png)
 <p align="center">Figure 9: Discrete binary classification of the tweets</p>
 
+While investigating multiple sentiments, it might be surprising, that the Raptor tweets contain more trust. We should note, that NBA playoff is much more frequent than the Champions League, the emotions of the previous matches are probably much more present in the fans, than in the previous case. The analysis also tells us that Raptors fans have more fear, they are more surprised. On the other hand Golden State fans feeling more joy and they have more anticipation.
+
 ### Word Clouds
+
+Let’s see the most frequent words grouped by the 6 sentiments.
+
 
 ![wordcloud_nba](https://georgekatona.com/img/finals/wordcloud_nba.png)
 <p align="center">Figure 10: Word clouds for each teams</p>
