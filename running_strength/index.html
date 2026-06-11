@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futó Kondi - Erőfejlesztés Futóknak</title>
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --accent: #e94560;
+            --bg: #fafafa;
+            --card: #ffffff;
+            --text: #2d2d2d;
+            --muted: #666;
+            --border: #e0e0e0;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        h1 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--muted);
+            margin-bottom: 2rem;
+        }
+        h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 2px solid var(--accent);
+        }
+        h3 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        p { margin-bottom: 1rem; }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .card.priority-1 { border-left: 4px solid var(--accent); }
+        .card.priority-2 { border-left: 4px solid #f59e0b; }
+        .card.priority-3 { border-left: 4px solid #10b981; }
+        .card.plyometric { border-left: 4px solid #6366f1; }
+        .exercise-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+        .exercise-meta {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+        .badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin-right: 0.3rem;
+        }
+        .badge-muscle { background: #dbeafe; color: #1e40af; }
+        .badge-priority { background: #fce7f3; color: #be185d; }
+        .badge-plyo { background: #e0e7ff; color: #4338ca; }
+        .details { font-size: 0.95rem; }
+        .details ul { padding-left: 1.2rem; margin-top: 0.3rem; }
+        .details li { margin-bottom: 0.3rem; }
+        .alt-box {
+            background: #f8fafc;
+            border: 1px dashed var(--border);
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+        }
+        .alt-box strong { color: var(--primary); }
+        .principle-box {
+            background: #fffbeb;
+            border: 1px solid #fbbf24;
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            margin-bottom: 1rem;
+        }
+        .principle-box strong { color: #92400e; }
+        .warning-box {
+            background: #fef2f2;
+            border: 1px solid #fca5a5;
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            margin-bottom: 1rem;
+        }
+        .toc { margin: 1.5rem 0; }
+        .toc ul { list-style: none; padding-left: 0; }
+        .toc li { margin-bottom: 0.4rem; }
+        .toc a { color: var(--accent); text-decoration: none; font-weight: 500; }
+        .toc a:hover { text-decoration: underline; }
+        .level-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        .level-table th, .level-table td {
+            padding: 0.6rem 0.8rem;
+            border: 1px solid var(--border);
+            text-align: left;
+        }
+        .level-table th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+        .level-table tr:nth-child(even) { background: #f8fafc; }
+        .video-placeholder {
+            display: inline-block;
+            background: #e2e8f0;
+            border-radius: 4px;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+        @media print {
+            body { padding: 0; }
+            .container { max-width: 100%; }
+            .card { break-inside: avoid; }
+        }
+        @media (max-width: 600px) {
+            .container { padding: 1rem; }
+            h1 { font-size: 1.7rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+<h1>🏃 Futó Kondi</h1>
+<p class="subtitle">Erőfejlesztés futóknak - a gyorsabb, sérülésmentesebb futásért</p>
+
+<div class="toc">
+    <strong>Tartalom:</strong>
+    <ul>
+        <li><a href="#alapelvek">1. Alapelvek</a></li>
+        <li><a href="#szintek">2. Szintekhez igazított megközelítés</a></li>
+        <li><a href="#gyakorlatok">3. Gyakorlatok prioritási sorrendben</a></li>
+        <li><a href="#plyometrics">4. Pliometrikus gyakorlatok</a></li>
+        <li><a href="#minta">5. Mintaedzés</a></li>
+    </ul>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2 id="alapelvek">1. Alapelvek</h2>
+
+<div class="principle-box">
+    <strong>🎯 A cél:</strong> Nagyobb erőkifejtés lépésenként → jobb futásgazdaságosság (running economy) → gyorsabb tempó kevesebb energiával. NEM izomtömeg-növelés!
+</div>
+
+<h3>Miért működik?</h3>
+<p>A kutatások egyértelműen igazolják: heti 2-3 erőedzés <strong>2-8%-kal javítja a futásgazdaságosságot</strong>. Ez 5K-ban akár 30-60 másodperc javulás, maratonban 3-5 perc. Az erőedzés:</p>
+<ul style="padding-left: 1.5rem; margin-bottom: 1rem;">
+    <li>Növeli az izomerő-kifejtést lépésenként (kevesebb izomrost dolgozik → kevesebb O₂)</li>
+    <li>Javítja az ín-merevséget (elastic energy return)</li>
+    <li>Csökkenti a sérülés kockázatát (erősebb inak, ízületek)</li>
+    <li>Késlelteti a fáradást hosszabb távon</li>
+</ul>
+
+<h3>Progresszió - hogyan jutunk el a nagy súlyokig?</h3>
+<div class="principle-box">
+    <strong>A technika fontosabb, mint a súly.</strong> Rosszul végrehajtott nagy súly = sérülés. Ezért fokozatosan építjük fel.
+</div>
+
+<table class="level-table">
+    <tr>
+        <th>Fázis</th>
+        <th>Időtartam</th>
+        <th>Ismétlés</th>
+        <th>Súly (RPE)</th>
+        <th>Cél</th>
+    </tr>
+    <tr>
+        <td><strong>1. Adaptáció</strong></td>
+        <td>2-4 hét</td>
+        <td>10-12 ism.</td>
+        <td>Könnyű-közepes (RPE 6-7)</td>
+        <td>Technika, inak/ízületek felkészítése</td>
+    </tr>
+    <tr>
+        <td><strong>2. Erőépítés</strong></td>
+        <td>4-6 hét</td>
+        <td>5-8 ism.</td>
+        <td>Közepes-nehéz (RPE 7-8)</td>
+        <td>Izomerő alapok</td>
+    </tr>
+    <tr>
+        <td><strong>3. Max erő</strong></td>
+        <td>Folyamatos</td>
+        <td>2-4 ism.</td>
+        <td>Nehéz (RPE 8-9)</td>
+        <td>Neurális adaptáció, max erőkifejtés</td>
+    </tr>
+</table>
+
+<h3>Gyakorlati szabályok</h3>
+<ul style="padding-left: 1.5rem; margin-bottom: 1rem;">
+    <li><strong>Bemelegítés:</strong> Ízületek átmozgatása, majd minden gyakorlatból:
+        <ul>
+            <li>1 sorozat kis súllyal, 10-12 ismétlés (izom/idegrendszer ébresztése)</li>
+            <li>1 sorozat közel munka-súllyal, 2-3 ismétlés (nem kifáradni!)</li>
+            <li>Ezután jönnek a "rendes" sorozatok</li>
+        </ul>
+    </li>
+    <li><strong>Pihenő sorozatok között:</strong> Nagy súlynál 2-3 perc (az idegrendszernek is kell!), könnyebbnél 60-90 mp</li>
+    <li><strong>Héről hétre:</strong> Próbálj legalább annyit megismételni, mint legutóbb. Ha megy, növeld a súlyt kis lépésekben (1-2.5 kg)</li>
+    <li><strong>Logolás:</strong> Írd fel a súlyokat és ismétléseket! Ez a legfontosabb szokás</li>
+    <li><strong>2 egymást követő nap NE legyen kondi</strong> (vagy ha igen, teljesen más izomcsoport)</li>
+    <li><strong>Kondi + futás egy napon:</strong> Lehetőleg a kondi legyen a futás UTÁN, vagy legalább 6 óra szünettel előtte. Soha ne csinálj súlyos kondizást intenzív futóedzés előtt!</li>
+    <li><strong>Változatosság:</strong> Nyugodtan váltogassuk a gyakorlatokat 4-6 hetente - de addig egy gyakorlaton belül próbáljunk haladni (progresszív túlterhelés)</li>
+</ul>
+
+<div class="warning-box">
+    <strong>⚠️ RIR (Reps In Reserve):</strong> A futó kondiban NEM megyünk totális kimerülésig! Mindig hagyj 1-2 ismétlést "tartalékban". Az izomláz ellenségünk - az nem futóteljesítmény-javulás, hanem regenerációs adósság.
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2 id="szintek">2. Szintekhez igazított megközelítés</h2>
+
+<table class="level-table">
+    <tr>
+        <th>Szint</th>
+        <th>Fő fókusz</th>
+        <th>Miért?</th>
+    </tr>
+    <tr>
+        <td><strong>Kezdő futó</strong><br>(5K &gt; 25 perc)</td>
+        <td>Pliometrika + közepes súlyos erőedzés (6-10 ism.)</td>
+        <td>Az inak és kötőszövet még adaptálódik. A pliometrika tanítja a testet az "rugalmas energia" kihasználására. Közepes súly épít anélkül, hogy túlterhelne.</td>
+    </tr>
+    <tr>
+        <td><strong>Haladó futó</strong><br>(5K 20-25 perc)</td>
+        <td>Vegyes: nehéz erő (4-6 ism.) + pliometrika</td>
+        <td>Az alap megvan, az idegrendszer már képes nagyobb súlyokat kezelni. A pliometrika továbbra is fontos az ín-merevséghez.</td>
+    </tr>
+    <tr>
+        <td><strong>Versenyző futó</strong><br>(5K &lt; 20 perc)</td>
+        <td>Max erő (2-4 ism.) dominál + haladó pliometrika</td>
+        <td>A futásgazdaságosság további javulása már csak neurális adaptációval (= nagy súly, kevés ism.) érhető el. Az izmok már elég erősek - a "parancs" hatékonysága kell.</td>
+    </tr>
+</table>
+
+<p><em>Megjegyzés: ez nem azt jelenti, hogy a kezdő NEM guggolhat nehezet - hanem azt, hogy a progresszió első 4-8 hetét türelmesen kell végigjárni.</em></p>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2 id="gyakorlatok">3. Gyakorlatok - prioritási sorrendben</h2>
+
+<p>Az alábbi gyakorlatok lefedik a futáshoz legfontosabb izomcsoportokat. A sorrend = prioritás. Ha kevés időd van, az első 3-at csináld meg mindenképp.</p>
+
+<!-- EXERCISE 1 -->
+<div class="card priority-1">
+    <div class="exercise-name">1. Guggolás (Squat)</div>
+    <div class="exercise-meta">
+        <span class="badge badge-muscle">Quadriceps</span>
+        <span class="badge badge-muscle">Gluteus</span>
+        <span class="badge badge-muscle">Core</span>
+        <span class="badge badge-priority">PRIORITÁS #1</span>
+    </div>
+    <div class="details">
+        <p><strong>Dózis:</strong> 3-4 sorozat × 2-4 ismétlés (haladó) | 3×8-10 (kezdő adaptáció)</p>
+        <p><strong>Miért #1?</strong> A guggolás az egyetlen gyakorlat, ami a teljes láncot (csípő + térd + boka) terheli zárt láncú mozgásban. A futásgazdaságosság-javulás leginkább kutatott gyakorlata.</p>
+        <p><strong>Végrehajtás:</strong></p>
+        <ul>
+            <li>Legalább párhuzamosig (comb vízszintes), lehetőleg mélyebbre</li>
+            <li>Térd a lábfej irányába, sarok a talajon</li>
+            <li>Egyenes törzs, mellkas fent</li>
+        </ul>
+        <span class="video-placeholder">📹 Video link helye</span>
+    </div>
+    <div class="alt-box">
+        <strong>Alternatívák:</strong>
+        <ul>
+            <li><strong>Smith machine guggolás</strong> - jó választás, ha nincs spottered. Kevésbé aktiválja a stabilizátorokat, de a fő izomcsoportokat ugyanúgy terheli. Biztonságosabb egyedül.</li>
+            <li><strong>Squat machine (Hack squat / V-squat)</strong> - géppel vezetett mozgás, könnyebb technikailag. Jó alternatíva.</li>
+            <li><strong>Goblet squat</strong> - könnyű súllyal, technika tanuláshoz tökéletes.</li>
+            <li><strong>Front squat</strong> - még több quad-dominancia, nehezebb megtanulni.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- EXERCISE 2 -->
+<div class="card priority-1">
+    <div class="exercise-name">2. Román Felhúzás (RDL - Romanian Deadlift)</div>
+    <div class="exercise-meta">
+        <span class="badge badge-muscle">Hamstring</span>
+        <span class="badge badge-muscle">Gluteus</span>
+        <span class="badge badge-muscle">Hátizom</span>
+        <span class="badge badge-priority">PRIORITÁS #1</span>
+    </div>
+    <div class="details">
+        <p><strong>Dózis:</strong> 3-4 sorozat × 2-4 ismétlés (haladó) | 3×6-8 (kezdő)</p>
+        <p><strong>Miért #1?</strong> A hátsó lánc (posterior chain) a futás "motorja" - a csípő extensió és a hamstring ereje határozza meg a lépéshosszt és a tolóerőt. Az RDL emellett erősen védi a hamstring sérülésektől.</p>
+        <p><strong>Végrehajtás:</strong></p>
+        <ul>
+            <li>Egyenes hát (neutral gerinc) - EZ A LEGFONTOSABB</li>
+            <li>Csípőből hajlítunk, térd enyhén hajlított (nem zárva)</li>
+            <li>A rúd/súlyzó a test közelében marad</li>
+            <li>A nyújtást érezd a hamstringben, NE a derekadban</li>
+        </ul>
+        <span class="video-placeholder">📹 Video link helye</span>
+    </div>
+    <div class="alt-box">
+        <strong>Alternatívák:</strong>
+        <ul>
+            <li><strong>Single-leg RDL</strong> - nehezebb egyensúly, de futás-specifikusabb (egylábon állás!)</li>
+            <li><strong>Hagyományos felhúzás (Deadlift)</strong> - több quad bevonás, nehezebb technika</li>
+            <li><strong>Good Morning</strong> - hasonló mozgás, rúd a vállon</li>
+        </ul>
+    </div>
+</div>
+
+<!-- EXERCISE 3 -->
+<div class="card priority-1">
+    <div class="exercise-name">3. Vádliemelés - ülve, nagy súllyal (Seated Calf Raise)</div>
+    <div class="exercise-meta">
+        <span class="badge badge-muscle">Soleus</span>
+        <span class="badge badge-muscle">Achilles-ín</span>
+        <span class="badge badge-priority">PRIORITÁS #1</span>
+    </div>
+    <div class="details">
+        <p><strong>Dózis:</strong> 4 sorozat × 6-10 ismétlés (teljes ROM, lassú ecc.)</p>
+        <p><strong>Miért #1?</strong> A soleus izom (ülve éred el célzottan, hajlított térdnél!) a futás legfontosabb stabilizátora - lépésenként a testsúly 3-8-szorosát kezeli. Az Achilles-ín merevségét és teherbírását is fejleszti. A legtöbb futó ALULTERHELI ezt az izomcsoportot.</p>
+        <p><strong>Végrehajtás:</strong></p>
+        <ul>
+            <li>TELJES mozgásterjedelem: alul max nyújtás (sarok le), felül max kontrakció (lábujjhegyre)</li>
+            <li>Lassan engedni le (2-3 mp ecc. fázis) - ez az ami védi az Achilles-ínat</li>
+            <li>Magas súly teljesen rendben van itt - a soleus bírja</li>
+            <li>Bokasérülés után: kezdd könnyebben, de IGEN, érdemes haladni a nagy súly felé - ez rehabilitálja az ínat</li>
+        </ul>
+        <span class="video-placeholder">📹 Video link helye</span>
+    </div>
+    <div class="alt-box">
+        <strong>Alternatívák / kiegészítés:</strong>
+        <ul>
+            <li><strong>Álló vádliemelés (Standing Calf Raise)</strong> - a gastrocnemius-t terheli jobban. Ideális kiegészítő, DE az ülő verzió futónak fontosabb!</li>
+            <li><strong>Single-leg calf raise</strong> - lépcsőn/platformon, testsúllyal vagy kézisúlyzóval</li>
+            <li><strong>Excentrikes vádliemelés</strong> - sérülés-prevencióhoz: két lábon fel, egy lábon le</li>
+        </ul>
+    </div>
+</div>
+
+<!-- EXERCISE 4 -->
+<div class="card priority-2">
+    <div class="exercise-name">4. Csípő Extenzió Gép (Hip Extension / Glute Kickback Machine)</div>
+    <div class="exercise-meta">
+        <span class="badge badge-muscle">Gluteus</span>
+        <span class="badge badge-muscle">Hamstring</span>
+        <span class="badge badge-priority">PRIORITÁS #2</span>
+    </div>
+    <div class="details">
+        <p><strong>Dózis:</strong> 3-4 sorozat × 4-6 ismétlés lábanként</p>
+        <p><strong>Miért fontos?</strong> Ez a gép (<em>Multi-Hip Machine</em>, <em>Glute Kickback</em>, vagy <em>Pendulum Hip Extension</em>) egylábon terheli pont azt a mozdulatot, amit futáskor csinálsz: a csípő extensiót. A futó lépése = csípő extensió terhelés alatt. Kiválóan fejleszti a gluteus-hamstring koordinációt.</p>
+        <p><strong>Végrehajtás:</strong></p>
+        <ul>
+            <li>Álló vagy térdelő pozíció (géptől függően)</li>
+            <li>Hátrafelé tolás / nyújtás a csípőből</li>
+            <li>A mozdulatot a FARBÓL indítsd, ne a derekadból!</li>
+            <li>Kontrollált, egyenletes tempó - ne lendítsd</li>
+            <li>Egylábon dolgozol → tükrözi a futás természetét</li>
+        </ul>
+        <span class="video-placeholder">📹 Video link helye</span>
+    </div>
+    <div class="alt-box">
+        <strong>Alternatívák:</strong>
+        <ul>
+            <li><strong>Cable kickback</strong> - kábeles gépnél, bokára csatolva</li>
+            <li><strong>Hip thrust (barbell)</strong> - kétlábon, más szögből terheli a gluteus-t</li>
+            <li><strong>Single-leg hip thrust</strong> - haladóbb, egylábon</li>
+            <li><strong>Reverse Hyper</strong> - ha elérhető, kiváló hátsó lánc gyakorlat</li>
+        </ul>
+    </div>
+</div>
+
+<!-- EXERCISE 5 -->
+<div class="card priority-2">
+    <div class="exercise-name">5. Bolgár Guggolás (Bulgarian Split Squat)</div>
+    <div class="exercise-meta">
+        <span class="badge badge-muscle">Quadriceps</span>
+        <span class="badge badge-muscle">Gluteus</span>
+        <span class="badge badge-muscle">Egyensúly</span>
+        <span class="badge badge-priority">PRIORITÁS #2</span>
+    </div>
+    <div class="details">
+        <p><strong>Dózis:</strong> 3 sorozat × 4-6 ismétlés lábanként</p>
+        <p><strong>Miért fontos?</strong> A futás egylábon történik - ezért egylábon is kell erősödnünk! A bolgár guggolás felfedi és korrigálja az oldalak közti különbséget, javítja a csípő stabilitást, és a normál guggolással ellentétben a stabilizátor izmokat is intenzíven dolgoztatja.</p>
+        <p><strong>Végrehajtás:</strong></p>
+        <ul>
+            <li>Hátsó láb egy padon/boxon, elülső láb kb. egy lépésnyire előre</li>
+            <li>Lefelé: elülső térd a lábfej irányába, törzs egyenesen</li>
+            <li>A terhelést az ELÜLSŐ lábban érezd</li>
+            <li>Súlyzókat kézben tartva, vagy Smith-gépen is végezhető</li>
+        </ul>
+        <span class="video-placeholder">📹 Video link helye</span>
+    </div>
+    <div class="alt-box">
+        <strong>Alternatívák:</strong>
+        <ul>
+            <li><strong>Step-up (magas dobozra)</strong> - funkcionálisabb, egyszerűbb technika</li>
+            <li><strong>Lunges (kitörés)</strong> - dinamikusabb, de nehezebb nagy súllyal</li>
+            <li><strong>Pistol squat</strong> - haladó, testsúlyos variáció</li>
+        </ul>
+    </div>
+</div>
+
+<!-- EXERCISE 6 -->
+<div class="card priority-3">
+    <div class="exercise-name">6. Nordic Hamstring Curl</div>
+    <div class="exercise-meta">
+        <span class="badge badge-muscle">Hamstring (excentric)</span>
+        <span class="badge badge-priority">SÉRÜLÉSVÉDELEM</span>
+    </div>
+    <div class="details">
+        <p><strong>Dózis:</strong> 3 sorozat × 3-6 ismétlés</p>
+        <p><strong>Miért fontos?</strong> Az #1 bizonyítottan leghatásosabb hamstring-sérülés megelőző gyakorlat. Excentrikes terhelés = az izom nyúlás közben dolgozik (pontosan így szakad a hamstring futás közben). Ha EGY kiegészítő gyakorlatot kellene választani, ez lenne az.</p>
+        <p><strong>Végrehajtás:</strong></p>
+        <ul>
+            <li>Térdelő pozíció, a bokád rögzítve (partner/gép/pad alá)</li>
+            <li>LASSAN engedd le a tested előre (3-5 mp!)</li>
+            <li>Amilyen messzire bírsz kontrolláltan - aztán kezekkel fogsz fel</li>
+            <li>Kezdésnek: nem baj, ha csak a felső harmadot bírod!</li>
+        </ul>
+        <span class="video-placeholder">📹 Video link helye</span>
+    </div>
+    <div class="alt-box">
+        <strong>Alternatívák:</strong>
+        <ul>
+            <li><strong>Sliding leg curl</strong> - hanyatt fekve, lábbal csúsztatva</li>
+            <li><strong>Swiss ball leg curl</strong> - könnyebb változat kezdőknek</li>
+            <li><strong>GHR (Glute-Ham Raise)</strong> - speciális gépen, ha elérhető</li>
+        </ul>
+    </div>
+</div>
+
+<!-- EXERCISE 7 -->
+<div class="card priority-3">
+    <div class="exercise-name">7. Core stabilitás (anti-mozgás gyakorlatok)</div>
+    <div class="exercise-meta">
+        <span class="badge badge-muscle">Core / Törzs</span>
+        <span class="badge badge-muscle">Csípő stabilizátorok</span>
+        <span class="badge badge-priority">KIEGÉSZÍTŐ</span>
+    </div>
+    <div class="details">
+        <p><strong>Dózis:</strong> 2-3 sorozat × 20-40 mp / 8-12 ismétlés</p>
+        <p><strong>Miért fontos?</strong> A törzs stabilitása határozza meg, mennyire hatékonyan adódik át a lábak ereje a futás közben. Gyenge core = energiaveszteség oldalirányú mozgásra. A futónak NEM a hasprés (crunch) kell, hanem az <em>anti-mozgás</em>: ellenállni a forgásnak, oldalra dőlésnek, lordózisnak.</p>
+        <p><strong>Ajánlott gyakorlatok (válassz 2-3-at):</strong></p>
+        <ul>
+            <li><strong>Pallof press</strong> - kábeles gépnél, anti-rotáció</li>
+            <li><strong>Plank</strong> - alap, de legyen nehezítve (súllyal a háton, TRX-en, stb.)</li>
+            <li><strong>Dead bug</strong> - hanyatt, szemben lévő kar-láb nyújtva</li>
+            <li><strong>Side plank + csípő emelés</strong> - oldalsó stabilizátorok (gluteus medius!)</li>
+            <li><strong>Farmer's walk</strong> - nehéz súlyokat hordozva séta</li>
+        </ul>
+        <span class="video-placeholder">📹 Video link helye</span>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2 id="plyometrics">4. Pliometrikus gyakorlatok</h2>
+
+<div class="principle-box">
+    <strong>🦘 Miért pliometrika?</strong> A futás 30-50%-ban <em>rugalmas energia</em>-visszaadásból működik (mint egy ugráló labda). A pliometrika ezt a "rugó-hatást" fejleszti az inakban és izmokban. Kezdőknél ez akár FONTOSABB, mint a nagy súlyos erő!
+</div>
+
+<div class="card plyometric">
+    <div class="exercise-name">Pogo Jumps (Ugráló ugrások)</div>
+    <div class="exercise-meta">
+        <span class="badge badge-plyo">PLIOMETRIKA</span>
+        <span class="badge badge-muscle">Vádli / Achilles</span>
+    </div>
+    <div class="details">
+        <p><strong>Dózis:</strong> 3×15-20 ugrás</p>
+        <p>Merev bokával, minimális térd-hajlítással, gyors talajkontaktussal ugrálás helyben. Mint egy pattogó labda. A cél: minél RÖVIDEBB talajkontaktus.</p>
+    </div>
+</div>
+
+<div class="card plyometric">
+    <div class="exercise-name">Box Jump (Dobozra ugrás)</div>
+    <div class="exercise-meta">
+        <span class="badge badge-plyo">PLIOMETRIKA</span>
+        <span class="badge badge-muscle">Quad / Glute / Robbanékonyság</span>
+    </div>
+    <div class="details">
+        <p><strong>Dózis:</strong> 3-4×3-5 ugrás (MINŐSÉG, nem fáradás!)</p>
+        <p>Két lábról felugrani egy dobozra. LÉPJ LE (ne ugorj le!). Pihenő: 30-60 mp ugrások között. A cél az EXPLOZIVITÁS, nem a fáradás.</p>
+    </div>
+</div>
+
+<div class="card plyometric">
+    <div class="exercise-name">Bounding (Szökdelés)</div>
+    <div class="exercise-meta">
+        <span class="badge badge-plyo">PLIOMETRIKA</span>
+        <span class="badge badge-muscle">Teljes alsó végtag</span>
+    </div>
+    <div class="details">
+        <p><strong>Dózis:</strong> 4-6×20-30 méter</p>
+        <p>Túlzott lépéshosszal, magas térdemeléssel "szökdelés". A futás túlzott verziója. Fejleszti a csípő extensiót és a talajkontaktus reaktivitását.</p>
+    </div>
+</div>
+
+<div class="card plyometric">
+    <div class="exercise-name">Single-Leg Hop (Egylábon ugrás)</div>
+    <div class="exercise-meta">
+        <span class="badge badge-plyo">PLIOMETRIKA - HALADÓ</span>
+        <span class="badge badge-muscle">Futás-specifikus</span>
+    </div>
+    <div class="details">
+        <p><strong>Dózis:</strong> 3×5-8 ugrás lábanként</p>
+        <p>Egy lábon előre ugrás, landolás ugyanazon a lábon. A LEGSPECIFIKUSABB futó-pliometrika: pont azt csinálja az inad, amit futás közben, de túlterhelve. Csak jó alap után (erős vádli, nincs bokagond)!</p>
+    </div>
+</div>
+
+<div class="card plyometric">
+    <div class="exercise-name">Drop Jump (Mélybe ugrás)</div>
+    <div class="exercise-meta">
+        <span class="badge badge-plyo">PLIOMETRIKA - HALADÓ</span>
+        <span class="badge badge-muscle">Reaktivitás / ín-merevség</span>
+    </div>
+    <div class="details">
+        <p><strong>Dózis:</strong> 3×5 ugrás (20-40 cm dobozról)</p>
+        <p>Lelépni a dobozról → talajkontaktusnál AZONNAL felugorni (minél gyorsabban!). A talajkontaktus ideje a lényeg: minél rövidebb, annál jobb. Csak haladó futóknak, akiknek erős az ín-rendszere!</p>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2 id="minta">5. Mintaedzés</h2>
+
+<h3>Versenyző futó - Max erő fókusz (45-55 perc)</h3>
+<table class="level-table">
+    <tr><th>Gyakorlat</th><th>Sorozat × Ism.</th><th>Pihenő</th></tr>
+    <tr><td>Bemelegítés (ízületek + 2 bemelegítő sorozat)</td><td>-</td><td>-</td></tr>
+    <tr><td>Guggolás (Smith / szabad)</td><td>4×3</td><td>2-3 perc</td></tr>
+    <tr><td>RDL</td><td>3×4</td><td>2-3 perc</td></tr>
+    <tr><td>Vádliemelés ülve</td><td>4×6-8</td><td>90 mp</td></tr>
+    <tr><td>Csípő extenzió gép (egylábon)</td><td>3×5/láb</td><td>90 mp</td></tr>
+    <tr><td>Pallof press vagy plank</td><td>3×30mp</td><td>60 mp</td></tr>
+</table>
+
+<h3>Kezdő-haladó futó - Vegyes edzés (50-60 perc)</h3>
+<table class="level-table">
+    <tr><th>Gyakorlat</th><th>Sorozat × Ism.</th><th>Pihenő</th></tr>
+    <tr><td>Bemelegítés + Pogo jumps</td><td>3×15</td><td>60 mp</td></tr>
+    <tr><td>Box jump</td><td>3×5</td><td>60 mp</td></tr>
+    <tr><td>Guggolás (squat machine / goblet)</td><td>3×8</td><td>90 mp</td></tr>
+    <tr><td>RDL</td><td>3×8</td><td>90 mp</td></tr>
+    <tr><td>Bolgár guggolás</td><td>3×6/láb</td><td>90 mp</td></tr>
+    <tr><td>Vádliemelés ülve</td><td>3×10</td><td>60 mp</td></tr>
+    <tr><td>Dead bug + Side plank</td><td>2×12 / 2×30mp</td><td>60 mp</td></tr>
+</table>
+
+<div class="principle-box">
+    <strong>💡 Tipp:</strong> A pliometrikus gyakorlatokat MINDIG az edzés ELEJÉN csináld (bemelegítés után, de a nehéz súlyok előtt) - friss idegrendszer kell hozzájuk. A nehéz erőgyakorlatok közben pihensz eleget. A core a végén jöhet.
+</div>
+
+<hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--border);">
+<p style="text-align: center; color: var(--muted); font-size: 0.85rem;">
+    Készítette: <a href="https://instagram.com/gyuri.katona" target="_blank" style="color: var(--accent); text-decoration: none;">@gyuri.katona</a> • Utolsó frissítés: 2026. június<br>
+    A gyakorlatok végzését mindig a saját képességeidhez igazítsd. Fájdalom esetén hagyd abba és konzultálj szakemberrel.
+</p>
+
+</div>
+</body>
+</html>
