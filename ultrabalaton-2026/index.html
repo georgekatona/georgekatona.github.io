@@ -35,6 +35,34 @@
 .category-detail dd{font-weight:750;margin:2px 0 0;line-height:1.25}
 @media(max-width:700px){.category-section{margin-top:27px}.category-controls{gap:7px}.category-controls label{flex:1 1 45%;min-width:0}.category-controls select{min-width:0;max-width:100%;font-size:.9rem}.category-matrix{font-size:.82rem;border-spacing:4px}.category-matrix th:first-child{width:3.2rem}.category-cell strong{font-size:.88rem}.category-cell span{font-size:.73rem}.category-detail dd{font-size:.93rem}}
 @media(max-width:350px){.category-controls label{flex-basis:100%}}
+
+.clock-controls,.clock-readout{display:flex;align-items:center;gap:.7rem}
+.clock-readout{gap:.45rem;flex-shrink:0}
+.sky-state{display:grid;place-items:center;width:1.25rem;color:var(--gold)}
+.sky-state svg{width:100%;height:auto;fill:currentColor}
+.sky-state .sun-icon path{stroke:currentColor;stroke-width:1.5;stroke-linecap:round}
+.sky-state[data-light=night]{color:#bcc4f5}
+.sky-state[data-light=day] .moon-icon,.sky-state[data-light=night] .sun-icon{display:none}
+.controls{display:block;padding-top:8px;padding-bottom:2px}
+.solar-scrubber{height:60px;position:relative}
+.solar-scrubber svg{position:absolute;inset:0 8px;width:calc(100% - 16px);height:100%;overflow:visible;pointer-events:none}
+.solar-scrubber svg path,.solar-scrubber svg line{fill:none;vector-effect:non-scaling-stroke}
+.solar-horizon,.solar-midnight{stroke:var(--line);stroke-width:1}
+.solar-day,.solar-night{stroke-width:2.25;stroke-linecap:round;stroke-linejoin:round}
+.solar-day{stroke:var(--gold)}.solar-night{stroke:#bcc4f5}
+.solar-cursor{stroke:var(--ink);stroke-opacity:.48;stroke-width:1}
+.solar-scrubber input{position:absolute;inset:0;appearance:none;background:transparent;height:100%;margin:0;touch-action:pan-y}
+.solar-scrubber input::-webkit-slider-runnable-track{height:2px;background:transparent}
+.solar-scrubber input::-moz-range-track{height:2px;background:transparent}
+.solar-scrubber input::-webkit-slider-thumb{appearance:none;margin-top:-6px;width:16px;height:14px;border-radius:50%;border:2px solid #081824;background:var(--mint)}
+.solar-scrubber input::-moz-range-thumb{width:12px;height:10px;border-radius:50%;border:2px solid #081824;background:var(--mint)}
+.solar-scrubber input:focus-visible{outline:none}
+.solar-scrubber input:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 2px var(--ink)}
+.solar-scrubber input:focus-visible::-moz-range-thumb{box-shadow:0 0 0 2px var(--ink)}
+.solar-days{position:relative;display:block;height:1.2rem;margin-inline:8px;margin-top:0}
+.solar-days span{position:absolute;white-space:nowrap;transform:translateX(-50%)}
+@media(max-width:700px){.clock-controls{gap:.42rem}.clock-controls .play{min-width:0}.clock-readout{gap:.3rem}.sky-state{width:.94rem}.map-head{gap:.35rem}.race-date{font-size:.85rem}.solar-days{font-size:.72rem}.controls{padding-top:5px}}
+@media(max-width:360px){.clock-controls{gap:.35rem}.clock-controls .play{min-width:0}.race-date{font-size:.78rem}}
 </style>
 </head>
 <body>
@@ -61,19 +89,31 @@
   <section class="race" aria-label="Interaktív pályatérkép">
     <div class="map-head">
       <div><p class="eyebrow">VERSENYIDŐ</p><p id="race-date" class="race-date">Április 25. · Szombat</p></div>
-      <time id="clock">09:00</time>
+      <div class="clock-controls">
+        <div class="clock-readout">
+          <span id="sky-state" class="sky-state" role="img" aria-label="Nappal" data-light="day">
+            <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 1.5v3m0 15v3M1.5 12h3m15 0h3M4.6 4.6l2.1 2.1m10.6 10.6 2.1 2.1m0-14.8-2.1 2.1M6.7 17.3l-2.1 2.1"/></svg>
+            <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 15.2a9 9 0 0 1-12.8-12.8 9.6 9.6 0 1 0 12.8 12.8Z"/></svg>
+          </span>
+          <time id="clock">09:00</time>
+        </div>
+        <button id="play" class="play" type="button">Lejátszás</button>
+      </div>
+    </div>
+    <div class="controls">
+      <div class="scrubber">
+        <label class="sr-only" for="timeline">Versenyidő az idővonalon</label>
+        <div class="solar-scrubber">
+          <svg id="solar-curve" viewBox="0 0 1000 60" preserveAspectRatio="none" aria-hidden="true"></svg>
+          <input id="timeline" type="range" min="0" max="1" value="0" step="1" aria-describedby="solar-description">
+        </div>
+        <div id="solar-days" class="days solar-days" aria-hidden="true"></div>
+        <p id="solar-description" class="sr-only">A napmagasság-görbe arany szakasza a nappalt, levendula szakasza az éjszakát mutatja.</p>
+      </div>
     </div>
     <div class="map-scene">
       <canvas id="map" aria-label="A Balaton körüli mezőny animált térképe"></canvas>
       <div id="selected-badge" class="selected-badge" title="Becsült tempó az aktuális mért szakaszon" hidden></div>
-    </div>
-    <div class="controls">
-      <button id="play" class="play" type="button">Lejátszás</button>
-      <div class="scrubber">
-        <label class="sr-only" for="timeline">Versenyidő az idővonalon</label>
-        <input id="timeline" type="range" min="0" max="1" value="0" step="1">
-        <div class="days" aria-hidden="true"><span>ÁPR. 24 PÉN</span><span>ÁPR. 25 SZO</span><span>ÁPR. 26 VAS</span></div>
-      </div>
     </div>
     <div class="map-footer">
       <ul class="legend" aria-label="Kategóriák"><li> <i class="coral"></i>Egyéni</li><li><i class="gold"></i>2–6 fős csapat</li><li><i class="mint"></i>7–13 fős csapat</li></ul>
@@ -134,6 +174,8 @@ const groups = ['Egyéni', '2–6 fős csapat', '7–13 fős csapat'];
 const palette = ['#ff736a', '#ffd36b', '#65dfce'];
 const groupClasses = ['coral', 'gold', 'mint'];
 const days = ['Péntek', 'Szombat', 'Vasárnap'];
+const shortDays = ['PÉN', 'SZO', 'VAS'];
+const daylightElevation = -0.833;
 const number = new Intl.NumberFormat('hu-HU', {useGrouping: 'always'});
 const percent = new Intl.NumberFormat('hu-HU', {style: 'percent', maximumFractionDigits: 2});
 const byBib = new Map(data.runners.map(runner => [runner.bib, runner]));
@@ -167,6 +209,63 @@ function wallTime(seconds) {
   const day = Math.floor(minutes / 1440);
   return {day, clock: `${pad(Math.floor(minutes / 60) % 24)}:${pad(minutes % 60)}`};
 }
+
+function solarElevation(time) {
+  const sample = time / data.solar.step;
+  const i = Math.min(data.solar.elevations.length - 2, Math.floor(sample));
+  const [a,b] = [data.solar.elevations[i],data.solar.elevations[i+1]];
+  return a + (b-a) * (sample-i);
+}
+
+const solarX = time => 1000 * time / data.end;
+const solarY = elevation => 30 - (elevation-daylightElevation) * 0.41;
+function svgNode(tag, attributes) {
+  const node = document.createElementNS('http://www.w3.org/2000/svg',tag);
+  for (const [key,value] of Object.entries(attributes)) node.setAttribute(key,String(value));
+  return node;
+}
+
+function drawSolarTimeline() {
+  const chart = $('solar-curve');
+  chart.append(svgNode('line',{x1:0,x2:1000,y1:30,y2:30,class:'solar-horizon'}));
+  let dayStart = 0;
+  for (let day = 0; dayStart < data.end; day++) {
+    const midnight = (day+1)*86400-data.origin;
+    const dayEnd = Math.min(midnight,data.end);
+    const label = element('span',`ÁPR. ${24+day} ${shortDays[day]}`);
+    label.style.left = `${(dayStart+dayEnd)/2/data.end*100}%`;
+    $('solar-days').append(label);
+    if (dayEnd < data.end) {
+      const x = solarX(dayEnd);
+      chart.append(svgNode('line',{x1:x,x2:x,y1:18,y2:52,class:'solar-midnight'}));
+    }
+    dayStart = dayEnd;
+  }
+  let lastTime = 0, lastElevation = solarElevation(0);
+  let path = `M0 ${solarY(lastElevation)}`;
+  const addPath = daylight => chart.append(svgNode('path',{d:path,class:daylight?'solar-day':'solar-night'}));
+  for (let i=1; lastTime < data.end; i++) {
+    const time = Math.min(i*data.solar.step,data.end);
+    const elevation = solarElevation(time);
+    const wasDay = lastElevation >= daylightElevation;
+    if (wasDay !== (elevation >= daylightElevation)) {
+      const crossing = lastTime+(time-lastTime)*(daylightElevation-lastElevation)/(elevation-lastElevation);
+      const x = solarX(crossing);
+      path += ` L${x} 30`;
+      addPath(wasDay);
+      path = `M${x} 30`;
+    }
+    path += ` L${solarX(time)} ${solarY(elevation)}`;
+    lastTime = time;
+    lastElevation = elevation;
+  }
+  addPath(lastElevation >= daylightElevation);
+  const cursor = svgNode('line',{y1:5,y2:55,class:'solar-cursor'});
+  chart.append(cursor);
+  return cursor;
+}
+
+const solarCursor = drawSolarTimeline();
 
 function segmentIndex(runner, elapsed) {
   let lo = 0, hi = runner.times.length - 1;
@@ -299,9 +398,15 @@ function seek(time) {
   raceTime = Math.max(0, Math.min(time, data.end));
   $('timeline').value = Math.round(raceTime);
   const wall = wallTime(raceTime);
+  const daylight = solarElevation(raceTime) >= daylightElevation;
+  const phase = daylight ? 'Nappal' : 'Éjszaka';
+  $('sky-state').dataset.light = daylight ? 'day' : 'night';
+  $('sky-state').setAttribute('aria-label',phase);
+  solarCursor.setAttribute('x1',solarX(raceTime));
+  solarCursor.setAttribute('x2',solarX(raceTime));
   $('clock').textContent = wall.clock;
   $('race-date').textContent = `Április ${24 + wall.day}. · ${days[wall.day]}`;
-  $('timeline').setAttribute('aria-valuetext', `Április ${24 + wall.day}. ${wall.clock}`);
+  $('timeline').setAttribute('aria-valuetext', `Április ${24 + wall.day}. ${wall.clock}, ${phase}`);
   if (selected) {
     const elapsed = raceTime - selected.start;
     let label;
