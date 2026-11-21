@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#071420">
+<meta name="description" content="Ultrabalaton 2026. Keresd meg a rajtszámod, kövesd a pontodat, és nézd meg, hogyan kerülte meg a mezőny a Balatont.">
+<title>Ultrabalaton 2026 | Running in Data</title>
+<style>
+:root{color-scheme:dark;--navy:#071420;--panel:#0c2030;--ink:#f2f7fa;--muted:#a6bbca;--mint:#65dfce;--gold:#ffd36b;--coral:#ff736a;--line:#294455;--card:#0c1c2a;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 53% 280px,#102b3c 0%,var(--navy) 68%) no-repeat var(--navy);color:var(--ink);font-size:1rem;line-height:1.5}a{color:inherit;text-underline-offset:4px}button,input,select{font:inherit}button,select{cursor:pointer}button,input,select{min-height:44px}button,select{border:1px solid var(--line);border-radius:8px;background:#132b3b;color:var(--ink);font-weight:650;padding:.58rem .9rem}button:hover,select:hover{border-color:var(--mint)}:focus-visible{outline:3px solid var(--mint);outline-offset:3px}[hidden]{display:none!important}.wrap{width:min(1120px,calc(100% - 48px));margin-inline:auto}.mast{height:70px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:9px;font-size:.85rem;letter-spacing:.13em;font-weight:800;text-decoration:none;color:var(--mint)}.brand span{display:block;width:23px;height:2px;background:var(--mint)}.byline{font-weight:650;color:var(--muted);font-size:.9rem;text-decoration:none}.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,380px);align-items:end;gap:28px;padding:42px 0 30px}.eyebrow{margin:0;color:var(--mint);font-size:.88rem;font-weight:750;letter-spacing:.13em}.hero h1{font-size:clamp(3.2rem,8.7vw,7.1rem);line-height:.96;letter-spacing:-.06em;margin:.12em 0 .12em;font-weight:860}.hero h1 span{color:var(--mint)}.intro{margin:0;color:var(--muted);font-size:clamp(1.22rem,2.4vw,1.78rem);letter-spacing:-.035em}.intro strong{color:var(--ink)}.search{align-self:end}.search label{display:block;font-size:1.15rem;font-weight:750;margin-bottom:8px}.search-row{display:flex;gap:8px}.search input{min-width:0;width:100%;border:1px solid #496678;border-radius:8px;background:#07151f;color:var(--ink);padding:.73rem .9rem;font-size:1.05rem}.search input::placeholder{color:#92a9b9}.primary{background:var(--mint);border-color:var(--mint);color:#072825;font-weight:800}.primary:hover{background:#9beddf}.feedback{color:var(--muted);min-height:1.4em;margin:.42rem 0 0;font-size:.875rem}.feedback.error{color:#ffb3aa}.race{border:1px solid var(--line);border-radius:15px;background:linear-gradient(150deg,#102b3a,#081824 75%);overflow:hidden}.map-head{display:flex;justify-content:space-between;align-items:center;padding:19px 25px 0}.map-head .eyebrow{font-size:.82rem}.race-date{margin:1px 0 0;font-weight:670;color:var(--muted)}#clock{font-variant-numeric:tabular-nums;font-weight:820;font-size:clamp(1.65rem,4.6vw,2.9rem);line-height:1}.map-scene{position:relative;max-width:850px;margin:0 auto}.map-scene canvas{display:block;width:100%;aspect-ratio:960/550}.selected-badge{position:absolute;left:1.15rem;top:1rem;padding:5px 9px;min-width:14rem;font-variant-numeric:tabular-nums;border-radius:6px;background:#092331;color:var(--mint);border:1px solid #457b7b;font-size:.88rem;font-weight:700}.controls{display:flex;gap:17px;align-items:center;padding:0 25px 13px}.play{min-width:105px}.scrubber{flex:1;min-width:0}.scrubber input{display:block;width:100%;min-height:31px;accent-color:var(--mint);margin:0;cursor:pointer}.days{display:flex;justify-content:space-between;font-size:.75rem;font-weight:700;color:var(--muted);letter-spacing:.04em}.map-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 25px;border-top:1px solid var(--line)}.legend{display:flex;flex-wrap:wrap;gap:4px 20px;padding:0;margin:0;list-style:none;font-size:.88rem}.legend li{display:flex;align-items:center;gap:7px}.legend i{display:block;width:8px;height:8px;border-radius:100%;background:var(--group)}.coral{--group:var(--coral)}.gold{--group:var(--gold)}.mint{--group:var(--mint)}.credit{color:var(--muted);font-size:.76rem;white-space:nowrap}.result,.numbers,.method{margin-top:37px}.result{padding:20px 24px;border:1px solid #477d80;border-radius:13px;background:#102636}.result h2,.numbers h2{font-size:clamp(1.65rem,3.8vw,2.6rem);line-height:1.12;letter-spacing:-.04em;margin:0}.result h2{margin-top:4px}.subtle{color:var(--muted);margin:5px 0 0}.result-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}.result-actions{display:flex;flex-wrap:wrap;gap:7px}.result-metrics,.summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:19px 0}.result-metrics div,.summary div{border-top:1px solid var(--line);padding-top:10px}.result-metrics span,.summary dt{color:var(--muted);font-size:.89rem;display:block}.result-metrics strong,.summary dd{display:block;margin:0;font-size:clamp(1.17rem,3.5vw,2.35rem);font-weight:800;letter-spacing:-.03em;line-height:1.2;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.stats-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:16px;margin:24px 0}.stats-panel{min-width:0;border:1px solid var(--line);border-radius:12px;padding:19px;background:var(--card)}.stats-panel h3{font-size:1.2rem;margin:0;line-height:1.25}.stats-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}select{appearance:none;padding-right:2rem;background:#132b3b url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23a6bbca' stroke-width='2'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E") right .55rem center no-repeat;font-size:.85rem}.histogram{height:150px;display:grid;grid-template-columns:repeat(22,minmax(0,1fr));gap:3px;border-bottom:1px solid var(--line);margin-top:18px;background:repeating-linear-gradient(to top,transparent 0,transparent calc(33.333% - 1px),#20394a calc(33.333% - 1px),#20394a 33.333%)}.hist-bin{min-width:0;display:flex;flex-direction:column-reverse;justify-content:flex-start}.hist-bin span{background:var(--group);flex-shrink:0;width:100%}.axis{display:flex;justify-content:space-between;color:var(--muted);font-size:.81rem;margin-top:5px}.hist-note{color:var(--muted);font-size:.89rem;margin:11px 0 0}.group{margin-top:18px}.group-row{display:flex;justify-content:space-between;gap:8px;color:var(--group);font-weight:700}.group-row span+span{color:var(--ink)}.meter{height:6px;margin:6px 0;background:#233b4a;border-radius:3px;overflow:hidden}.meter div{height:100%;background:var(--group)}.group p{margin:2px 0;color:var(--muted);font-size:.85rem}details summary{cursor:pointer;font-weight:700;padding-block:8px}.table-wrap{overflow:auto;max-height:340px;margin-top:4px}table{border-collapse:collapse;width:100%;text-align:left;font-size:.9rem;font-variant-numeric:tabular-nums}th,td{padding:8px;border-bottom:1px solid var(--line)}td:nth-child(2),td:nth-child(3){white-space:nowrap}.method{border-top:1px solid var(--line);padding:9px 0 18px}.method p{color:var(--muted);max-width:72ch;margin:.4em 0}.footer{border-top:1px solid var(--line);padding:16px 0 28px;display:flex;justify-content:space-between;color:var(--muted);font-size:.9rem}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:700px){.wrap{width:calc(100% - 30px)}.mast{height:56px}.hero{display:block;padding:24px 0 16px}.hero h1{margin:.12em 0 .12em;line-height:1}.intro{margin-bottom:17px}.search label{font-size:1rem}.search-row{gap:6px}.map-head{padding:12px 12px 0}.controls{gap:9px;padding:0 12px 10px}.play{min-width:86px;padding:.45rem .46rem;font-size:.88rem}.map-footer{padding:9px 12px;align-items:start;flex-wrap:wrap}.legend{gap:3px 11px;font-size:.81rem}.days{font-size:.64rem;letter-spacing:0}.stats-grid{grid-template-columns:1fr;gap:11px}.stats-panel,.result{padding:14px}.summary,.result-metrics{gap:7px}.summary dt,.result-metrics span{font-size:.78rem}.result-actions button{font-size:.82rem;padding:.4rem .55rem}.credit{margin-left:auto}.numbers,.result,.method{margin-top:27px}.selected-badge{top:.25rem;left:.55rem}}
+.axis{position:relative;display:block;height:1.35rem}.axis span{position:absolute;white-space:nowrap;transform:translateX(-50%)}.axis span:first-child{transform:none}.axis span:last-child{transform:translateX(-100%)}
+
+.category-section{margin-top:38px}
+.category-section h2{font-size:clamp(1.65rem,3.8vw,2.6rem);line-height:1.12;letter-spacing:-.04em;margin:0}
+.category-explorer{margin-top:16px}
+.category-controls{display:flex;flex-wrap:wrap;gap:12px}
+.category-controls label{display:grid;gap:4px;min-width:155px;color:var(--muted);font-size:.88rem;font-weight:650}
+.category-controls select{font-size:1rem}
+.category-key{font-size:.9rem;margin:12px 0}
+.category-matrix{table-layout:fixed;border-spacing:5px;border-collapse:separate;font-size:.94rem}
+.category-matrix th,.category-matrix td{border:0;padding:0;text-align:center;white-space:normal}
+.category-matrix th:first-child{text-align:left;width:5rem}
+.category-matrix th{color:var(--muted);font-weight:700}
+.category-cell{height:100%;min-height:55px;width:100%;padding:.32rem .15rem;display:grid;justify-items:center;align-content:center;line-height:1.25;background:rgba(101,223,206,var(--shade));border-color:#355b66}
+.category-cell[aria-pressed=true]{border-color:var(--mint);box-shadow:inset 0 0 0 1px var(--mint)}
+.category-cell span{font-size:.77rem;font-weight:500;color:#c5dae2}
+.category-cell strong,.category-detail dd{font-variant-numeric:tabular-nums}
+.category-empty{display:block;color:var(--muted)}
+.category-detail{border-top:1px solid var(--line);margin-top:15px;padding-top:14px}
+.category-detail h3{color:var(--mint)}
+.category-detail-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:13px 0 0}
+.category-detail dt{font-size:.85rem;color:var(--muted)}
+.category-detail dd{font-weight:750;margin:2px 0 0;line-height:1.25}
+@media(max-width:700px){.category-section{margin-top:27px}.category-controls{gap:7px}.category-controls label{flex:1 1 45%;min-width:0}.category-controls select{min-width:0;max-width:100%;font-size:.9rem}.category-matrix{font-size:.82rem;border-spacing:4px}.category-matrix th:first-child{width:3.2rem}.category-cell strong{font-size:.88rem}.category-cell span{font-size:.73rem}.category-detail dd{font-size:.93rem}}
+@media(max-width:350px){.category-controls label{flex-basis:100%}}
+</style>
+</head>
+<body>
+<header class="mast wrap">
+  <a class="brand" href="./" aria-label="Running in Data kezdőlap"><span></span>RUNNING IN DATA</a>
+  <a href="https://www.instagram.com/gyuri.katona/" class="byline">@gyuri.katona</a>
+</header>
+<main class="wrap">
+  <section class="hero" aria-labelledby="title">
+    <div class="hero-copy">
+      <p class="eyebrow">ÁPRILIS 24–26. · 2026</p>
+      <h1 id="title">Ultrabalaton<span>.</span></h1>
+      <p class="intro">Egy tó. Egy kör. <strong>209 km.</strong></p>
+    </div>
+    <form id="search" class="search">
+      <label for="bib">Keresd meg a pontodat</label>
+      <div class="search-row">
+        <input id="bib" inputmode="numeric" autocomplete="off" placeholder="Rajtszám" maxlength="12" spellcheck="false" aria-describedby="search-feedback">
+        <button class="primary" type="submit">Keresés</button>
+      </div>
+      <p id="search-feedback" class="feedback" role="status">Egy pont egy egyéni futó vagy egy teljes csapat.</p>
+    </form>
+  </section>
+  <section class="race" aria-label="Interaktív pályatérkép">
+    <div class="map-head">
+      <div><p class="eyebrow">VERSENYIDŐ</p><p id="race-date" class="race-date">Április 25. · Szombat</p></div>
+      <time id="clock">09:00</time>
+    </div>
+    <div class="map-scene">
+      <canvas id="map" aria-label="A Balaton körüli mezőny animált térképe"></canvas>
+      <div id="selected-badge" class="selected-badge" title="Becsült tempó az aktuális mért szakaszon" hidden></div>
+    </div>
+    <div class="controls">
+      <button id="play" class="play" type="button">Lejátszás</button>
+      <div class="scrubber">
+        <label class="sr-only" for="timeline">Versenyidő az idővonalon</label>
+        <input id="timeline" type="range" min="0" max="1" value="0" step="1">
+        <div class="days" aria-hidden="true"><span>ÁPR. 24 PÉN</span><span>ÁPR. 25 SZO</span><span>ÁPR. 26 VAS</span></div>
+      </div>
+    </div>
+    <div class="map-footer">
+      <ul class="legend" aria-label="Kategóriák"><li> <i class="coral"></i>Egyéni</li><li><i class="gold"></i>2–6 fős csapat</li><li><i class="mint"></i>7–13 fős csapat</li></ul>
+      <a class="credit" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a>
+    </div>
+  </section>
+  <section id="result" class="result" aria-labelledby="result-title" hidden>
+    <div class="result-top">
+      <div><p class="eyebrow">KERESÉSI EREDMÉNY</p><h2 id="result-title"></h2><p id="result-status" class="subtle"></p></div>
+      <div class="result-actions"><button id="start-run" type="button">Saját rajt</button><button id="copy-link" type="button">Link másolása</button><button id="reset" type="button">Kiemelés törlése</button></div>
+    </div>
+    <div class="result-metrics" id="result-metrics"></div>
+    <details><summary>Mért részidők</summary><div class="table-wrap"><table><thead><tr><th>Pont</th><th>Táv</th><th>Eltelt idő</th></tr></thead><tbody id="splits"></tbody></table></div></details>
+    <p id="copy-status" class="sr-only" role="status"></p>
+  </section>
+  <section class="numbers" aria-labelledby="numbers-title">
+    <h2 id="numbers-title">A mezőny számokban</h2>
+    <dl class="summary" id="summary"></dl>
+    <div class="stats-grid">
+      <article class="stats-panel">
+        <div class="stats-heading"><h3>Célidők eloszlása</h3><label class="sr-only" for="category">Kategória szűrése</label><select id="category"><option value="all">Összes kategória</option><option value="0">Egyéni</option><option value="1">2–6 fős csapat</option><option value="2">7–13 fős csapat</option></select></div>
+        <p class="subtle">Egyórás sávok, a saját rajttól számítva.</p>
+        <div id="histogram" class="histogram" role="img" aria-label="Célidők egyórás sávokban"></div>
+        <div id="axis" class="axis" aria-hidden="true"></div>
+        <p id="hist-note" class="hist-note" aria-live="polite"></p>
+      </article>
+      <article class="stats-panel">
+        <h3>Kategóriánként</h3>
+        <p class="subtle">Célba érők aránya és az értékelt célidők mediánja.</p>
+        <div id="groups" class="groups"></div>
+      </article>
+    </div>
+  </section>
+  <section id="kategoriak" class="category-section" aria-labelledby="category-title">
+    <h2 id="category-title">Kategóriák közelről</h2>
+    <p class="subtle">Hogyan alakultak a célidők a különböző mezőnyökben? Válassz egy mezőt a részletekhez.</p>
+    <div class="stats-panel category-explorer">
+      <div class="category-controls">
+        <label>Mezőny<select id="detail-group"><option value="0">Egyéni</option><option value="1" selected>2–6 fős csapat</option><option value="2">7–13 fős csapat</option></select></label>
+        <label>Mutató<select id="detail-metric"><option value="median">Medián célidő</option><option value="rate">Célba érési arány</option><option value="started">Elrajtolt</option></select></label>
+        <label id="company-control" hidden>Csapattípus<select id="detail-company"><option value="all">Összes csapat</option><option value="company">Céges</option><option value="non-company">Nem céges</option></select></label>
+      </div>
+      <p id="category-key" class="category-key subtle"></p>
+      <table id="category-matrix" class="category-matrix" aria-label="Kategóriák összehasonlítása"></table>
+      <div id="category-detail" class="category-detail" aria-live="polite"></div>
+      <p id="category-note" class="category-key subtle"></p>
+    </div>
+  </section>
+  <details class="method"><summary>Adatforrás és módszertan</summary><p>A kereséshez csak rajtszám és versenyadat szerepel az oldalon. A pontok helyét a mért részidők között becsüljük. A tempó az aktuális, két mérés közötti szakasz átlaga. A pályát a videóban használt GPX alapján, 209 km-re skálázva mutatjuk. A célba érők statisztikája a feldolgozott célmérésekből készül.</p><p>Források: <a href="https://runtiming.hu/verseny/ub2026">Runtiming eredmények</a> és <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>.</p></details>
+</main>
+<footer class="wrap footer"><strong>Running in Data</strong><a href="https://www.instagram.com/gyuri.katona/">@gyuri.katona</a></footer>
+<script src="./race-data.js"></script>
+<script>
+'use strict';
+
+const data = window.UB_RACE;
+const groups = ['Egyéni', '2–6 fős csapat', '7–13 fős csapat'];
+const palette = ['#ff736a', '#ffd36b', '#65dfce'];
+const groupClasses = ['coral', 'gold', 'mint'];
+const days = ['Péntek', 'Szombat', 'Vasárnap'];
+const number = new Intl.NumberFormat('hu-HU', {useGrouping: 'always'});
+const percent = new Intl.NumberFormat('hu-HU', {style: 'percent', maximumFractionDigits: 2});
+const byBib = new Map(data.runners.map(runner => [runner.bib, runner]));
+const finishers = data.runners.filter(runner => runner.finished);
+const last = runner => runner.times[runner.times.length - 1];
+const $ = id => document.getElementById(id);
+const pad = value => String(value).padStart(2, '0');
+let selected = null;
+let raceTime = 26 * 3600;
+let animation = 0;
+let lastFrame = 0;
+const animatedRate = data.end / 45;
+let viewport = {};
+const map = $('map');
+const ctx = map.getContext('2d');
+
+function element(tag, value, className) {
+  const node = document.createElement(tag);
+  if (value != null) node.textContent = value;
+  if (className) node.className = className;
+  return node;
+}
+
+function duration(seconds) {
+  const t = Math.round(seconds);
+  return `${Math.floor(t / 3600)}:${pad(Math.floor(t / 60) % 60)}:${pad(t % 60)}`;
+}
+
+function wallTime(seconds) {
+  const minutes = Math.floor((data.origin + seconds) / 60);
+  const day = Math.floor(minutes / 1440);
+  return {day, clock: `${pad(Math.floor(minutes / 60) % 24)}:${pad(minutes % 60)}`};
+}
+
+function segmentIndex(runner, elapsed) {
+  let lo = 0, hi = runner.times.length - 1;
+  while (hi - lo > 1) {
+    const mid = (lo + hi) >> 1;
+    if (runner.times[mid] <= elapsed) lo = mid; else hi = mid;
+  }
+  return lo;
+}
+
+function position(runner, tick, keepVisible = false) {
+  const elapsed = tick - runner.start;
+  if (!keepVisible && (elapsed < 0 || elapsed >= last(runner))) return null;
+  if (elapsed <= 0) return 0;
+  if (elapsed >= last(runner)) return runner.km.at(-1);
+  const lo = segmentIndex(runner,elapsed), hi = lo + 1;
+  const progress = (elapsed - runner.times[lo]) / (runner.times[hi] - runner.times[lo]);
+  return runner.km[lo] + (runner.km[hi] - runner.km[lo]) * progress;
+}
+
+function segmentPace(runner, elapsed) {
+  const lo = segmentIndex(runner,elapsed), hi = lo + 1;
+  const distance = runner.km[hi] - runner.km[lo];
+  if (distance <= 0) return '';
+  const seconds = Math.round((runner.times[hi] - runner.times[lo]) / distance);
+  return `${Math.floor(seconds / 60)}:${pad(seconds % 60)} / km`;
+}
+
+function coursePoint(km) {
+  const at = Math.max(0, Math.min(1, km / 209)) * (data.lookup.length - 1);
+  const i = Math.min(data.lookup.length - 2, Math.floor(at));
+  const a = data.lookup[i], b = data.lookup[i+1], f = at - i;
+  return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f];
+}
+
+function routePath(points, target) {
+  points.forEach(([x,y], index) => {
+    if (index === 0) target.moveTo(x,y); else target.lineTo(x,y);
+  });
+}
+const route = new Path2D();
+routePath(data.route, route);
+const lake = new Path2D();
+for (const ring of data.water) {
+  routePath(ring, lake);
+  lake.closePath();
+}
+const jitter = data.runners.map((_, i) => [Math.sin(i * 2.399963) * 4.5, Math.cos(i * 1.8137) * 4.5]);
+
+function resize() {
+  const {width, height} = map.getBoundingClientRect();
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const scale = Math.min(width / 960, height / 550);
+  const pixelScale = scale * dpr;
+  map.width = Math.round(width * dpr);
+  map.height = Math.round(height * dpr);
+  viewport = {pixelScale, x: (width - 960 * scale) * dpr / 2 - 60 * pixelScale,
+    y: (height - 550 * scale) * dpr / 2 - 655 * pixelScale, scale};
+  paint();
+}
+function circle(x, y, radius) {
+  ctx.moveTo(x + radius, y);
+  ctx.arc(x,y,radius,0,Math.PI * 2);
+}
+
+function paint() {
+  const {pixelScale, x, y, scale} = viewport;
+  if (!pixelScale) return;
+  ctx.setTransform(1,0,0,1,0,0);
+  ctx.clearRect(0,0,map.width,map.height);
+  ctx.setTransform(pixelScale,0,0,pixelScale,x,y);
+  ctx.fillStyle = '#183e52';
+  ctx.fill(lake,'evenodd');
+  ctx.lineWidth = 1.4;
+  ctx.strokeStyle = '#346479';
+  ctx.stroke(lake);
+  ctx.strokeStyle = '#91b3c0';
+  ctx.globalAlpha = 0.43;
+  ctx.lineWidth = 1.8;
+  ctx.stroke(route);
+  ctx.fillStyle = '#9dbdca';
+  ctx.beginPath();
+  for (const point of data.checkpoints) circle(...point,2.7);
+  ctx.fill();
+  ctx.globalAlpha = 1;
+  const clouds = [[],[],[]];
+  data.runners.forEach((runner, i) => {
+    if (selected === runner) return;
+    const km = position(runner, raceTime);
+    if (km == null) return;
+    const [px,py] = coursePoint(km);
+    clouds[runner.group].push([px + jitter[i][0], py + jitter[i][1]]);
+  });
+  clouds.forEach((points,g) => {
+    ctx.fillStyle = palette[g];
+    ctx.globalAlpha = selected ? 0.11 : 0.20;
+    ctx.beginPath();
+    for (const [px, py] of points) circle(px,py,selected ? 4 : 7);
+    ctx.fill();
+    ctx.globalAlpha = selected ? 0.25 : 0.87;
+    ctx.beginPath();
+    for (const [px, py] of points) circle(px,py,selected ? 2.4 : 3);
+    ctx.fill();
+  });
+  ctx.globalAlpha = 1;
+  const [sx,sy] = data.route[0];
+  ctx.fillStyle = '#eff7fa';
+  ctx.beginPath();
+  circle(sx,sy,5);
+  ctx.fill();
+  ctx.font = `700 ${Math.max(15, 10 / scale)}px system-ui`;
+  ctx.textBaseline = 'middle';
+  ctx.fillStyle = '#c2d4db';
+  ctx.fillText('RAJT / CÉL', sx - 33, sy - 24);
+  if (selected) {
+    const km = position(selected,raceTime,true);
+    const [px,py] = coursePoint(km);
+    const size = Math.max(7, 5 / scale);
+    ctx.fillStyle = palette[selected.group];
+    ctx.globalAlpha = 0.3;
+    ctx.beginPath(); circle(px,py,size * 2.1); ctx.fill();
+    ctx.globalAlpha = 1;
+    ctx.strokeStyle = '#f4fbff';
+    ctx.lineWidth = Math.max(2, 2 / scale);
+    ctx.beginPath(); circle(px,py,size); ctx.fill(); ctx.stroke();
+  }
+}
+
+function seek(time) {
+  raceTime = Math.max(0, Math.min(time, data.end));
+  $('timeline').value = Math.round(raceTime);
+  const wall = wallTime(raceTime);
+  $('clock').textContent = wall.clock;
+  $('race-date').textContent = `Április ${24 + wall.day}. · ${days[wall.day]}`;
+  $('timeline').setAttribute('aria-valuetext', `Április ${24 + wall.day}. ${wall.clock}`);
+  if (selected) {
+    const elapsed = raceTime - selected.start;
+    let label;
+    if (elapsed < 0) label = 'Rajt előtt';
+    else if (elapsed >= last(selected)) label = selected.finished ? 'Célban' : 'Utolsó mérés';
+    else {
+      const km = position(selected,raceTime);
+      const pace = segmentPace(selected,elapsed);
+      label = `${number.format(Math.floor(km))} km${pace ? ` · ${pace}` : ''}`;
+    }
+    $('selected-badge').textContent = `#${selected.bib} · ${label}`;
+  }
+  paint();
+}
+
+function stop() {
+  if (animation) cancelAnimationFrame(animation);
+  animation = 0;
+  lastFrame = 0;
+  $('play').textContent = 'Lejátszás';
+}
+function tick(now) {
+  if (lastFrame) seek(raceTime + (now - lastFrame) / 1000 * animatedRate);
+  lastFrame = now;
+  if (raceTime >= data.end) stop();
+  else animation = requestAnimationFrame(tick);
+}
+function play() {
+  if (animation) return stop();
+  if (raceTime >= data.end - 1) seek(selected ? selected.start : 0);
+  $('play').textContent = 'Szünet';
+  lastFrame = 0;
+  animation = requestAnimationFrame(tick);
+}
+
+function bibUrl(bib) {
+  const url = new URL(location.href);
+  if (bib) url.searchParams.set('rajtszam',bib); else url.searchParams.delete('rajtszam');
+  return url;
+}
+function setBibUrl(bib) {
+  try { history.replaceState(null,'',bibUrl(bib)); } catch {}
+}
+function showSelection(runner, focusMap = false) {
+  stop();
+  selected = runner;
+  $('bib').value = runner.bib;
+  $('selected-badge').hidden = false;
+  $('search-feedback').textContent = `#${runner.bib} · ${groups[runner.group]} kiemelve a térképen.`;
+  $('search-feedback').classList.remove('error');
+  $('result-title').textContent = `#${runner.bib} · ${groups[runner.group]}`;
+  $('result-status').textContent = runner.status;
+  $('result').hidden = false;
+  $('copy-link').textContent = 'Link másolása';
+  $('copy-status').textContent = '';
+  const start = wallTime(runner.start);
+  const endLabel = runner.finished ? 'Célidő' : 'Az utolsó mérésig';
+  const rankLabel = runner.finished && runner.rank ? 'Abszolút helyezés' : 'Utolsó mért táv';
+  const rankValue = runner.finished && runner.rank ? `${number.format(runner.rank)}.` : `${number.format(runner.km.at(-1))} km`;
+  $('result-metrics').replaceChildren(...[
+    ['Rajt', `Ápr. ${24 + start.day}. ${start.clock}`], [endLabel,duration(last(runner))], [rankLabel,rankValue]
+  ].map(([label,value]) => {
+    const tile = element('div');
+    tile.append(element('span',label),element('strong',value));
+    return tile;
+  }));
+  $('splits').replaceChildren(...runner.times.map((split,i) => {
+    const row = element('tr');
+    const km = runner.km[i];
+    row.append(element('td',data.stations[runner.group][km] || 'Mérőpont'),
+      element('td',`${number.format(km)} km`),element('td',duration(split)));
+    return row;
+  }));
+  setBibUrl(runner.bib);
+  seek(runner.start + 0.38 * last(runner));
+  if (focusMap && window.innerWidth <= 700) {
+    map.closest('.race').scrollIntoView({block:'start', behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+  }
+}
+
+function showError(message) {
+  $('search-feedback').classList.add('error');
+  $('search-feedback').textContent = message;
+}
+
+$('search').addEventListener('submit', event => {
+  event.preventDefault();
+  const bib = $('bib').value.trim().replace(/^#\s*/, '').replace(/^0+(?=\d)/,'');
+  if (!/^\d+$/.test(bib)) return showError('Írd be a számból álló rajtszámot.');
+  const runner = byBib.get(bib);
+  if (runner) return showSelection(runner,true);
+  showError(data.missing.includes(bib)
+    ? 'Ez a rajtszám szerepel az eredményekben, de nincs megjeleníthető pályaadat.'
+    : 'Ezzel a rajtszámmal nem találtunk eredményt.');
+});
+$('play').addEventListener('click',play);
+$('timeline').max = Math.ceil(data.end);
+$('timeline').addEventListener('input', event => { stop(); seek(Number(event.target.value)); });
+$('start-run').addEventListener('click',() => {
+  if (selected) { stop(); seek(selected.start); map.closest('.race').scrollIntoView({block:'start'}); }
+});
+$('reset').addEventListener('click',() => {
+  selected = null;
+  $('result').hidden = true;
+  $('selected-badge').hidden = true;
+  $('bib').value = '';
+  $('search-feedback').classList.remove('error');
+  $('search-feedback').textContent = 'Egy pont egy egyéni futó vagy egy teljes csapat.';
+  setBibUrl(null);
+  seek(raceTime);
+  $('bib').focus();
+});
+$('copy-link').addEventListener('click',async () => {
+  if (!selected) return;
+  try {
+    await navigator.clipboard.writeText(bibUrl(selected.bib).href);
+    $('copy-link').textContent = 'Link másolva';
+    $('copy-status').textContent = 'A rajtszámhoz tartozó link a vágólapra került.';
+  } catch {
+    $('copy-status').textContent = 'A link a böngésző címsorából másolható.';
+    $('copy-link').textContent = 'Másolható a címsorból';
+  }
+});
+
+function median(sorted) {
+  const middle = Math.floor(sorted.length / 2);
+  return sorted.length % 2 ? sorted[middle] : (sorted[middle-1] + sorted[middle]) / 2;
+}
+const groupTimes = groups.map((_,g) => finishers.filter(runner => runner.group === g).map(last).sort((a,b) => a-b));
+$('summary').replaceChildren(...[
+  ['Megjelenített rajtszám',number.format(data.runners.length)],
+  ['Célba ért',number.format(finishers.length)],
+  ['Célba érési arány',percent.format(finishers.length / data.runners.length)]
+].map(([label,value]) => {
+  const box = element('div');
+  box.append(element('dt',label),element('dd',value));
+  return box;
+}));
+$('groups').replaceChildren(...groups.map((name,g) => {
+  const ratio = groupTimes[g].length / data.groups[g];
+  const card = element('div',null,`group ${groupClasses[g]}`);
+  const row = element('div',null,'group-row');
+  row.append(element('span',name),element('span',percent.format(ratio)));
+  const meter = element('div',null,'meter');
+  const fill = element('div');
+  fill.style.width = `${ratio * 100}%`;
+  meter.setAttribute('aria-hidden','true');
+  meter.append(fill);
+  card.append(row,meter,element('p',`${number.format(groupTimes[g].length)} / ${number.format(data.groups[g])} célba ért · Medián ${duration(median(groupTimes[g]))}`));
+  return card;
+}));
+const allTimes = groupTimes.flat();
+const firstHour = Math.floor(Math.min(...allTimes) / 3600);
+const finalHour = Math.floor(Math.max(...allTimes) / 3600);
+const histogramCounts = Array.from({length: finalHour - firstHour + 1}, () => [0,0,0]);
+groupTimes.forEach((times,g) => times.forEach(t => histogramCounts[Math.floor(t / 3600)-firstHour][g]++));
+const selection = $('category');
+function drawHistogram() {
+  const active = selection.value === 'all' ? [0,1,2] : [Number(selection.value)];
+  const totals = histogramCounts.map(bin => active.reduce((n,g) => n + bin[g],0));
+  const peak = Math.max(...totals);
+  const peakHour = firstHour + totals.indexOf(peak);
+  $('histogram').style.gridTemplateColumns = `repeat(${histogramCounts.length}, minmax(0, 1fr))`;
+  $('histogram').replaceChildren(...histogramCounts.map((bin,i) => {
+    const column = element('div',null,'hist-bin');
+    column.title = `${firstHour+i}–${firstHour+i+1} óra: ${number.format(totals[i])} célba érő`;
+    for (const g of active) {
+      const stack = element('span',null,groupClasses[g]);
+      stack.style.height = `${bin[g] / peak * 100}%`;
+      column.append(stack);
+    }
+    return column;
+  }));
+  const lastHour = finalHour + 1;
+  const marks = [firstHour, ...Array.from({length:lastHour-firstHour-1},(_,i)=>firstHour+i+1)
+    .filter(h => h % 4 === 0 && h-firstHour >= 3 && lastHour-h >= 3), lastHour];
+  $('axis').replaceChildren(...marks.map((h,i) => {
+    const label = element('span', i === marks.length - 1 ? `${h} óra` : String(h));
+    label.style.left = `${(h-firstHour)/histogramCounts.length*100}%`;
+    return label;
+  }));
+  $('hist-note').textContent = `A legnépesebb sáv ${peakHour}–${peakHour+1} óra, ${number.format(peak)} célba érővel.`;
+}
+selection.addEventListener('change',drawHistogram);
+drawHistogram();
+new ResizeObserver(resize).observe(map);
+resize();
+seek(raceTime);
+const initial = new URL(location.href).searchParams.get('rajtszam');
+if (initial && byBib.has(initial)) showSelection(byBib.get(initial));
+
+const categoryGroups = [
+  {sizes: ['1'], genders: ['Női','Férfi']},
+  {sizes: ['2','3','4','5','6'], genders: ['Női','Férfi','Vegyes']},
+  {sizes: ['7','8','9','10–13'], genders: ['Női','Férfi']},
+];
+const categoryKey = stats => [stats.group,stats.size,stats.gender,stats.company].join('|');
+const statsByCategory = new Map(data.categories.map(stats => [categoryKey(stats),stats]));
+let selectedCategory;
+
+function categoryName(stats) {
+  return stats.group === 0 ? `Egyéni · ${stats.gender}` : `${stats.size} fős · ${stats.gender}`;
+}
+
+function showCategory(stats) {
+  selectedCategory = categoryKey(stats);
+  $('category-matrix').querySelectorAll('button').forEach(button => {
+    button.setAttribute('aria-pressed',String(button.dataset.key === selectedCategory));
+  });
+  const title = element('h3',categoryName(stats));
+  const sample = element('p',`${number.format(stats.finished)} / ${number.format(stats.started)} célba ért · ${percent.format(stats.finished/stats.started)}`,'subtle');
+  const metrics = element('dl',null,'category-detail-metrics');
+  for (const [label, value] of [
+    ['Medián célidő', stats.median == null ? '—' : duration(stats.median)],
+    ['Legjobb célidő', stats.best == null ? '—' : duration(stats.best)],
+    ['Középső 50%', stats.middle ? stats.middle.map(duration).join(' – ') : '—'],
+  ]) {
+    const box = element('div');
+    box.append(element('dt',label),element('dd',value));
+    metrics.append(box);
+  }
+  $('category-detail').replaceChildren(title,sample,metrics);
+}
+
+function drawCategoryMatrix() {
+  const group = Number($('detail-group').value);
+  const metric = $('detail-metric').value;
+  const company = group === 2 ? $('detail-company').value : 'all';
+  $('company-control').hidden = group !== 2;
+  $('category-note').textContent = group === 2
+    ? 'A 10–13 fős csapatok egy hivatalos kategóriát alkotnak. A „Női” és „Férfi” címkék az eredménylistát követik.'
+    : 'A célidők a célba érőkhöz tartoznak. A célba érési arány alapja a térképen szereplő, elrajtolt mezőny.';
+  const {sizes,genders} = categoryGroups[group];
+  const values = sizes.flatMap(size => genders.map(gender => statsByCategory.get(categoryKey({group,size,gender,company})))).filter(Boolean);
+  const measure = stats => metric === 'median' ? stats.median
+    : metric === 'rate' ? stats.finished / stats.started : stats.started;
+  const format = value => value == null ? '—' : metric === 'median' ? duration(value)
+    : metric === 'rate' ? percent.format(value) : number.format(value);
+  const comparable = values.map(measure).filter(value => value != null);
+  const minimum = Math.min(...comparable), maximum = Math.max(...comparable);
+  $('category-key').textContent = metric === 'median' ? 'Az élénkebb mezők gyorsabb mediánt jelentenek. A medián a célba érők idejéből készül.'
+    : 'Az élénkebb mezők magasabb értéket jelentenek.';
+  const table = $('category-matrix');
+  const head = element('thead');
+  const header = element('tr');
+  for (const value of [group === 0 ? 'Mezőny' : 'Létszám', ...genders]) {
+    const cell = element('th',value);
+    cell.scope = 'col';
+    header.append(cell);
+  }
+  head.append(header);
+  const body = element('tbody');
+  for (const size of sizes) {
+    const row = element('tr');
+    const heading = element('th',group === 0 ? 'Egyéni' : `${size} fő`);
+    heading.scope = 'row';
+    row.append(heading);
+    for (const gender of genders) {
+      const td = element('td');
+      const key = categoryKey({group,size,gender,company});
+      const stats = statsByCategory.get(key);
+      if (stats) {
+        const button = element('button',null,'category-cell');
+        button.type = 'button';
+        button.dataset.key = key;
+        const value = measure(stats);
+        const relative = value == null || maximum === minimum ? 0 : (value - minimum) / (maximum - minimum);
+        const emphasis = metric === 'median' && value != null && maximum !== minimum ? 1 - relative : relative;
+        button.style.setProperty('--shade',String(0.05 + 0.24 * emphasis));
+        button.append(element('strong',format(value)),element('span',`${number.format(stats.started)} induló`));
+        button.setAttribute('aria-label',`${categoryName(stats)}, ${format(value)}, ${button.lastChild.textContent}`);
+        button.addEventListener('click',()=>showCategory(stats));
+        td.append(button);
+      } else {
+        td.append(element('span','—','category-empty'));
+        td.setAttribute('aria-label','Nincs adat');
+      }
+      row.append(td);
+    }
+    body.append(row);
+  }
+  table.replaceChildren(head,body);
+  const current = values.find(stats => categoryKey(stats) === selectedCategory);
+  const fallback = values.reduce((largest,stats) => !largest || stats.started > largest.started ? stats : largest,null);
+  if (current || fallback) showCategory(current || fallback);
+}
+for (const id of ['detail-group','detail-metric','detail-company']) $(id).addEventListener('change',drawCategoryMatrix);
+drawCategoryMatrix();
+</script>
+</body>
+</html>
