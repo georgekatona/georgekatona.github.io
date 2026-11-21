@@ -388,7 +388,9 @@ function paint() {
   ctx.font = `700 ${Math.max(15, 10 / scale)}px system-ui`;
   ctx.textBaseline = 'middle';
   ctx.fillStyle = '#c2d4db';
-  ctx.fillText('RAJT / CÉL', sx - 33, sy - 24);
+  ctx.textAlign = 'right';
+  ctx.fillText('RAJT / CÉL', sx - 17, sy - 24);
+  ctx.textAlign = 'left';
   if (selected) {
     const km = position(selected,raceTime,true);
     const [px,py] = coursePoint(km);
