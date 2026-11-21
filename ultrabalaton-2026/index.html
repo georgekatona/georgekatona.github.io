@@ -63,6 +63,11 @@
 .solar-days span{position:absolute;white-space:nowrap;transform:translateX(-50%)}
 @media(max-width:700px){.clock-controls{gap:.42rem}.clock-controls .play{min-width:0}.clock-readout{gap:.3rem}.sky-state{width:.94rem}.map-head{gap:.35rem}.race-date{font-size:.85rem}.solar-days{font-size:.72rem}.controls{padding-top:5px}}
 @media(max-width:360px){.clock-controls{gap:.35rem}.clock-controls .play{min-width:0}.race-date{font-size:.78rem}}
+
+.clock-controls .play{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;min-width:8.5rem;white-space:nowrap;box-shadow:0 3px 14px #65dfce29}
+.play svg{width:1.12rem;height:1.12rem;fill:currentColor;flex:none}
+.play[data-playing=false] .pause-icon,.play[data-playing=true] .play-icon{display:none}
+@media(max-width:700px){.map-head{display:grid;grid-template-columns:minmax(0,1fr) auto;row-gap:.55rem}.clock-controls{display:contents}.clock-readout{justify-self:end}.clock-controls .play{grid-column:1/-1;justify-self:stretch}}
 </style>
 </head>
 <body>
@@ -97,7 +102,11 @@
           </span>
           <time id="clock">09:00</time>
         </div>
-        <button id="play" class="play" type="button">Lejátszás</button>
+        <button id="play" class="play primary" type="button" data-playing="false">
+          <svg class="play-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 3.5a.7.7 0 0 1 1-.6l11 6.5a.7.7 0 0 1 0 1.2L6 17.1a.7.7 0 0 1-1-.6Z"/></svg>
+          <svg class="pause-icon" viewBox="0 0 20 20" aria-hidden="true"><rect x="5" y="3" width="3.5" height="14" rx="1"/><rect x="11.5" y="3" width="3.5" height="14" rx="1"/></svg>
+          <span id="play-label">Lejátszás</span>
+        </button>
       </div>
     </div>
     <div class="controls">
@@ -426,7 +435,8 @@ function stop() {
   if (animation) cancelAnimationFrame(animation);
   animation = 0;
   lastFrame = 0;
-  $('play').textContent = 'Lejátszás';
+  $('play').dataset.playing = 'false';
+  $('play-label').textContent = 'Lejátszás';
 }
 function tick(now) {
   if (lastFrame) seek(raceTime + (now - lastFrame) / 1000 * animatedRate);
@@ -437,7 +447,8 @@ function tick(now) {
 function play() {
   if (animation) return stop();
   if (raceTime >= data.end - 1) seek(selected ? selected.start : 0);
-  $('play').textContent = 'Szünet';
+  $('play').dataset.playing = 'true';
+  $('play-label').textContent = 'Szünet';
   lastFrame = 0;
   animation = requestAnimationFrame(tick);
 }
