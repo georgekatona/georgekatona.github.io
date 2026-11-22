@@ -68,6 +68,16 @@
 .play svg{width:1.12rem;height:1.12rem;fill:currentColor;flex:none}
 .play[data-playing=false] .pause-icon,.play[data-playing=true] .play-icon{display:none}
 @media(max-width:700px){.map-head{display:grid;grid-template-columns:minmax(0,1fr) auto;row-gap:.55rem}.clock-controls{display:contents}.clock-readout{justify-self:end}.clock-controls .play{grid-column:1/-1;justify-self:stretch}}
+
+.search-meta{display:flex;align-items:center;justify-content:space-between;gap:.55rem}
+#clear-search{background:transparent;border-color:transparent;color:var(--muted);padding:.35rem 0 .35rem .35rem;white-space:nowrap;font-size:.83rem}
+#clear-search:hover{color:var(--ink);text-decoration:underline}
+.search-options{display:grid;gap:.4rem;max-height:17rem;overflow:auto;margin:.35rem 0 0;padding:.45rem;list-style:none;background:var(--card);border:1px solid var(--line);border-radius:8px}
+.search-options button{width:100%;text-align:left;font-size:.92rem;overflow-wrap:anywhere}
+.play-actions{display:flex;gap:.45rem}
+#restart{white-space:nowrap}
+.result-top h2{overflow-wrap:anywhere}
+@media(max-width:700px){.play-actions{grid-column:1/-1;justify-self:stretch}.play-actions .play{flex:1}.play-actions button{font-size:.88rem}.search-meta .feedback{font-size:.8rem}}
 </style>
 </head>
 <body>
@@ -85,10 +95,14 @@
     <form id="search" class="search">
       <label for="bib">Keresd meg a pontodat</label>
       <div class="search-row">
-        <input id="bib" inputmode="numeric" autocomplete="off" placeholder="Rajtszám" maxlength="12" spellcheck="false" aria-describedby="search-feedback">
+        <input id="bib" type="search" autocomplete="off" placeholder="Rajtszám vagy név" maxlength="120" spellcheck="false" aria-describedby="search-feedback">
         <button class="primary" type="submit">Keresés</button>
       </div>
-      <p id="search-feedback" class="feedback" role="status">Egy pont egy egyéni futó vagy egy teljes csapat.</p>
+      <div class="search-meta">
+        <p id="search-feedback" class="feedback" role="status">Kereshetsz futó- vagy csapatnév alapján is.</p>
+        <button id="clear-search" type="button">Keresés törlése</button>
+      </div>
+      <ul id="search-options" class="search-options" aria-label="Név szerinti találatok" hidden></ul>
     </form>
   </section>
   <section class="race" aria-label="Interaktív pályatérkép">
@@ -102,11 +116,14 @@
           </span>
           <time id="clock">09:00</time>
         </div>
-        <button id="play" class="play primary" type="button" data-playing="false">
+        <div class="play-actions">
+          <button id="play" class="play primary" type="button" data-playing="false">
           <svg class="play-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 3.5a.7.7 0 0 1 1-.6l11 6.5a.7.7 0 0 1 0 1.2L6 17.1a.7.7 0 0 1-1-.6Z"/></svg>
           <svg class="pause-icon" viewBox="0 0 20 20" aria-hidden="true"><rect x="5" y="3" width="3.5" height="14" rx="1"/><rect x="11.5" y="3" width="3.5" height="14" rx="1"/></svg>
           <span id="play-label">Lejátszás</span>
-        </button>
+          </button>
+          <button id="restart" type="button" title="Lejátszás az elejétől">Újraindítás</button>
+        </div>
       </div>
     </div>
     <div class="controls">
@@ -151,7 +168,7 @@
       </article>
       <article class="stats-panel">
         <h3>Kategóriánként</h3>
-        <p class="subtle">Célba érők aránya és az értékelt célidők mediánja.</p>
+        <p class="subtle">Az indulók hány százaléka ért célba, és mennyi volt a középső célidő?</p>
         <div id="groups" class="groups"></div>
       </article>
     </div>
@@ -171,7 +188,7 @@
       <p id="category-note" class="category-key subtle"></p>
     </div>
   </section>
-  <details class="method"><summary>Adatforrás és módszertan</summary><p>A kereséshez csak rajtszám és versenyadat szerepel az oldalon. A pontok helyét a mért részidők között becsüljük. A tempó az aktuális, két mérés közötti szakasz átlaga. A pályát a videóban használt GPX alapján, 209 km-re skálázva mutatjuk. A célba érők statisztikája a feldolgozott célmérésekből készül.</p><p>Források: <a href="https://runtiming.hu/verseny/ub2026">Runtiming eredmények</a> és <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>.</p></details>
+  <details class="method"><summary>Adatforrás és módszertan</summary><p>A kereső a Runtiming eredménylistájában szereplő neveket és rajtszámokat használja. A pontok helyét a mért részidők között becsüljük. A tempó az aktuális, két mérés közötti szakasz átlaga. A pályát a videóban használt GPX alapján, 209 km-re skálázva mutatjuk.</p><p>Források: <a href="https://runtiming.hu/verseny/ub2026">Runtiming eredmények</a> és <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>.</p></details>
 </main>
 <footer class="wrap footer"><strong>Running in Data</strong><a href="https://www.instagram.com/gyuri.katona/">@gyuri.katona</a></footer>
 <script src="./race-data.js"></script>
@@ -188,6 +205,11 @@ const daylightElevation = -0.833;
 const number = new Intl.NumberFormat('hu-HU', {useGrouping: 'always'});
 const percent = new Intl.NumberFormat('hu-HU', {style: 'percent', maximumFractionDigits: 2});
 const byBib = new Map(data.runners.map(runner => [runner.bib, runner]));
+const normalizeName = value => value.normalize('NFD').replace(/\p{M}/gu,'').toLocaleLowerCase('hu')
+  .replace(/[^\p{L}\p{N}]+/gu,' ').trim();
+const nameIndex = data.runners.filter(runner => runner.name).map(runner => [normalizeName(runner.name),runner])
+  .sort(([a],[b]) => a.localeCompare(b,'hu'));
+const searchHint = 'Kereshetsz futó- vagy csapatnév alapján is.';
 const finishers = data.runners.filter(runner => runner.finished);
 const last = runner => runner.times[runner.times.length - 1];
 const $ = id => document.getElementById(id);
@@ -463,15 +485,21 @@ function bibUrl(bib) {
 function setBibUrl(bib) {
   try { history.replaceState(null,'',bibUrl(bib)); } catch {}
 }
-function showSelection(runner, focusMap = false) {
+function hideSearchOptions() {
+  $('search-options').hidden = true;
+  $('search-options').replaceChildren();
+}
+
+function showSelection(runner, focusMap = false, searchedByName = false) {
   stop();
+  hideSearchOptions();
   selected = runner;
-  $('bib').value = runner.bib;
+  $('bib').value = searchedByName ? runner.name : runner.bib;
   $('selected-badge').hidden = false;
-  $('search-feedback').textContent = `#${runner.bib} · ${groups[runner.group]} kiemelve a térképen.`;
+  $('search-feedback').textContent = `${runner.name || `#${runner.bib}`} kiemelve a térképen.`;
   $('search-feedback').classList.remove('error');
-  $('result-title').textContent = `#${runner.bib} · ${groups[runner.group]}`;
-  $('result-status').textContent = runner.status;
+  $('result-title').textContent = runner.name ? `${runner.name} · #${runner.bib}` : `#${runner.bib}`;
+  $('result-status').textContent = `${groups[runner.group]} · ${runner.status}`;
   $('result').hidden = false;
   $('copy-link').textContent = 'Link másolása';
   $('copy-status').textContent = '';
@@ -507,31 +535,61 @@ function showError(message) {
 
 $('search').addEventListener('submit', event => {
   event.preventDefault();
-  const bib = $('bib').value.trim().replace(/^#\s*/, '').replace(/^0+(?=\d)/,'');
-  if (!/^\d+$/.test(bib)) return showError('Írd be a számból álló rajtszámot.');
-  const runner = byBib.get(bib);
-  if (runner) return showSelection(runner,true);
-  showError(data.missing.includes(bib)
-    ? 'Ez a rajtszám szerepel az eredményekben, de nincs megjeleníthető pályaadat.'
-    : 'Ezzel a rajtszámmal nem találtunk eredményt.');
+  hideSearchOptions();
+  const query = $('bib').value.trim();
+  const bib = query.replace(/^#\s*/, '').replace(/^0+(?=\d)/,'');
+  if (/^\d+$/.test(bib)) {
+    const runner = byBib.get(bib);
+    if (runner) return showSelection(runner,true);
+    if (data.missing.includes(bib)) return showError('Ehhez a rajtszámhoz nincs megjeleníthető pályaadat.');
+    return showError('Ezzel a rajtszámmal nem találtunk eredményt.');
+  }
+  const name = normalizeName(query);
+  if (name.length < 2) return showError('Írj be egy rajtszámot vagy a név legalább két betűjét.');
+  const exact = nameIndex.filter(([key]) => key === name);
+  const matches = exact.length ? exact : nameIndex.filter(([key]) => name.split(' ').every(word=>key.includes(word)));
+  if (matches.length === 1) return showSelection(matches[0][1],true,true);
+  if (!matches.length) return showError('Ezzel a névvel nem találtunk eredményt.');
+  $('search-feedback').classList.remove('error');
+  $('search-feedback').textContent = matches.length > 12
+    ? `${number.format(matches.length)} találat. Pontosítsd a nevet, vagy válassz az első 12 találatból.`
+    : 'Válaszd ki a futót vagy a csapatot.';
+  for (const [,runner] of matches.slice(0,12)) {
+    const row = element('li');
+    const button = element('button',`${runner.name} · #${runner.bib}`);
+    button.type = 'button';
+    button.addEventListener('click',()=>showSelection(runner,true,true));
+    row.append(button);
+    $('search-options').append(row);
+  }
+  $('search-options').hidden = false;
+});
+$('bib').addEventListener('input', () => {
+  hideSearchOptions();
+  $('search-feedback').classList.remove('error');
+  $('search-feedback').textContent = searchHint;
 });
 $('play').addEventListener('click',play);
+$('restart').addEventListener('click',() => { stop(); seek(0); play(); });
 $('timeline').max = Math.ceil(data.end);
 $('timeline').addEventListener('input', event => { stop(); seek(Number(event.target.value)); });
 $('start-run').addEventListener('click',() => {
   if (selected) { stop(); seek(selected.start); map.closest('.race').scrollIntoView({block:'start'}); }
 });
-$('reset').addEventListener('click',() => {
+function clearSelection() {
+  hideSearchOptions();
   selected = null;
   $('result').hidden = true;
   $('selected-badge').hidden = true;
   $('bib').value = '';
   $('search-feedback').classList.remove('error');
-  $('search-feedback').textContent = 'Egy pont egy egyéni futó vagy egy teljes csapat.';
+  $('search-feedback').textContent = searchHint;
   setBibUrl(null);
   seek(raceTime);
   $('bib').focus();
-});
+}
+$('reset').addEventListener('click',clearSelection);
+$('clear-search').addEventListener('click',clearSelection);
 $('copy-link').addEventListener('click',async () => {
   if (!selected) return;
   try {
@@ -651,7 +709,7 @@ function drawCategoryMatrix() {
   $('company-control').hidden = group !== 2;
   $('category-note').textContent = group === 2
     ? 'A 10–13 fős csapatok egy hivatalos kategóriát alkotnak. A „Női” és „Férfi” címkék az eredménylistát követik.'
-    : 'A célidők a célba érőkhöz tartoznak. A célba érési arány alapja a térképen szereplő, elrajtolt mezőny.';
+    : 'A célba érési arány megmutatja, a térképen szereplő indulók hány százaléka ért célba.';
   const {sizes,genders} = categoryGroups[group];
   const values = sizes.flatMap(size => genders.map(gender => statsByCategory.get(categoryKey({group,size,gender,company})))).filter(Boolean);
   const measure = stats => metric === 'median' ? stats.median
@@ -660,7 +718,7 @@ function drawCategoryMatrix() {
     : metric === 'rate' ? percent.format(value) : number.format(value);
   const comparable = values.map(measure).filter(value => value != null);
   const minimum = Math.min(...comparable), maximum = Math.max(...comparable);
-  $('category-key').textContent = metric === 'median' ? 'Az élénkebb mezők gyorsabb mediánt jelentenek. A medián a célba érők idejéből készül.'
+  $('category-key').textContent = metric === 'median' ? 'A medián a középső célidő. Az élénkebb szín gyorsabb időt jelöl.'
     : 'Az élénkebb mezők magasabb értéket jelentenek.';
   const table = $('category-matrix');
   const head = element('thead');
@@ -689,8 +747,11 @@ function drawCategoryMatrix() {
         const relative = value == null || maximum === minimum ? 0 : (value - minimum) / (maximum - minimum);
         const emphasis = metric === 'median' && value != null && maximum !== minimum ? 1 - relative : relative;
         button.style.setProperty('--shade',String(0.05 + 0.24 * emphasis));
-        button.append(element('strong',format(value)),element('span',`${number.format(stats.started)} induló`));
-        button.setAttribute('aria-label',`${categoryName(stats)}, ${format(value)}, ${button.lastChild.textContent}`);
+        const starters = `${number.format(stats.started)} induló`;
+        const shownValue = metric === 'started' ? starters : format(value);
+        button.append(element('strong',shownValue));
+        if (metric !== 'started') button.append(element('span',starters));
+        button.setAttribute('aria-label',`${categoryName(stats)}, ${shownValue}${metric === 'started' ? '' : `, ${starters}`}`);
         button.addEventListener('click',()=>showCategory(stats));
         td.append(button);
       } else {
