@@ -78,6 +78,48 @@
 #restart{white-space:nowrap}
 .result-top h2{overflow-wrap:anywhere}
 @media(max-width:700px){.play-actions{grid-column:1/-1;justify-self:stretch}.play-actions .play{flex:1}.play-actions button{font-size:.88rem}.search-meta .feedback{font-size:.8rem}}
+
+.category-distribution{margin-top:16px;padding:.7rem .9rem .45rem;background:#0a1925;border:1px solid var(--line);border-radius:8px}
+.category-chart-label{margin:0 0 .45rem;color:var(--muted);font-size:.88rem;font-weight:650}
+.category-plot{display:block;width:100%;height:clamp(94px,13vw,130px);overflow:visible;border-bottom:1px solid var(--line)}
+.category-plot path,.category-plot line{vector-effect:non-scaling-stroke}
+.selected-distribution{fill:#31566a;stroke:#9ab9c9;stroke-width:1.2}
+.category-gridline{stroke:var(--line);stroke-width:1}
+.category-chart-unit{margin:0 0 .9rem;color:var(--muted);font-size:.8rem}
+.category-chart-grid{--chart-height:clamp(106px,15vw,156px);display:grid;grid-template-columns:auto minmax(0,1fr);gap:.45rem}
+.category-chart-scale{display:flex;height:var(--chart-height);flex-direction:column;justify-content:space-between;text-align:right;color:var(--muted);font-size:.75rem;line-height:1}
+.category-chart-grid .category-plot{height:var(--chart-height)}
+.category-band{fill:#65dfce;fill-opacity:.20}
+.category-best{stroke:var(--gold);stroke-width:2;stroke-dasharray:4 3}
+.category-median{stroke:var(--mint);stroke-width:2.5}
+.category-detail-metrics dt{display:flex;gap:.36rem;align-items:center}
+.category-detail-metrics dt::before{content:"";display:block;flex:none;width:.72rem}
+.median-key::before{border-top:2px solid var(--mint)}
+.best-key::before{border-top:2px dashed var(--gold)}
+.band-key::before{height:.57rem;background:#65dfce44;border-radius:2px}
+@media(max-width:700px){.category-distribution{padding-inline:.58rem}.category-detail-metrics dt{font-size:.78rem;gap:.25rem}}
+@media(max-width:450px){.category-detail-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.category-detail-metrics div:last-child{grid-column:1/-1}}
+
+.pace-details{border-top:1px solid var(--line)}
+.pace-help{font-size:.88rem;margin:0 0 .55rem}
+.segment-paces{list-style:none;margin:0;padding:0;max-height:min(24rem,60vh);overflow:auto;scrollbar-color:#496678 transparent}
+.pace-row{display:grid;grid-template-columns:minmax(0,1.65fr) max-content minmax(0,1fr);column-gap:clamp(.43rem,1.4vw,1rem);align-items:center;padding:.45rem .15rem .45rem 0;border-top:1px solid var(--line)}
+.pace-stations{color:var(--ink);font-size:.9rem;overflow-wrap:anywhere}
+.pace-number{color:var(--mint);font-size:1rem;white-space:nowrap;font-variant-numeric:tabular-nums}
+.pace-distance{display:block;color:var(--muted);font-size:.78rem}
+.pace-meter{height:.65rem;border-radius:3px;overflow:hidden;background:transparent}
+.pace-meter span{display:block;height:100%;border-radius:inherit;background:var(--mint)}
+
+.category-total{width:100%;padding:.27rem .1rem;border-color:#355461;background:#112735;color:var(--ink);font-size:inherit;white-space:normal}
+.category-total[aria-pressed=true]{background:#224857;border-color:var(--mint);box-shadow:inset 0 0 0 1px var(--mint)}
+.category-matrix th:first-child .category-total{padding-inline:.2rem}
+@media(max-width:380px){.pace-number,.pace-stations{font-size:.83rem}.pace-row{grid-template-columns:minmax(0,1.75fr) max-content minmax(0,1fr)}}
+@media(max-width:350px){.category-distribution .axis span:nth-last-child(2){display:none}}
+
+.histogram,.category-plot-wrap{position:relative}
+.personal-finish-marker{position:absolute;top:0;bottom:0;width:0;border-left:1px solid #f3fbffbf;pointer-events:none;z-index:1}
+.personal-finish-label{display:flex;align-items:center;gap:.45rem;margin:.35rem 0 0;color:var(--ink);font-size:.85rem;font-weight:650;font-variant-numeric:tabular-nums}
+.personal-finish-label::before{content:"";flex:none;width:.72rem;border-top:1px solid #f3fbffbf}
 </style>
 </head>
 <body>
@@ -152,6 +194,11 @@
       <div class="result-actions"><button id="start-run" type="button">Saját rajt</button><button id="copy-link" type="button">Link másolása</button><button id="reset" type="button">Kiemelés törlése</button></div>
     </div>
     <div class="result-metrics" id="result-metrics"></div>
+    <details class="pace-details">
+      <summary>Szakasztempók</summary>
+      <p class="subtle pace-help">Átlagtempó két egymást követő mérés között. A hosszabb sáv gyorsabb tempót jelöl.</p>
+      <ol id="segment-paces" class="segment-paces" tabindex="0" aria-label="Szakasztempók a rajttól az utolsó mérésig"></ol>
+    </details>
     <details><summary>Mért részidők</summary><div class="table-wrap"><table><thead><tr><th>Pont</th><th>Táv</th><th>Eltelt idő</th></tr></thead><tbody id="splits"></tbody></table></div></details>
     <p id="copy-status" class="sr-only" role="status"></p>
   </section>
@@ -164,18 +211,19 @@
         <p class="subtle">Egyórás sávok, a saját rajttól számítva.</p>
         <div id="histogram" class="histogram" role="img" aria-label="Célidők egyórás sávokban"></div>
         <div id="axis" class="axis" aria-hidden="true"></div>
+        <p id="hist-selected" class="personal-finish-label" hidden></p>
         <p id="hist-note" class="hist-note" aria-live="polite"></p>
       </article>
       <article class="stats-panel">
         <h3>Kategóriánként</h3>
-        <p class="subtle">Az indulók hány százaléka ért célba, és mennyi volt a középső célidő?</p>
+        <p class="subtle">Célba érési arány és medián célidő kategóriánként.</p>
         <div id="groups" class="groups"></div>
       </article>
     </div>
   </section>
   <section id="kategoriak" class="category-section" aria-labelledby="category-title">
     <h2 id="category-title">Kategóriák közelről</h2>
-    <p class="subtle">Hogyan alakultak a célidők a különböző mezőnyökben? Válassz egy mezőt a részletekhez.</p>
+    <p class="subtle">Válassz egy cellát, sor- vagy oszlopfejlécet, esetleg az „Összes” mezőt a részletekhez.</p>
     <div class="stats-panel category-explorer">
       <div class="category-controls">
         <label>Mezőny<select id="detail-group"><option value="0">Egyéni</option><option value="1" selected>2–6 fős csapat</option><option value="2">7–13 fős csapat</option></select></label>
@@ -191,7 +239,7 @@
   <details class="method"><summary>Adatforrás és módszertan</summary><p>A kereső a Runtiming eredménylistájában szereplő neveket és rajtszámokat használja. A pontok helyét a mért részidők között becsüljük. A tempó az aktuális, két mérés közötti szakasz átlaga. A pályát a videóban használt GPX alapján, 209 km-re skálázva mutatjuk.</p><p>Források: <a href="https://runtiming.hu/verseny/ub2026">Runtiming eredmények</a> és <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>.</p></details>
 </main>
 <footer class="wrap footer"><strong>Running in Data</strong><a href="https://www.instagram.com/gyuri.katona/">@gyuri.katona</a></footer>
-<script src="./race-data.js"></script>
+<script src="./race-data.js?v=c5ecd7b60202"></script>
 <script>
 'use strict';
 
@@ -317,13 +365,12 @@ function position(runner, tick, keepVisible = false) {
   return runner.km[lo] + (runner.km[hi] - runner.km[lo]) * progress;
 }
 
-function segmentPace(runner, elapsed) {
-  const lo = segmentIndex(runner,elapsed), hi = lo + 1;
-  const distance = runner.km[hi] - runner.km[lo];
-  if (distance <= 0) return '';
-  const seconds = Math.round((runner.times[hi] - runner.times[lo]) / distance);
-  return `${Math.floor(seconds / 60)}:${pad(seconds % 60)} / km`;
+function paceSeconds(runner, from) {
+  const distance = runner.km[from+1] - runner.km[from];
+  return distance > 0 ? Math.round((runner.times[from+1] - runner.times[from]) / distance) : null;
 }
+
+const formatPace = seconds => `${Math.floor(seconds / 60)}:${pad(seconds % 60)} / km`;
 
 function coursePoint(km) {
   const at = Math.max(0, Math.min(1, km / 209)) * (data.lookup.length - 1);
@@ -447,8 +494,8 @@ function seek(time) {
     else if (elapsed >= last(selected)) label = selected.finished ? 'Célban' : 'Utolsó mérés';
     else {
       const km = position(selected,raceTime);
-      const pace = segmentPace(selected,elapsed);
-      label = `${number.format(Math.floor(km))} km${pace ? ` · ${pace}` : ''}`;
+      const pace = paceSeconds(selected,segmentIndex(selected,elapsed));
+      label = `${number.format(Math.floor(km))} km${pace == null ? '' : ` · ${formatPace(pace)}`}`;
     }
     $('selected-badge').textContent = `#${selected.bib} · ${label}`;
   }
@@ -490,6 +537,30 @@ function hideSearchOptions() {
   $('search-options').replaceChildren();
 }
 
+const stationName = (runner, km) => data.stations[runner.group][km] || 'Mérőpont';
+const segmentDistance = new Intl.NumberFormat('hu-HU', {maximumFractionDigits:2});
+
+function showSegmentPaces(runner) {
+  const values = runner.km.slice(0,-1).map((_,i) => paceSeconds(runner,i));
+  const fastest = Math.min(...values.filter(value => value > 0));
+  $('segment-paces').replaceChildren(...values.map((pace,i) => {
+    const from = runner.km[i], to = runner.km[i+1];
+    const row = element('li',null,'pace-row');
+    const segment = element('div',null,'pace-segment');
+    const stations = element('span',`${stationName(runner,from)} → ${stationName(runner,to)}`,'pace-stations');
+    const label = element('strong',pace == null ? '—' : formatPace(pace),'pace-number');
+    const distance = element('span',`${segmentDistance.format(to-from)} km`,'pace-distance');
+    const bar = element('div',null,'pace-meter');
+    const fill = element('span');
+    fill.style.width = pace > 0 ? `${fastest / pace * 100}%` : '0%';
+    bar.setAttribute('aria-hidden','true');
+    bar.append(fill);
+    segment.append(stations,distance);
+    row.append(segment,label,bar);
+    return row;
+  }));
+}
+
 function showSelection(runner, focusMap = false, searchedByName = false) {
   stop();
   hideSearchOptions();
@@ -517,10 +588,12 @@ function showSelection(runner, focusMap = false, searchedByName = false) {
   $('splits').replaceChildren(...runner.times.map((split,i) => {
     const row = element('tr');
     const km = runner.km[i];
-    row.append(element('td',data.stations[runner.group][km] || 'Mérőpont'),
+    row.append(element('td',stationName(runner,km)),
       element('td',`${number.format(km)} km`),element('td',duration(split)));
     return row;
   }));
+  showSegmentPaces(runner);
+  updatePersonalFinish();
   setBibUrl(runner.bib);
   seek(runner.start + 0.38 * last(runner));
   if (focusMap && window.innerWidth <= 700) {
@@ -579,6 +652,7 @@ $('start-run').addEventListener('click',() => {
 function clearSelection() {
   hideSearchOptions();
   selected = null;
+  updatePersonalFinish();
   $('result').hidden = true;
   $('selected-badge').hidden = true;
   $('bib').value = '';
@@ -634,6 +708,34 @@ const firstHour = Math.floor(Math.min(...allTimes) / 3600);
 const finalHour = Math.floor(Math.max(...allTimes) / 3600);
 const histogramCounts = Array.from({length: finalHour - firstHour + 1}, () => [0,0,0]);
 groupTimes.forEach((times,g) => times.forEach(t => histogramCounts[Math.floor(t / 3600)-firstHour][g]++));
+const lastHour = finalHour + 1;
+const finishFraction = seconds => (seconds / 3600 - firstHour) / (lastHour - firstHour);
+
+function updatePersonalFinish() {
+  const runner = selected?.finished ? selected : null;
+  for (const [plot,label] of [[$('histogram'),$('hist-selected')],[$('category-personal-plot'),$('category-personal-label')]]) {
+    if (!plot || !label) continue;
+    plot.querySelector('.personal-finish-marker')?.remove();
+    label.hidden = !runner;
+    label.textContent = runner ? `#${runner.bib} célideje · ${duration(last(runner))}` : '';
+    if (runner) {
+      const marker = element('span',null,'personal-finish-marker');
+      marker.style.left = `${finishFraction(last(runner)) * 100}%`;
+      marker.setAttribute('aria-hidden','true');
+      plot.append(marker);
+    }
+  }
+}
+
+const hourMarks = [firstHour, ...Array.from({length:lastHour-firstHour-1},(_,i)=>firstHour+i+1)
+  .filter(h => h % 4 === 0 && h-firstHour >= 3 && lastHour-h >= 3), lastHour];
+function labelTimeAxis(axis) {
+  axis.replaceChildren(...hourMarks.map((h,i) => {
+    const label = element('span', i === hourMarks.length - 1 ? `${h} óra` : String(h));
+    label.style.left = `${(h-firstHour)/histogramCounts.length*100}%`;
+    return label;
+  }));
+}
 const selection = $('category');
 function drawHistogram() {
   const active = selection.value === 'all' ? [0,1,2] : [Number(selection.value)];
@@ -651,15 +753,9 @@ function drawHistogram() {
     }
     return column;
   }));
-  const lastHour = finalHour + 1;
-  const marks = [firstHour, ...Array.from({length:lastHour-firstHour-1},(_,i)=>firstHour+i+1)
-    .filter(h => h % 4 === 0 && h-firstHour >= 3 && lastHour-h >= 3), lastHour];
-  $('axis').replaceChildren(...marks.map((h,i) => {
-    const label = element('span', i === marks.length - 1 ? `${h} óra` : String(h));
-    label.style.left = `${(h-firstHour)/histogramCounts.length*100}%`;
-    return label;
-  }));
+  labelTimeAxis($('axis'));
   $('hist-note').textContent = `A legnépesebb sáv ${peakHour}–${peakHour+1} óra, ${number.format(peak)} célba érővel.`;
+  updatePersonalFinish();
 }
 selection.addEventListener('change',drawHistogram);
 drawHistogram();
@@ -679,7 +775,58 @@ const statsByCategory = new Map(data.categories.map(stats => [categoryKey(stats)
 let selectedCategory;
 
 function categoryName(stats) {
+  if (stats.size === 'all' && stats.gender === 'all') return `${groups[stats.group]} · Összes`;
+  if (stats.size === 'all') return `${groups[stats.group]} · Összes ${stats.gender.toLocaleLowerCase('hu')}`;
+  if (stats.gender === 'all') return `Összes ${stats.size} fős csapat`;
   return stats.group === 0 ? `Egyéni · ${stats.gender}` : `${stats.size} fős · ${stats.gender}`;
+}
+
+const distributionX = seconds => finishFraction(seconds) * 1000;
+
+function categoryDistribution(stats) {
+  const chart = element('div',null,'category-distribution');
+  chart.append(element('p','Célidők eloszlása a kategóriában','category-chart-label'));
+  if (!stats.finished) {
+    chart.append(element('p','Ebben a kategóriában nincs célidő.','subtle'));
+    return chart;
+  }
+  chart.append(element('p','A célba érők aránya egyórás sávonként.','category-chart-unit'));
+  const scale = element('div',null,'category-chart-scale');
+  scale.setAttribute('aria-hidden','true');
+  scale.append(...['100%','50%','0%'].map(label => element('span',label)));
+  const plotArea = element('div',null,'category-chart-area');
+  const plot = svgNode('svg',{
+    class:'category-plot', viewBox:'0 0 1000 112', preserveAspectRatio:'none', role:'img',
+    'aria-label':`${categoryName(stats)} célidői, ${firstHour}–${lastHour} órás és 0–100 százalékos skálán`,
+  });
+  for (const y of [0,56]) plot.append(svgNode('line',{x1:0,x2:1000,y1:y,y2:y,class:'category-gridline'}));
+  const counts = Array.from({length:lastHour-firstHour},(_,i)=>stats.hourly?.[firstHour+i] ?? 0);
+  const path = 'M0 112' + counts.map((count,i) =>
+    ` V${112 - 112 * count / stats.finished} H${1000 * (i+1) / counts.length}`).join('') + ' V112 Z';
+  plot.append(svgNode('path',{d:path,class:'selected-distribution'}));
+  if (stats.middle) {
+    const [low,high] = stats.middle.map(distributionX);
+    plot.append(svgNode('rect',{x:low,y:0,width:Math.max(1,high-low),height:112,class:'category-band'}));
+  }
+  for (const [value,css] of [[stats.best,'category-best'],[stats.median,'category-median']]) {
+    if (value == null) continue;
+    const x = distributionX(value);
+    plot.append(svgNode('line',{x1:x,x2:x,y1:0,y2:112,class:css}));
+  }
+  const axis = element('div',null,'axis');
+  axis.setAttribute('aria-hidden','true');
+  labelTimeAxis(axis);
+  const plotWrap = element('div',null,'category-plot-wrap');
+  plotWrap.id = 'category-personal-plot';
+  plotWrap.append(plot);
+  plotArea.append(plotWrap,axis);
+  const grid = element('div',null,'category-chart-grid');
+  grid.append(scale,plotArea);
+  const personalLabel = element('p',null,'personal-finish-label');
+  personalLabel.id = 'category-personal-label';
+  personalLabel.hidden = true;
+  chart.append(grid,personalLabel);
+  return chart;
 }
 
 function showCategory(stats) {
@@ -690,16 +837,17 @@ function showCategory(stats) {
   const title = element('h3',categoryName(stats));
   const sample = element('p',`${number.format(stats.finished)} / ${number.format(stats.started)} célba ért · ${percent.format(stats.finished/stats.started)}`,'subtle');
   const metrics = element('dl',null,'category-detail-metrics');
-  for (const [label, value] of [
-    ['Medián célidő', stats.median == null ? '—' : duration(stats.median)],
-    ['Legjobb célidő', stats.best == null ? '—' : duration(stats.best)],
-    ['Középső 50%', stats.middle ? stats.middle.map(duration).join(' – ') : '—'],
+  for (const [label, value, css] of [
+    ['Legjobb célidő', stats.best == null ? '—' : duration(stats.best), 'best-key'],
+    ['Medián célidő', stats.median == null ? '—' : duration(stats.median), 'median-key'],
+    ['Középső 50%', stats.middle ? stats.middle.map(duration).join(' – ') : '—', 'band-key'],
   ]) {
     const box = element('div');
-    box.append(element('dt',label),element('dd',value));
+    box.append(element('dt',label,css),element('dd',value));
     metrics.append(box);
   }
-  $('category-detail').replaceChildren(title,sample,metrics);
+  $('category-detail').replaceChildren(title,sample,categoryDistribution(stats),metrics);
+  updatePersonalFinish();
 }
 
 function drawCategoryMatrix() {
@@ -711,38 +859,49 @@ function drawCategoryMatrix() {
     ? 'A 10–13 fős csapatok egy hivatalos kategóriát alkotnak. A „Női” és „Férfi” címkék az eredménylistát követik.'
     : 'A célba érési arány megmutatja, a térképen szereplő indulók hány százaléka ért célba.';
   const {sizes,genders} = categoryGroups[group];
-  const values = sizes.flatMap(size => genders.map(gender => statsByCategory.get(categoryKey({group,size,gender,company})))).filter(Boolean);
+  const getStats = (size,gender) => statsByCategory.get(categoryKey({group,size,gender,company}));
+  const values = sizes.flatMap(size => genders.map(gender => getStats(size,gender))).filter(Boolean);
   const measure = stats => metric === 'median' ? stats.median
     : metric === 'rate' ? stats.finished / stats.started : stats.started;
   const format = value => value == null ? '—' : metric === 'median' ? duration(value)
     : metric === 'rate' ? percent.format(value) : number.format(value);
   const comparable = values.map(measure).filter(value => value != null);
   const minimum = Math.min(...comparable), maximum = Math.max(...comparable);
-  $('category-key').textContent = metric === 'median' ? 'A medián a középső célidő. Az élénkebb szín gyorsabb időt jelöl.'
+  $('category-key').textContent = metric === 'median' ? 'Az élénkebb szín gyorsabb mediánt jelöl.'
     : 'Az élénkebb mezők magasabb értéket jelentenek.';
   const table = $('category-matrix');
   const head = element('thead');
   const header = element('tr');
-  for (const value of [group === 0 ? 'Mezőny' : 'Létszám', ...genders]) {
-    const cell = element('th',value);
+  const totalHeader = (text,stats) => {
+    if (!stats) return element('span',text);
+    const button = element('button',text,'category-total');
+    button.type = 'button';
+    button.dataset.key = categoryKey(stats);
+    button.setAttribute('aria-label',categoryName(stats));
+    button.addEventListener('click',()=>showCategory(stats));
+    return button;
+  };
+  for (const [label,gender] of [['Összes','all'], ...genders.map(gender=>[gender,gender])]) {
+    const cell = element('th');
     cell.scope = 'col';
+    cell.append(totalHeader(label,getStats('all',gender)));
     header.append(cell);
   }
   head.append(header);
   const body = element('tbody');
   for (const size of sizes) {
     const row = element('tr');
-    const heading = element('th',group === 0 ? 'Egyéni' : `${size} fő`);
+    const heading = element('th');
     heading.scope = 'row';
+    heading.append(group === 0 ? element('span','Egyéni') : totalHeader(`${size} fő`,getStats(size,'all')));
     row.append(heading);
     for (const gender of genders) {
       const td = element('td');
-      const key = categoryKey({group,size,gender,company});
-      const stats = statsByCategory.get(key);
+      const stats = getStats(size,gender);
       if (stats) {
         const button = element('button',null,'category-cell');
         button.type = 'button';
-        button.dataset.key = key;
+        button.dataset.key = categoryKey(stats);
         const value = measure(stats);
         const relative = value == null || maximum === minimum ? 0 : (value - minimum) / (maximum - minimum);
         const emphasis = metric === 'median' && value != null && maximum !== minimum ? 1 - relative : relative;
@@ -763,7 +922,8 @@ function drawCategoryMatrix() {
     body.append(row);
   }
   table.replaceChildren(head,body);
-  const current = values.find(stats => categoryKey(stats) === selectedCategory);
+  const previous = statsByCategory.get(selectedCategory);
+  const current = previous?.group === group ? getStats(previous.size,previous.gender) : null;
   const fallback = values.reduce((largest,stats) => !largest || stats.started > largest.started ? stats : largest,null);
   if (current || fallback) showCategory(current || fallback);
 }
