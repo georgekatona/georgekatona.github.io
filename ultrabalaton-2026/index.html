@@ -120,6 +120,10 @@
 .personal-finish-marker{position:absolute;top:0;bottom:0;width:0;border-left:1px solid #f3fbffbf;pointer-events:none;z-index:1}
 .personal-finish-label{display:flex;align-items:center;gap:.45rem;margin:.35rem 0 0;color:var(--ink);font-size:.85rem;font-weight:650;font-variant-numeric:tabular-nums}
 .personal-finish-label::before{content:"";flex:none;width:.72rem;border-top:1px solid #f3fbffbf}
+
+.result-metrics{grid-template-columns:repeat(4,minmax(0,1fr))}
+.result-metrics .metric-clock strong{font-size:clamp(1rem,2.45vw,1.75rem)}
+@media(max-width:700px){.result-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 </head>
 <body>
@@ -287,6 +291,11 @@ function wallTime(seconds) {
   const minutes = Math.floor((data.origin + seconds) / 60);
   const day = Math.floor(minutes / 1440);
   return {day, clock: `${pad(Math.floor(minutes / 60) % 24)}:${pad(minutes % 60)}`};
+}
+
+function shortWallTime(seconds) {
+  const {day,clock} = wallTime(seconds);
+  return `Ápr. ${24 + day}. ${clock}`;
 }
 
 function solarElevation(time) {
@@ -574,14 +583,15 @@ function showSelection(runner, focusMap = false, searchedByName = false) {
   $('result').hidden = false;
   $('copy-link').textContent = 'Link másolása';
   $('copy-status').textContent = '';
-  const start = wallTime(runner.start);
   const endLabel = runner.finished ? 'Célidő' : 'Az utolsó mérésig';
   const rankLabel = runner.finished && runner.rank ? 'Abszolút helyezés' : 'Utolsó mért táv';
   const rankValue = runner.finished && runner.rank ? `${number.format(runner.rank)}.` : `${number.format(runner.km.at(-1))} km`;
   $('result-metrics').replaceChildren(...[
-    ['Rajt', `Ápr. ${24 + start.day}. ${start.clock}`], [endLabel,duration(last(runner))], [rankLabel,rankValue]
-  ].map(([label,value]) => {
-    const tile = element('div');
+    ['Rajt',shortWallTime(runner.start),'metric-clock'],
+    [runner.finished ? 'Cél' : 'Utolsó mérés',shortWallTime(runner.start + last(runner)),'metric-clock'],
+    [endLabel,duration(last(runner))], [rankLabel,rankValue]
+  ].map(([label,value,css]) => {
+    const tile = element('div',null,css);
     tile.append(element('span',label),element('strong',value));
     return tile;
   }));
